@@ -69,3 +69,43 @@
 | Fase 3 | Filtro por selección, estadísticas, jugadores — migración a Vue.js |
 | Fase 4 | Clima por sede, feed de noticias |
 | Fase 5 | SEO, Google Analytics, Google AdSense, monetización |
+
+
+
+mundial-2026/
+│
+├── 📄 index.html                  ← Punto de entrada único
+├── 📄 package.json                ← Dependencias del proyecto (lo genera Vite)
+├── 📄 vite.config.js              ← Configuración de Vite
+├── 📄 tailwind.config.js          ← Configuración de Tailwind
+├── 📄 .gitignore                  ← Archivos que Git debe ignorar
+├── 📄 README.md                   ← Documentación del proyecto
+│
+├── 📁 src/                        ← Todo el código que escribimos
+│   │
+│   ├── 📁 assets/                 ← Imágenes, íconos, fuentes
+│   │   ├── img/
+│   │   └── icons/
+│   │
+│   ├── 📁 css/                    ← Estilos
+│   │   └── main.css               ← Aquí entra Tailwind
+│   │
+│   ├── 📁 js/                     ← Lógica JavaScript
+│   │   ├── api.js                 ← Todas las llamadas a APIs
+│   │   ├── partidos.js
+│   │   ├── clima.js
+│   │   └── noticias.js
+│   │
+│   ├── 📁 pages/                  ← Páginas HTML
+│   │   ├── partidos.html
+│   │   ├── grupos.html
+│   │   ├── selecciones.html
+│   │   ├── estadios.html
+│   │   └── noticias.html
+│   │
+│   └── 📁 components/             ← Partes reutilizables (cards, navbar, etc.)
+│       ├── navbar.js
+│       ├── footer.js
+│       └── card-partido.js
+│
+└── 📁 dist/                       ← Código final optimizado (lo genera Vite solo)
