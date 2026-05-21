@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+    --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+    --font-bebas: 'Bebas Neue', sans-serif;
+    --font-teco: 'Teco', sans-serif;
+}
