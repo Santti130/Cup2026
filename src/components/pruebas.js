@@ -6,9 +6,6 @@ export function renderCountdown() {
     section.style.marginTop = '0';
 
     section.innerHTML = /*html*/`
-
-
-
     <div class="relative flex flex-col items-center gap-6 z-10">
         <h1 class="text-6xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">Faltan</h1>
         
@@ -21,13 +18,12 @@ export function renderCountdown() {
                 </div>
             </div>
             <div class="text-9xl font-black text-white/20 self-center -mt-6">:</div>
-            
             <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 p-6 rounded-2xl min-w-[150px] shadow-2xl hover:-translate-y-2 transition-transform duration-300 hover:border-sky-500/50 group">
                 <div class="absolute -inset-1 bg-sky-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
                 <span id="hours" class="text-9xl font-black text-white tabular-nums tracking-tight leading-none drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">00</span>
                 <span class="text-sky-300 text-sm uppercase tracking-[0.3em] mt-3 font-jakarta font-bold">Horas</span>
             </div>
-             <div class="text-9xl font-black text-white/20 self-center -mt-6">:</div>
+            <div class="text-9xl font-black text-white/20 self-center -mt-6">:</div>
             <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/10 p-6 rounded-2xl min-w-[150px] shadow-2xl hover:-translate-y-2 transition-transform duration-300 hover:border-emerald-500/50 group">
                 <div class="absolute -inset-1 bg-emerald-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
                 <span id="minutes" class="text-9xl font-black text-white tabular-nums tracking-tight leading-none">00</span>
@@ -161,7 +157,7 @@ export function renderCountdown() {
                     </div>
 
                     <div class="flex flex-col items-center gap-2 flex-1 group-hover:translate-x-[5px] transition-transform duration-300">
-                         <div class="relative h-16 w-16 p-1 rounded-full bg-gradient-to-b from-white/10 to-transparent border border-white/10 shadow-lg overflow-hidden">
+                        <div class="relative h-16 w-16 p-1 rounded-full bg-gradient-to-b from-white/10 to-transparent border border-white/10 shadow-lg overflow-hidden">
                             <img src="https://flagcdn.com/w160/${partido.equipo2.codigo}.png" alt="${partido.equipo2.nombre}" class="w-full h-full rounded-full object-cover group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <span class="text-white text-base font-black tracking-tight">${partido.equipo2.abrev}</span>
@@ -174,7 +170,7 @@ export function renderCountdown() {
                 </div>
                 
                 <p class="text-white/50 text-xs font-light text-center truncate italic">
-                     📍 ${partido.estadio}
+                    📍 ${partido.estadio}
                 </p>
             </div>
         `;

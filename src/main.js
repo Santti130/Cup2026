@@ -1,7 +1,7 @@
 import './css/main.css'
 import { renderNavbar } from './components/navbar.js'
 import { renderCountdown } from './components/countdown.js'
-import { renderGroups } from './components/groups.js'
+// import { renderGroups } from './components/groups.js'
 import { renderFooter } from './components/footer.js'
 // import { renderMatchCards } from './components/match-card.js'
 

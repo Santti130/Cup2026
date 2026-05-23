@@ -1,7 +1,7 @@
 export function renderCountdown() {
     const section = document.createElement('section')
     // Contenedor flexible centrado vertical y horizontalmente con imagen de fondo adaptable y elementos organizados en columna
-    section.className = 'relative flex flex-col items-center justify-center gap-6 overflow-hidden bg-[url(/src/assets/img/fondo-home-countdown.png)] bg-cover bg-center bg-no-repeat perspective';
+    section.className = 'relative flex flex-col items-center justify-center gap-6 overflow-hidden bg-[url(/src/assets/img/fondo-home-countdown.png)] bg-cover bg-center bg-no-repeat perspective pt-24 lg:pt-0'
     // Area visible del navegador
     section.style.minHeight = '100vh'
     section.style.marginTop = '0'
@@ -26,56 +26,69 @@ export function renderCountdown() {
         </div>
     </div>
 
-<div class="relative flex flex-col items-center gap-6 z-10">
-        <h1 class="text-6xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">Faltan</h1>
+    <div class="relative mt-2 md:mt-6 xl:mt-10 flex flex-col items-center gap-6 z-10">
+        <h1 class="text-2xl md:text-4xl xl:text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+        Faltan
+        </h1>
         <!-- Contador -->
-        <div class="flex gap-10 mt-4 font-bebas">
+        <div class="flex gap-10 flex items-center gap-4 font-bebas">
             <div class="relative group">
                 <div class="relative flex flex-col items-center justify center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                     <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                    <span id="days" class="text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
-                    <span class="text-gray-300 text-3xl uppercase tracking-widest font-bold">Días</span>
+                    <span id="days" class="text-6xl lg:text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
+                    <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Días</span>
                 </div>
             </div>
-            <div class="text-8xl font-black text-white/40 self-center -mt-6">:</div>
+            <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
 
-            <div class="relative flex flex-col items-center justify center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+            <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                 <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                <span id="hours" class="text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
-                <span class="text-gray-300 text-3xl uppercase tracking-widest font-bold">Horas</span>
+                <span id="hours" class="text-6xl lg:text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
+                <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Horas</span>
             </div>
-            <div class="text-8xl font-black text-white/40 self-center -mt-6">:</div>
+            <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
 
-            <div class="relative flex flex-col items-center justify center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+            <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                 <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                <span id="minutes" class="text-9xl font-bold text-white">00</span>
-                <span class="text-gray-300 text-3xl uppercase tracking-widest font-bold">Minutos</span>
+                <span id="minutes" class="text-6xl lg:text-9xl font-bold text-white">00</span>
+                <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Minutos</span>
             </div>
-            <div class="text-8xl font-black text-white/40 self-center -mt-6">:</div>
+            <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
 
-            <div class="relative flex flex-col items-center justify center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+            <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                 <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                <span id="seconds" class="text-9xl font-bold text-white">00</span>
-                <span class="text-gray-300 text-3xl uppercase tracking-widest font-bold">Segundos</span>
+                <span id="seconds" class="text-6xl lg:text-9xl font-bold text-white">00</span>
+                <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Segundos</span>
             </div>
         </div>
 
-        <h1 class="text-6xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">PARA EL INICIO DEL MUNDIAL 2026</h1>
+        <h1 class="text-2xl md:text-4xl xl:text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+        PARA EL INICIO DEL MUNDIAL 2026
+        </h1>
         <div class="flex flex-col items-center gap-1 mt-4">
-        <p class="textl-xl text-white/70 text-center font-bebas tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">El evento más importante del mundo del fútbol está por comenzar.</p>
-        </div>
+        <p class="text-xs md:text-lg xl:text-xl text-white/70 text-center font-bebas tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+        El evento más importante del mundo del fútbol está por comenzar.
+        </p>
+    </div>
 </div>
 
 
 
         <!-- TARJETAS DE PARTIDOS -->
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 mt-4">
             <div class="w-30 h-px bg-gradient-to-r from-transparent to-lime-500"></div>
-            <h2 class="text-white text-6xl font-bold uppercase tracking-widest font-bebas bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">Próximos Partidos</h2>
+            <h2 class="text-white text-2xl md:text-4xl xl:text-5xl font-bold uppercase tracking-widest font-bebas bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+            Próximos Partidos
+            </h2>
             <div class="w-30 h-px bg-gradient-to-l from-transparent to-sky-500"></div>
         </div>
         <div id="cards-container" class="flex justify-center items-center gap-6 w-full px-8 font-bebas tracking-wide"></div>
+        
+        
+
+        <!-- DEGRADADO DE TRANSICIÓN -->
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#0b1220] pointer-events-none z-20"></div>
     `
 
     // Fechas — declaradas UNA sola vez fuera de la función
@@ -117,14 +130,16 @@ export function renderCountdown() {
             equipo1: { codigo: 'mx', abrev: 'MEX' },
             equipo2: { codigo: 'za', abrev: 'RSA' },
             fecha: '11 JUN', hora: '14:00 PM',
-            sede: { pais: 'México', ciudad: 'CDMX', estadio: 'Estadio Azteca', capacidad: '83,264' }
+            sede: { pais: 'México', ciudad: 'CDMX', estadio: 'Estadio Azteca', capacidad: '83,264' },
+            clima: { condicion: '🌦️', descripcion: 'Lluvioso', temp: '25°C', humedad: '66%', viento: '11 km/h' }
         },
         {
             grupo: 'Grupo A', jornada: 'Jornada 1',
             equipo1: { codigo: 'kr', abrev: 'KOR' },
             equipo2: { codigo: 'cz', abrev: 'CZE' },
             fecha: '11 JUN', hora: '21:00 PM',
-            sede: { pais: 'EE. UU.', ciudad: 'Inglewood', estadio: 'SoFi Stadium', capacidad: '70,240' }
+            sede: { pais: 'EE. UU.', ciudad: 'Inglewood', estadio: 'SoFi Stadium', capacidad: '70,240' },
+            clima: { condicion: '☀️', descripcion: 'Soleado', temp: '25°C', humedad: '65%', viento: '13 km/h' }
         },
     //  {
     //      grupo: 'Grupo A', jornada: 'Jornada 1',
@@ -144,7 +159,7 @@ export function renderCountdown() {
         card.style.height = '220px' // Un poco de altura extra para que quepa todo sin verse apretado
         card.style.perspective = '1000px'
 
- card.innerHTML = /*html*/`
+    card.innerHTML = /*html*/`
             <div class="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)] [transform-origin:center] will-change-transform"
                 style="transform-style: preserve-3d">
 
@@ -157,7 +172,7 @@ export function renderCountdown() {
                     <div class="flex items-center justify-center gap-6 mb-4 w-full">
                         <div class="flex flex-col items-center gap-2">
                             <img src="https://flagcdn.com/w80/${partido.equipo1.codigo}.png" class="w-12 h-12 rounded-full object-cover" 
-                                 style="transform: translateZ(0); backface-visibility: hidden;">
+                            style="transform: translateZ(0); backface-visibility: hidden;">
                             <span class="text-white text-base tracking-wider">${partido.equipo1.abrev}</span>
                         </div>
                         <span class="text-white text-2xl font-bold">VS</span>
@@ -187,18 +202,19 @@ export function renderCountdown() {
 
                     <div class="grid grid-cols-3 gap-2 text-center mt-2 w-full">
                         <div>
-                            <p class="text-2xl">🌤️</p>
-                            <p class="text-white/50 text-xs font-sans mt-1">Soleado</p>
+                            <p class="text-2xl">${partido.clima.condicion}</p>
+                            <p class="text-white/50 text-xs font-sans mt-1">${partido.clima.descripcion}</p>
                         </div>
                         <div>
-                            <p class="text-white text-xl font-bold">24°C</p>
+                            <p class="text-white text-xl font-bold">${partido.clima.temp}</p>
                             <p class="text-white/50 text-xs font-sans mt-1">Temp</p>
                         </div>
                         <div>
-                            <p class="text-white text-xl font-bold">45%</p>
+                            <p class="text-white text-xl font-bold">${partido.clima.humedad}</p>
                             <p class="text-white/50 text-xs font-sans mt-1">Humedad</p>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         `
@@ -208,4 +224,3 @@ export function renderCountdown() {
 
     return section
 }
-
