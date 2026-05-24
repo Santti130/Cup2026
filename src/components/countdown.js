@@ -1,15 +1,14 @@
 export function renderCountdown() {
     const section = document.createElement('section')
     // Contenedor flexible centrado vertical y horizontalmente con imagen de fondo adaptable y elementos organizados en columna
-    section.className = 'relative flex flex-col items-center justify-center gap-6 overflow-hidden bg-[url(/src/assets/img/fondo-home-countdown.png)] bg-cover bg-center bg-no-repeat perspective pt-24 lg:pt-0'
+    section.className = 'relative flex flex-col items-center justify-center gap-6 overflow-hidden bg-[url(/src/assets/img/fondo-home-countdown.png)] bg-cover bg-center bg-no-repeat perspective pt-16 lg:pt-0'
     // Area visible del navegador
     section.style.minHeight = '100vh'
     section.style.marginTop = '0'
-
     section.innerHTML = /*html*/`
 
     <!-- TARJETA PROGRESO -->
-    <div class="absolute top-15 left-4 bg-black/70 backdrop-blur-sm border border-white/10 rounded-xl px-5 py-3 w-70 font-bebas transition-all hover:border-cyan-400/50 hover:shadow-[0_8px_50px_0_rgba(34,211,238,0.2)]">
+    <div class="absolute top-15 left-4 bg-black/70 backdrop-blur-sm border border-white/10 rounded-xl px-5 py-3 w-64 font-bebas transition-all hover:border-cyan-400/50 hover:shadow-[0_8px_50px_0_rgba(34,211,238,0.2)]">
         <p class="text-white/90 text-xl tracking-wide">Cargando Mundial 2026...</p>
         <!-- Barra de progreso + porcentaje -->
         <div class="flex items-center gap-2">
@@ -26,47 +25,47 @@ export function renderCountdown() {
         </div>
     </div>
 
-    <div class="relative mt-2 md:mt-6 xl:mt-10 flex flex-col items-center gap-6 z-10">
-        <h1 class="text-2xl md:text-4xl xl:text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+    <div class="relative mt-5 md:mt-6 xl:mt-10 flex flex-col items-center gap-6 z-10">
+        <h1 class="text-base md:text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
         Faltan
         </h1>
         <!-- Contador -->
-        <div class="flex gap-10 flex items-center gap-4 font-bebas">
+        <div class="flex gap-8 items-center font-bebas">
             <div class="relative group">
-                <div class="relative flex flex-col items-center justify center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+                <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                     <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                    <span id="days" class="text-6xl lg:text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
-                    <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Días</span>
+                    <span id="days" class="text-lg md:text-xl xl:text-8xl 2xl:text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
+                    <span class="text-gray-300 text-base md:text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Días</span>
                 </div>
             </div>
             <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
 
             <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                 <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                <span id="hours" class="text-6xl lg:text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
-                <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Horas</span>
+                <span id="hours" class="text-lg md:text-xl xl:text-8xl 2xl:text-9xl font-bold text-white tabular-nums leading-none rounded-xl">00</span>
+                <span class="text-gray-300 text-base md:text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Horas</span>
             </div>
             <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
 
             <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                 <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                <span id="minutes" class="text-6xl lg:text-9xl font-bold text-white">00</span>
-                <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Minutos</span>
+                <span id="minutes" class="text-lg md:text-xl xl:text-8xl 2xl:text-9xl font-bold text-white">00</span>
+                <span class="text-gray-300 text-base md:text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Minutos</span>
             </div>
             <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
 
             <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                 <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
-                <span id="seconds" class="text-6xl lg:text-9xl font-bold text-white">00</span>
-                <span class="text-gray-300 text-sm md:text-xl xl:text-2xl uppercase tracking-widest font-bold">Segundos</span>
+                <span id="seconds" class="text-lg md:text-xl xl:text-8xl 2xl:text-9xl font-bold text-white">00</span>
+                <span class="text-gray-300 text-base md:text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Segundos</span>
             </div>
         </div>
 
-        <h1 class="text-2xl md:text-4xl xl:text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+        <h1 class="text-base md:text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
         PARA EL INICIO DEL MUNDIAL 2026
         </h1>
-        <div class="flex flex-col items-center gap-1 mt-4">
-        <p class="text-xs md:text-lg xl:text-xl text-white/70 text-center font-bebas tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+        <div class="flex flex-col items-center gap-1">
+        <p class="text-base md:text-lg xl:text-xl 2xl:text-2xl text-white/70 text-center font-bebas tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
         El evento más importante del mundo del fútbol está por comenzar.
         </p>
     </div>
@@ -76,9 +75,9 @@ export function renderCountdown() {
 
         <!-- TARJETAS DE PARTIDOS -->
 
-        <div class="flex items-center gap-4 mt-4">
+        <div class="flex items-center gap-4">
             <div class="w-30 h-px bg-gradient-to-r from-transparent to-lime-500"></div>
-            <h2 class="text-white text-2xl md:text-4xl xl:text-5xl font-bold uppercase tracking-widest font-bebas bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+            <h2 class="text-white text-base md:text-xl xl:text-4xl 2xl:text-5xl font-bold uppercase tracking-widest font-bebas bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
             Próximos Partidos
             </h2>
             <div class="w-30 h-px bg-gradient-to-l from-transparent to-sky-500"></div>

@@ -3,27 +3,60 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sigue el Mundial 2026 en vivo — partidos, resultados, estadísticas y noticias" />
-    <title>Cup 2026 — El Mundial en tu pantalla</title>
+
+    <!-- SEO Básico -->
+    <title>CupHub — World Cup 2026 | Fixture, Grupos y Resultados</title>
+    <meta name="description" content="Sigue el Mundial 2026 en vivo. Fixture completo, grupos, resultados, estadísticas, clima en las sedes y noticias de la Copa del Mundo 2026.">
+    <meta name="keywords" content="mundial 2026, world cup 2026, fixture mundial 2026, grupos mundial 2026, resultados mundial 2026, copa del mundo 2026, partidos mundial 2026">
+    <meta name="author" content="CupHub">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0b1220">
+    <link rel="canonical" href="https://cup2026.vercel.app">
+
+    <!-- Open Graph — como se ve al compartir en redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cup2026.vercel.app">
+    <meta property="og:title" content="CupHub — World Cup 2026">
+    <meta property="og:description" content="Sigue el Mundial 2026 en vivo. Fixture, grupos, resultados y más.">
+    <meta property="og:image" content="https://cup2026.vercel.app/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="CupHub">
+
+    <!-- Twitter Card — como se ve al compartir en Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://cup2026.vercel.app">
+    <meta name="twitter:title" content="CupHub — World Cup 2026">
+    <meta name="twitter:description" content="Sigue el Mundial 2026 en vivo. Fixture, grupos, resultados y más.">
+    <meta name="twitter:image" content="https://cup2026.vercel.app/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"> <!-- Tipografia para-->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KMRY9054T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-0KMRY9054T');
+    </script>
 </head>
-<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-white min-h-screen flex flex-col">
+<body class="bg-[#0b1220] text-white min-h-screen flex flex-col">
 
-<main id="main-content" class="flex-1">
-    <!-- Aquí se inyecta todo el contenido de cada página -->
-</main>
+    <main id="main-content" class="flex-1">
+    </main>
 
-<main class="flex-1"></main><!--Esta linea envia el footer a la parte de abajo-->
 <script type="module" src="/src/main.js"></script>
-<script src="/src/components/countdown.js"></script>
-<script src="/src/components/groups.js"></script>
 </body>
 </html>

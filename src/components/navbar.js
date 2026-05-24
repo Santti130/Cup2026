@@ -4,30 +4,20 @@ export function renderNavbar() {
   nav.innerHTML = /*html*/`
     <div class="flex items-center p-2">
 
-      <!-- ZONA IZQUIERDA -->
-      <div class="w-1/3"></div>
+        <!-- ZONA IZQUIERDA — oculta en móvil -->
+        <div class="hidden xl:block w-1/3"></div>
 
-      <!-- ZONA CENTRO -->
-      <div class="flex items-center justify-center gap-6 w-1/3 font-teko font-medium text-sm">
-        <a href="#" class="transition-colors duration-300 hover:text-gray-400">INICIO</a>
-        <!-- <a href="/src/pages/calendario.html" class="transition-colors duration-300 hover:text-gray-300">RESULTADOS</a> -->
-        <a href="#">
-          <img class="w-12" src="/src/assets/icons/WorldCup-logo.png" alt="LogoPrincipal">
-        </a>
-        <a href="#" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
-        <!-- <a href="#" class="transition-colors duration-300 hover:text-gray-300">NOTICIAS</a> -->
-      </div>
+        <!-- ZONA CENTRO -->
+        <div class="flex items-center justify-center gap-4 xl:gap-6 w-full xl:w-1/3 font-teko font-medium text-sm">
+            <a href="#" class="transition-colors duration-300 hover:text-gray-400">INICIO</a>
+            <a href="#">
+                <img class="w-8 xl:w-12" src="/src/assets/icons/WorldCup-logo.png" alt="LogoPrincipal">
+            </a>
+            <a href="#" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
+        </div>
 
-      <!-- ZONA DERECHA -->
-      <!-- <div class="flex items-center justify-end gap-0 w-1/3">
-        <a href="#">
-          <img class="w-12" src="/src/assets/icons/login-provisional.png" alt="login">
-        </a>
-        <a href="#">
-          <img class="w-12" src="/src/assets/icons/login-provisional.png" alt="notlogin">
-        </a>
-      </div> -->
-
+        <!-- ZONA DERECHA — oculta en móvil -->
+        <div class="hidden xl:block w-1/3"></div>
     </div>
   `
   return nav
