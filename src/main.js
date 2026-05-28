@@ -6,11 +6,11 @@ import { renderFooter } from './components/footer.js'
 import { renderCalendar } from './components/calendar.js'
 
 // Vercel Analytics
-import { inject } from '@vercel/analytics'
+// import { inject } from '@vercel/analytics'
 
-if (import.meta.env.PROD) {
-    inject()
-}
+// if (import.meta.env.PROD) {
+//     inject()
+// }
 
 // Navbar
 document.body.prepend(renderNavbar())
