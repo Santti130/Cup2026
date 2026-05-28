@@ -13,7 +13,7 @@ export function renderNavbar() {
             <a href="/index.html">
                 <img class="w-8 xl:w-12" src="/icons/WorldCup-logo.png" alt="LogoPrincipal">
             </a>
-            <a href="/pages/calendario.html" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
+            <a href="/calendario.html" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
         </div>
 
         <!-- ZONA DERECHA — oculta en móvil -->
