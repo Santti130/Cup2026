@@ -117,7 +117,6 @@ export function renderCountdown() {
         section.querySelector('#progress-bar').style.width        = percent + '%'
         section.querySelector('#progress-percent').textContent    = percent + '%'
     }
-
     updateCountdown()
     setInterval(updateCountdown, 1000)
 
@@ -139,7 +138,7 @@ export function renderCountdown() {
             fecha: '11 JUN', hora: '21:00 PM',
             sede: { pais: 'EE. UU.', ciudad: 'Inglewood', estadio: 'SoFi Stadium', capacidad: '70,240' },
             clima: { condicion: '☀️', descripcion: 'Soleado', temp: '25°C', humedad: '65%', viento: '13 km/h' }
-        },
+        }
     //  {
     //      grupo: 'Grupo A', jornada: 'Jornada 1',
     //      equipo1: { codigo: 'mx', abrev: 'MEX' },
@@ -150,7 +149,7 @@ export function renderCountdown() {
     ]
 
 // Crear cada tarjeta y agregarla al contenedor
-    const container = section.querySelector('#cards-container')
+const container = section.querySelector('#cards-container')
     partidos.forEach(partido => {
         const card = document.createElement('div')
         card.className = 'relative cursor-pointer group flex-shrink-0'
@@ -218,7 +217,7 @@ export function renderCountdown() {
             </div>
         `
 
-        container.append(card)
+    container.append(card)
     })
 
     return section

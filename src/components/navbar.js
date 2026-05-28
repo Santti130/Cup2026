@@ -9,11 +9,11 @@ export function renderNavbar() {
 
         <!-- ZONA CENTRO -->
         <div class="flex items-center justify-center gap-4 xl:gap-6 w-full xl:w-1/3 font-teko font-medium text-sm">
-            <a href="#" class="transition-colors duration-300 hover:text-gray-400">INICIO</a>
-            <a href="#">
+            <a href="/index.html" class="transition-colors duration-300 hover:text-gray-400">INICIO</a>
+            <a href="/index.html">
                 <img class="w-8 xl:w-12" src="/icons/WorldCup-logo.png" alt="LogoPrincipal">
             </a>
-            <a href="#" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
+            <a href="/pages/calendario.html" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
         </div>
 
         <!-- ZONA DERECHA — oculta en móvil -->

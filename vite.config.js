@@ -1,8 +1,16 @@
 import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite' /*Importa el plugin*/
+import tailwindcss from '@tailwindcss/vite'
 
-export default defineConfig({ /*Funcion que usa Vite para recibir la configuración*/
-  plugins: [ /*Le indica a Vite que use Tailwind que procese los archivos*/
+export default defineConfig({
+  plugins: [
     tailwindcss(),
   ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        calendario: './src/pages/calendario.html'
+      }
+    }
+  }
 })
