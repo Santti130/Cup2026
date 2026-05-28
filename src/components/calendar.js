@@ -14,8 +14,10 @@ let filtros = {
 export function renderCalendar() {
 
     const section = document.createElement('section')
-    section.className = 'relative w-full flex flex-col items-center overflow-hidden bg-[url(/src/assets/img/fondo-home-plantilla2.png)] bg-cover bg-center bg-no-repeat pt-20 pb-24 px-6'
+    section.className = 'relative w-screen flex flex-col items-center overflow-hidden bg-[url(/src/assets/img/fondo-home-plantilla2.png)] bg-cover bg-center bg-no-repeat pt-20 pb-24 px-6'
     section.style.minHeight = '100vh'
+    section.style.marginLeft = 'calc(-50vw + 50%)'
+    section.style.marginRight = 'calc(-50vw + 50%)'
     section.innerHTML = /*html*/`
         <!-- FONDO DECORATIVO — cuadrícula sutil -->
         <div class="absolute inset-0 opacity-30 pointer-events-none bg-[linear-gradient(to_right,#ffffff20_1px,transparent_1px),linear-gradient(to_bottom,#ffffff20_1px,transparent_1px)] bg-[size:50px_50px]"></div>
@@ -218,14 +220,20 @@ function render(section) {
     const filterInfo = section.querySelector('#filter-info')
 
     if (hayFiltroActivo) {
-        // Con filtro → ocultar navegación, mostrar días filtrados
+        // Con filtro → fondo oscuro liso + cuadrícula
+        section.style.backgroundImage = 'none'
+        section.style.backgroundColor = '#0b1220'
+
         navigation.classList.add('hidden')
         filterInfo.classList.remove('hidden')
         filterInfo.classList.add('flex')
         renderFilterInfo(section)
         renderFilteredDays(section)
     } else {
-        // Sin filtro → mostrar navegación día por día
+        // Sin filtro → imagen de fondo normal
+        section.style.backgroundImage = "url('/src/assets/img/fondo-home-plantilla2.png')"
+        section.style.backgroundColor = ''
+
         navigation.classList.remove('hidden')
         filterInfo.classList.add('hidden')
         filterInfo.classList.remove('flex')
@@ -263,21 +271,16 @@ function renderCarousel(section) {
     // Día actual (destacado)
     const curr = fixture[diaActual]
     const spanCurr = document.createElement('div')
-    spanCurr.className = 'flex flex-col items-center text-white font-bebas uppercase tracking-wider px-2 text-center leading-tight'
+    spanCurr.className = 'flex flex-col md:flex-row items-center md:gap-2 text-white font-bebas uppercase tracking-wider px-2 text-center leading-tight'
 
-    // Separar "Jueves 11 de Junio 2026" en partes
     const partes = curr.dia.split(' ')
-    // partes[0] = "Jueves"
-    // partes[1] = "11"
-    // partes[2] = "de"
-    // partes[3] = "Junio"
-    // partes[4] = "2026"
 
     spanCurr.innerHTML = `
         <span class="text-lg md:text-2xl">${partes[0]}</span>
-        <span class="text-base md:text-xl">${partes[1]} ${partes[2]} ${partes[3]}</span>
-        <span class="text-sm md:text-lg text-white/70">${partes[4]}</span>
+        <span class="text-lg md:text-2xl">${partes[1]} ${partes[2]} ${partes[3]}</span>
+        <span class="text-lg md:text-2xl text-white/70">${partes[4]}</span>
     `
+    carousel.append(spanCurr)
     carousel.append(spanCurr)
 
     // Día siguiente (difuminado)
