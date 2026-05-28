@@ -14,7 +14,7 @@ let filtros = {
 export function renderCalendar() {
 
     const section = document.createElement('section')
-    section.className = 'relative w-screen flex flex-col items-center overflow-hidden bg-[url(/src/assets/img/fondo-home-plantilla2.png)] bg-cover bg-center bg-no-repeat pt-20 pb-24 px-6'
+    section.className = 'relative w-screen flex flex-col items-center overflow-hidden bg-[url(/img/fondo-home-plantilla2.png)] bg-cover bg-center bg-no-repeat pb-24 px-6'
     section.style.minHeight = '100vh'
     section.style.marginLeft = 'calc(-50vw + 50%)'
     section.style.marginRight = 'calc(-50vw + 50%)'
@@ -28,9 +28,9 @@ export function renderCalendar() {
         <!-- CONTENEDOR PRINCIPAL -->
     <div class="relative w-full 2xl:mt-2 max-w-4xl flex flex-col items-center md:gap-5 2xl:gap-10">
 
-<h1 class="text-5xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest uppercase">
-    Calendario
-</h1>
+    <h1 class="text-5xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest pt-15 uppercase">
+        Calendario
+    </h1>
 
         <!-- NAVEGACIÓN — flechas, carrusel, paginación y filtros -->
         <div id="navigation-wrapper" class="w-full flex flex-col items-center gap-4">
@@ -231,7 +231,7 @@ function render(section) {
         renderFilteredDays(section)
     } else {
         // Sin filtro → imagen de fondo normal
-        section.style.backgroundImage = "url('/src/assets/img/fondo-home-plantilla2.png')"
+        section.style.backgroundImage = "url('/img/fondo-home-plantilla2.png')"
         section.style.backgroundColor = ''
 
         navigation.classList.remove('hidden')
