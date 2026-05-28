@@ -1,5 +1,7 @@
 {
     "rewrites": [
         { "source": "/calendario", "destination": "/src/pages/calendario.html" }
-    ]
+    ],
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist"
 }
