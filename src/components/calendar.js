@@ -14,7 +14,7 @@ let filtros = {
 export function renderCalendar() {
 
     const section = document.createElement('section')
-    section.className = 'relative flex flex-col items-center overflow-hidden bg-[url(/src/assets/img/fondo-home-plantilla2.png)] bg-cover bg-center bg-no-repeat pt-20 pb-24 px-6'
+    section.className = 'relative w-full flex flex-col items-center overflow-hidden bg-[url(/src/assets/img/fondo-home-plantilla2.png)] bg-cover bg-center bg-no-repeat pt-20 pb-24 px-6'
     section.style.minHeight = '100vh'
     section.innerHTML = /*html*/`
         <!-- FONDO DECORATIVO — cuadrícula sutil -->
@@ -26,22 +26,22 @@ export function renderCalendar() {
         <!-- CONTENEDOR PRINCIPAL -->
     <div class="relative w-full 2xl:mt-2 max-w-4xl flex flex-col items-center md:gap-5 2xl:gap-10">
 
-<h1 class="text-3xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest uppercase">
+<h1 class="text-5xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest uppercase">
     Calendario
 </h1>
 
         <!-- NAVEGACIÓN — flechas, carrusel, paginación y filtros -->
         <div id="navigation-wrapper" class="w-full flex flex-col items-center gap-4">
             <!-- Flechas y nombre del día -->
-            <div class="w-full flex items-center justify-center gap-4">
+            <div class="w-full flex items-center justify-center gap-2 md:gap-4">
                 <button id="skip-prev" class="text-white/30 hover:text-white/60 w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17-5-5 5-5"/><path d="m18 17-5-5 5-5"/></svg>
                 </button>
-                <button id="prev" class="text-white/40 hover:text-white/80 w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center transition-all">
+                <button id="prev" class="text-white/40 hover:text-white/80 w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 </button>
-                <div id="day-carousel" class="flex items-center gap-4 min-w-[300px] md:min-w-[500px] justify-center"></div>
-                <button id="next" class="text-white/40 hover:text-white/80 w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center transition-all">
+                <div id="day-carousel" class="flex items-center gap-2 min-w-[160px] md:min-w-[400px] justify-center"></div>
+                <button id="next" class="text-white/40 hover:text-white/80 w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </button>
                 <button id="skip-next" class="text-white/30 hover:text-white/60 w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all">
@@ -49,12 +49,12 @@ export function renderCalendar() {
                 </button>
             </div>
             <!-- Paginación (números) centrada + Filtro a la derecha -->
-            <div class="flex items-center w-full">
-                <div class="w-1/3"></div>
-                <div id="day-counter" class="flex items-center justify-center gap-1 w-1/3"></div>
-                <div class="w-1/3 flex justify-end">
-                    <button id="toggle-filtros" class="px-5 py-2 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 text-white md:text-sm 2xl:text-base font-bebas tracking-widest transition-all flex items-center gap-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            <div class="flex flex-col md:flex-row items-center md:items-center w-full gap-2 md:gap-0">
+                <div class="hidden md:block w-1/3"></div>
+                <div id="day-counter" class="flex items-center justify-center gap-1 w-full md:w-1/3"></div>
+                <div class="w-full md:w-1/3 flex justify-center md:justify-end">
+                    <button id="toggle-filtros" class="px-4 py-1.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 text-white text-xs md:text-sm font-bebas tracking-widest transition-all flex items-center gap-2 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
                         Filtros
                     </button>
                 </div>
@@ -68,7 +68,7 @@ export function renderCalendar() {
             </div>
 
             <!-- PANEL DE FILTROS — oculto por defecto -->
-            <div id="filtros-panel" class="hidden w-full max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex-col gap-5">
+            <div id="filtros-panel" class="hidden w-full max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex-col gap-5 mb-2">
                 <!-- Filtro: Estado -->
                 <div class="flex flex-col gap-2">
                     <label class="text-white/60 md:text-md 2xl:text-xl uppercase tracking-widest font-bebas">Estado</label>
@@ -262,9 +262,22 @@ function renderCarousel(section) {
 
     // Día actual (destacado)
     const curr = fixture[diaActual]
-    const spanCurr = document.createElement('span')
-    spanCurr.className = 'text-white font-bebas text-xl md:text-2xl uppercase tracking-wider px-4'
-    spanCurr.textContent = curr.dia
+    const spanCurr = document.createElement('div')
+    spanCurr.className = 'flex flex-col items-center text-white font-bebas uppercase tracking-wider px-2 text-center leading-tight'
+
+    // Separar "Jueves 11 de Junio 2026" en partes
+    const partes = curr.dia.split(' ')
+    // partes[0] = "Jueves"
+    // partes[1] = "11"
+    // partes[2] = "de"
+    // partes[3] = "Junio"
+    // partes[4] = "2026"
+
+    spanCurr.innerHTML = `
+        <span class="text-lg md:text-2xl">${partes[0]}</span>
+        <span class="text-base md:text-xl">${partes[1]} ${partes[2]} ${partes[3]}</span>
+        <span class="text-sm md:text-lg text-white/70">${partes[4]}</span>
+    `
     carousel.append(spanCurr)
 
     // Día siguiente (difuminado)
@@ -410,7 +423,7 @@ function createMatchCard(partido) {
     const tarjeta = document.createElement('div')
     tarjeta.className = 'flex flex-col gap-2 py-4 border-b border-black/10 last:border-0 transition-colors hover:bg-black/5 rounded-lg px-2'
     tarjeta.innerHTML = /*html*/`
-        <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center justify-between gap-2 flex-1">
             <div class="flex items-center gap-3 min-w-[110px]">
                 <img src="https://flagcdn.com/w40/${partido.equipo1.codigo}.png" class="w-8 h-6 object-cover rounded-sm shadow-sm">
                 <span class="text-[#111827] font-bold text-sm md:text-base">${partido.equipo1.abrev}</span>
@@ -421,8 +434,11 @@ function createMatchCard(partido) {
                 <img src="https://flagcdn.com/w40/${partido.equipo2.codigo}.png" class="w-8 h-6 object-cover rounded-sm shadow-sm">
             </div>
         </div>
-        <p class="text-center text-[#111827]/60 text-xs md:text-sm tracking-wide">
-            ${partido.fase} · ${partido.grupo} · ${partido.estadio} / ${partido.ciudad}
+        <p class="text-center text-[#111827]/60 text-xs tracking-wide truncate px-4">
+            ${partido.fase} · ${partido.grupo}
+        </p>
+        <p class="text-center text-[#111827]/40 text-xs tracking-wide truncate px-4">
+            ${partido.estadio} / ${partido.ciudad}
         </p>
     `
     return tarjeta
