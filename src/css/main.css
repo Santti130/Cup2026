@@ -8,3 +8,23 @@
     --font-fredoka: 'Fredoka', sans-serif;
     --font-boogaloo: 'Boogaloo', sans-serif;
 }
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-slide-up {
+    animation: slide-up 0.3s ease-out !important;
+}
+
+/* Transición suave del navbar móvil */
+nav.md\:hidden {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    @apply translate-y-0 opacity-100;
+}

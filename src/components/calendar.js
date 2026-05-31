@@ -28,7 +28,7 @@ export function renderCalendar() {
         <!-- CONTENEDOR PRINCIPAL -->
     <div class="relative w-full 2xl:mt-2 max-w-4xl flex flex-col items-center md:gap-5 2xl:gap-10">
 
-    <h1 class="text-5xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest pt-15 uppercase">
+    <h1 class="text-5xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest pt-7 uppercase">
         Calendario
     </h1>
 
@@ -280,7 +280,7 @@ function renderCarousel(section) {
         <span class="text-lg md:text-2xl">${partes[1]} ${partes[2]} ${partes[3]}</span>
         <span class="text-lg md:text-2xl text-white/70">${partes[4]}</span>
     `
-    carousel.append(spanCurr)
+    
     carousel.append(spanCurr)
 
     // Día siguiente (difuminado)
