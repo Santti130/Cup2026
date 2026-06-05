@@ -59,10 +59,10 @@ export function renderFooter(){
                     <a href="#" class="hover:opacity-80 transition-opacity">
                         <img class="w-20 opacity-70 hover:opacity-100 transition" src="/icons/Red-X.png"alt="X">
                     </a>
-                    <a href="#" class="hover:opacity-80 transition-opacity">
+                    <a href="https://www.instagram.com/cuphub_stats/" target="_blank" class="hover:opacity-80 transition-opacity">
                         <img class="w-20 opacity-70 hover:opacity-100 transition"src="/icons/Red-IG.png"alt="Instagram">
                     </a>
-                    <a href="#" class="hover:opacity-80 transition-opacity">
+                    <a href="https://www.tiktok.com/@cuphub_oficial" target="_blank class="hover:opacity-80 transition-opacity">
                         <img class="w-20 opacity-70 hover:opacity-100 transition"src="/icons/Red-TT.png"alt="TikTok">
                     </a>  
                 </div>

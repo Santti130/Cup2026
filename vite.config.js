@@ -9,7 +9,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        calendario: './src/pages/calendario.html'
+        calendario: './src/pages/calendario.html',
+        noticias: './src/pages/noticias.html'
       }
     }
   }

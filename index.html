@@ -54,5 +54,14 @@
 <body class="bg-[#0b1220] text-white min-h-screen flex flex-col">
     <main id="main-content" class="flex-1"></main>
     <script type="module" src="/src/main.js"></script>
+    <!-- No cuenta conexión Local a Google Analytics -->
+    <script>
+    if (window.location.hostname !== 'localhost') {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-0KMRY9054T');
+    }
+    </script>
 </body>
 </html>

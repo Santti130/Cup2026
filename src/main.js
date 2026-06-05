@@ -4,6 +4,7 @@ import { renderNavbar } from './components/navbar.js'
 import { renderCountdown } from './components/countdown.js'
 import { renderFooter } from './components/footer.js'
 import { renderCalendar } from './components/calendar.js'
+import { renderNews } from './components/news.js'
 
 // Vercel Analytics
 import { inject } from '@vercel/analytics'
@@ -27,12 +28,21 @@ if (
 ) {
     main.append(renderCountdown())
 }
+
 // CALENDARIO
 if (
     path.includes('calendario')
 ) {
     main.append(renderCalendar())
 }
+
+// NOTICIAS
+if (
+    path.includes('noticias')
+) {
+    main.append(renderNews())
+}
+
 
 // Footer
 document.body.append(renderFooter())

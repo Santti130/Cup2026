@@ -7,7 +7,8 @@ export function renderNavbar() {
       <div class="flex items-center justify-center h-full px-4 md:px-6">
         <div class="hidden xl:block w-1/3"></div>
         <div class="flex items-center justify-center gap-2 md:gap-4 xl:gap-6 w-full xl:w-1/3 font-teko font-medium text-xs md:text-sm xl:text-base">
-          <a href="/" class="transition-colors duration-300 hover:text-gray-400">INICIO</a>
+          <!-- <a href="/" class="transition-colors duration-300 hover:text-gray-400">INICIO</a> -->
+          <a href="/noticias" class="transition-colors duration-300 hover:text-gray-400">NOTICIAS</a>
           <a href="/">
             <img class="w-6 md:w-8 xl:w-12" src="/icons/WorldCup-logo.png" alt="LogoPrincipal">
           </a>
@@ -51,8 +52,8 @@ export function renderNavbar() {
       <!-- Panel de opciones — con transición -->
       <div id="menu-panel" class="absolute bottom-20 left-0 right-0 bg-black/95 rounded-2xl p-4 border border-white/10 backdrop-blur-md transition-all duration-300 ease-out opacity-0 translate-y-4 pointer-events-none">
         <div class="flex flex-col gap-3">
-          <a href="/" class="text-white/80 hover:text-white transition-colors font-teko font-medium text-sm py-2 px-3 rounded hover:bg-white/5">
-            INICIO
+          <a href="/noticias" class="text-white/80 hover:text-white transition-colors font-teko font-medium text-sm py-2 px-3 rounded hover:bg-white/5">
+            NOTICIAS
           </a>
           <a href="/calendario" class="text-white/80 hover:text-white transition-colors font-teko font-medium text-sm py-2 px-3 rounded hover:bg-white/5">
             CALENDARIO

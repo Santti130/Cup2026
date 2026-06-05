@@ -1,6 +1,7 @@
 {
     "rewrites": [
-        { "source": "/calendario", "destination": "/src/pages/calendario.html" }
+        { "source": "/calendario", "destination": "/src/pages/calendario.html" },
+        { "source": "/noticias", "destination": "/src/pages/noticias.html" }
     ],
     "headers": [
         {
