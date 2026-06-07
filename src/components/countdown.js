@@ -35,9 +35,9 @@ export function renderCountdown() {
     <!-- === VERSIÓN MÓVIL === -->
     <div class="md:hidden flex flex-col items-center gap-6 w-full px-6 pt-5 pb-28 z-10">
 
-        <h1 class="text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+        <h2 class="text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
             FALTAN
-        </h1>
+        </h2>
 
         <!-- Círculo con días -->
         <div class="relative w-52 h-52 flex items-center justify-center">
@@ -123,9 +123,9 @@ export function renderCountdown() {
 
         <!-- Countdown desktop -->
         <div class="relative mt-5 md:mt-6 xl:mt-10 flex flex-col items-center gap-6">
-            <h1 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+            <h2 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
                 Faltan
-            </h1>
+            </h2>
             <div class="flex gap-8 items-center font-bebas">
                 <div class="relative group">
                     <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
@@ -153,9 +153,9 @@ export function renderCountdown() {
                     <span class="text-gray-300 text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Segundos</span>
                 </div>
             </div>
-            <h1 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
+            <h2 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
                 PARA EL INICIO DEL MUNDIAL 2026
-            </h1>
+            </h2>
             <p class="text-lg xl:text-xl 2xl:text-2xl text-white/70 text-center font-bebas tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
                 El evento más importante del mundo del fútbol está por comenzar.
             </p>

@@ -59,9 +59,9 @@ export function renderCalendar() {
         <!-- Contenedor principal -->
         <div class="relative w-full max-w-4xl flex flex-col items-center md:gap-5 2xl:gap-10">
 
-            <h1 class="text-5xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest pt-5 md:pt-15 2xl:pt-20 mb-4 uppercase">
+            <h2 class="text-5xl md:text-6xl 2xl:text-7xl font-extrabold font-bebas text-white tracking-widest pt-5 md:pt-15 2xl:pt-20 mb-4 uppercase">
                 Calendario
-            </h1>
+            </h2>
 
             <!-- Navegación -->
             <div id="navigation-wrapper" class="w-full flex flex-col items-center gap-4">

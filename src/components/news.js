@@ -40,9 +40,9 @@ function renderNewsList() {
         <div class="absolute inset-0 opacity-30 pointer-events-none bg-[linear-gradient(to_right,#ffffff20_1px,transparent_1px),linear-gradient(to_bottom,#ffffff20_1px,transparent_1px)] bg-[size:50px_50px]"></div>
 
         <!-- Título -->
-        <h1 class="font-bebas pt-10 md:pt-15 2xl:pt-20 text-6xl md:text-7xl 2xl:text-8xl text-center text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.25)] tracking-wide hover:drop-shadow-[0_0_35px_rgba(255,255,255,0.4)] transition-all duration-500 cursor-default hover:scale-105 w-fit mx-auto">
+        <h2 class="font-bebas pt-10 md:pt-15 2xl:pt-20 text-6xl md:text-7xl 2xl:text-8xl text-center text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.25)] tracking-wide hover:drop-shadow-[0_0_35px_rgba(255,255,255,0.4)] transition-all duration-500 cursor-default hover:scale-105 w-fit mx-auto">
             NOTICIAS
-        </h1>
+        </h2>
 
         <!-- Tarjetas -->
         <div class="max-w-5xl mx-auto pt-5 md:pt-10 2xl:pt-15 flex flex-col gap-6 md:gap-12 relative z-10">
@@ -99,9 +99,9 @@ function renderArticle(id) {
             </div>
 
             <!-- Título -->
-            <h1 class="font-teko text-3xl md:text-5xl 2xl:text-6xl text-zinc-100 leading-none mt-4">
+            <h2 class="font-teko text-3xl md:text-5xl 2xl:text-6xl text-zinc-100 leading-none mt-4">
                 ${noticia.titulo}
-            </h1>
+            </h2>
 
             <!-- Imagen -->
             <div class="w-full h-56 md:h-80 2xl:h-96 overflow-hidden rounded-2xl mt-8">
