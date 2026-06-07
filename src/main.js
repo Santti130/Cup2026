@@ -6,12 +6,18 @@ import { renderFooter } from './components/footer.js'
 import { renderCalendar } from './components/calendar.js'
 import { renderNews } from './components/news.js'
 
-// Vercel Analytics
-import { inject } from '@vercel/analytics'
+// Favicon adaptable a modo claro/oscuro
+const faviconLink = document.querySelector('link[rel="icon"]')
+const darkMode = window.matchMedia('(prefers-color-scheme: dark)')
 
-if (import.meta.env.PROD) {
-    inject()
+function updateFavicon() {
+    if (faviconLink) {
+        faviconLink.href = darkMode.matches ? '/favicon-dark.png' : '/favicon-light.png'
+    }
 }
+
+updateFavicon()
+darkMode.addEventListener('change', updateFavicon)
 
 // Navbar
 document.body.prepend(renderNavbar())
@@ -21,28 +27,18 @@ const main = document.getElementById('main-content')
 
 // Detectar página actual
 const path = window.location.pathname
-// HOME COUNTDOWN
-if (
-    path === '/' ||
-    path.includes('index.html')
-) {
+
+if (path === '/' || path.includes('index.html')) {
     main.append(renderCountdown())
 }
 
-// CALENDARIO
-if (
-    path.includes('calendario')
-) {
+if (path.includes('calendario')) {
     main.append(renderCalendar())
 }
 
-// NOTICIAS
-if (
-    path.includes('noticias')
-) {
+if (path.includes('noticias')) {
     main.append(renderNews())
 }
-
 
 // Footer
 document.body.append(renderFooter())

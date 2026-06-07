@@ -4,6 +4,37 @@ import { fixture } from '../data/fixture.js'
 let diaActual = 0
 let filtros = { estado: 'todos', grupo: 'todos', fase: 'todos' }
 
+// === FUNCIÓN DE PRUEBA: simula que hoy es 12 de junio de 2026 ===
+function getDiaHoy() {
+    // SIMULACIÓN: Forzamos que hoy sea 12 de junio de 2026 para pruebas
+    const hoy = new Date()  // <--- CAMBIA ESTA FECHA PARA PROBAR
+    
+    // CÓDIGO ORIGINAL (comentado para pruebas)
+    // const hoy = new Date()
+    
+    const dia = hoy.getDate()
+    const mes = hoy.getMonth()
+    const anio = hoy.getFullYear()
+
+    const meses = { 'Enero':0, 'Febrero':1, 'Marzo':2, 'Abril':3, 'Mayo':4, 'Junio':5, 'Julio':6 }
+
+    console.log(`Buscando fecha: ${dia}/${mes+1}/${anio}`) // Log para debugging
+
+    for (let i = 0; i < fixture.length; i++) {
+        const partes = fixture[i].dia.split(' ')
+        const diaFixture = parseInt(partes[1])
+        const mesFixture = meses[partes[3]]
+        const anioFixture = parseInt(partes[4])
+
+        if (dia === diaFixture && mes === mesFixture && anio === anioFixture) {
+            console.log(`✅ Día encontrado: índice ${i} - ${fixture[i].dia}`)
+            return i
+        }
+    }
+    console.log(`❌ No se encontró partido para esta fecha`)
+    return -1
+}
+
 // Devuelve la imagen de fondo según el tamaño de pantalla
 function getFondo() {
     return window.innerWidth >= 768
@@ -50,9 +81,14 @@ export function renderCalendar() {
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
                     </button>
                 </div>
-                <!-- Paginación + Filtros -->
+                <!-- Botón HOY + Paginación + Filtros -->
                 <div class="flex flex-col md:flex-row items-center w-full gap-2 md:gap-0">
-                    <div class="hidden md:block w-1/3"></div>
+                    <div class="w-full md:w-1/3 flex justify-center md:justify-start">
+                        <button id="btn-hoy" class="hidden px-4 py-1.5 rounded-2xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-400 text-xs md:text-sm font-bebas tracking-widest transition-all items-center gap-2 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Hoy
+                        </button>
+                    </div>
                     <div id="day-counter" class="flex items-center justify-center gap-1 w-full md:w-1/3"></div>
                     <div class="w-full md:w-1/3 flex justify-center md:justify-end">
                         <button id="toggle-filtros" class="px-4 py-1.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 text-white text-xs md:text-sm font-bebas tracking-widest transition-all flex items-center gap-2 mb-2">
@@ -127,6 +163,16 @@ function setupNavigation(section) {
     section.querySelector('#skip-next').addEventListener('click', () => {
         diaActual = Math.min(fixture.length - 1, diaActual + 5)
         render(section)
+    })
+
+    // Botón HOY — navega al día actual del torneo
+    const btnHoy = section.querySelector('#btn-hoy')
+    btnHoy.addEventListener('click', () => {
+        const diaHoy = getDiaHoy()
+        if (diaHoy !== -1) {
+            diaActual = diaHoy
+            render(section)
+        }
     })
 }
 
@@ -207,6 +253,28 @@ function render(section) {
         renderCarousel(section)
         renderCounter(section)
         renderDayCard(section)
+
+        // ============================================
+        // MOSTRAR BOTÓN HOY (con debugging)
+        // ============================================
+        const btnHoy = section.querySelector('#btn-hoy')
+        const diaHoy = getDiaHoy()
+        
+        console.log('DEBUG RENDER:')
+        console.log('  - diaActual:', diaActual)
+        console.log('  - diaHoy:', diaHoy)
+        console.log('  - diaHoy !== -1:', diaHoy !== -1)
+        console.log('  - diaActual !== diaHoy:', diaActual !== diaHoy)
+        
+        if (diaHoy !== -1 && diaActual !== diaHoy) {
+            console.log('Mostrando botón HOY')
+            btnHoy.classList.remove('hidden')
+            btnHoy.classList.add('flex')
+        } else {
+            console.log('Ocultando botón HOY')
+            btnHoy.classList.add('hidden')
+            btnHoy.classList.remove('flex')
+        }
     }
 }
 

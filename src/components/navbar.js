@@ -10,7 +10,7 @@ export function renderNavbar() {
           <!-- <a href="/" class="transition-colors duration-300 hover:text-gray-400">INICIO</a> -->
           <a href="/noticias" class="transition-colors duration-300 hover:text-gray-400">NOTICIAS</a>
           <a href="/">
-            <img class="w-6 md:w-8 xl:w-12" src="/icons/WorldCup-logo.png" alt="LogoPrincipal">
+            <img class="w-8 md:w-10 xl:w-14" src="/icons/CupHubBlanco-logo.png" alt="LogoPrincipal">
           </a>
           <a href="/calendario" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
         </div>
@@ -21,7 +21,7 @@ export function renderNavbar() {
     <!-- NAVBAR MÓVIL -->
     <nav id="mobile-nav" class="md:hidden fixed bottom-4 left-4 right-4 z-50 flex justify-center">
 
-      <div id="nav-bar" class="w-full bg-black/90 text-white rounded-2xl px-4 py-3 flex items-center justify-between overflow-hidden">
+      <div id="nav-bar" class="w-full bg-black/90 text-white rounded-2xl px-4 py-1 flex items-center justify-between overflow-hidden">
         
         <!-- Lupa -->
         <div id="nav-left" class="flex-shrink-0" style="width: 28px; opacity: 1;">
@@ -36,7 +36,7 @@ export function renderNavbar() {
         <!-- Logo -->
         <div id="nav-logo" class="rounded-full flex-shrink-0">
           <a href="/">
-            <img class="w-8" src="/icons/WorldCup-logo.png" alt="LogoPrincipal">
+            <img class="w-14" src="/icons/CupHubBlanco-logo.png" alt="LogoPrincipal">
           </a>
         </div>
 

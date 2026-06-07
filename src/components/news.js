@@ -72,6 +72,13 @@ function renderArticle(id) {
         return section
     }
 
+    // SEO dinámico — cambia el título y descripción de la página
+    document.title = `${noticia.titulo} — Noticias Mundial 2026 | CupHub`
+    document.querySelector('meta[name="description"]')?.setAttribute('content', noticia.resumen)
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', noticia.titulo)
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', noticia.resumen)
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', `https://cuphub-gamma.vercel.app${noticia.imagen}`)
+
     section.innerHTML = /*html*/`
     <div class="relative min-h-screen bg-[#070708] px-6 pb-80">
         <!-- Cuadrícula decorativa -->
