@@ -136,6 +136,19 @@ export function renderCalendar() {
             <div id="cards-container" class="w-full flex flex-col items-center gap-6 mt-4"></div>
         </div>
 
+        <!-- Botón flotante descarga horarios -->
+        <a href="/Horarios-Grupos-2026.pdf" download="Horarios-Grupos-Mundial-2026.pdf"
+        class="fixed bottom-24 md:bottom-8 right-4 md:right-6 z-[90] group flex items-center gap-2 px-4 py-3 bg-[#0f1623] hover:bg-[#162030] border border-white/10 hover:border-emerald-500/30 rounded-full shadow-2xl transition-all duration-300 hover:scale-105">
+    
+            <svg class="w-5 h-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+            </svg>
+
+            <span class="text-zinc-300 group-hover:text-white text-sm font-bebas tracking-widest transition-colors whitespace-nowrap">
+                Descarga los horarios
+            </span>
+        </a>
+
         <!-- Degradado al footer -->
         <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0b1220] pointer-events-none"></div>
     `
