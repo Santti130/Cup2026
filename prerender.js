@@ -6,7 +6,7 @@ import { dirname, join } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // Leer el HTML base de noticias
-const baseHTML = readFileSync(join(__dirname, 'src/pages/noticias.html'), 'utf-8')
+const baseHTML = readFileSync(join(__dirname, 'dist/src/pages/noticias.html'), 'utf-8')
 
 // Importar noticias dinámicamente
 const { noticias } = await import('./src/data/noticias.js')
