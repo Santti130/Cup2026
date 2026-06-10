@@ -20,23 +20,31 @@ for (const noticia of noticias) {
 
     // Personalizar el HTML con los meta tags de esta noticia
     let html = baseHTML
-        .replace(/<title>.*?<\/title>/, `<title>${noticia.titulo} — Noticias Mundial 2026 | CupHub</title>`)
-        .replace(
-            /<meta name="description".*?>/,
-            `<meta name="description" content="${noticia.resumen}">`
-        )
-        .replace(
-            /<meta property="og:title".*?>/,
-            `<meta property="og:title" content="${noticia.titulo}">`
-        )
-        .replace(
-            /<meta property="og:description".*?>/,
-            `<meta property="og:description" content="${noticia.resumen}">`
-        )
-        .replace(
-            /<meta property="og:image".*?>/,
-            `<meta property="og:image" content="https://cuphub-gamma.vercel.app${noticia.imagen}">`
-        )
+    .replace(/<title>.*?<\/title>/, `<title>${noticia.titulo} | CupHub</title>`)
+    .replace(
+        /<meta name="description".*?>/,
+        `<meta name="description" content="${noticia.resumen}">`
+    )
+    .replace(
+        /<meta property="og:title".*?>/,
+        `<meta property="og:title" content="${noticia.titulo}">`
+    )
+    .replace(
+        /<meta property="og:description".*?>/,
+        `<meta property="og:description" content="${noticia.resumen}">`
+    )
+    .replace(
+        /<meta property="og:image".*?>/,
+        `<meta property="og:image" content="https://cuphub-gamma.vercel.app${noticia.imagen}">`
+    )
+    .replace(
+        /<link rel="canonical".*?>/,
+        `<link rel="canonical" href="https://cuphub-gamma.vercel.app/noticias/${noticia.slug}">`
+    )
+    .replace(
+        /<meta property="og:url".*?>/,
+        `<meta property="og:url" content="https://cuphub-gamma.vercel.app/noticias/${noticia.slug}">`
+    )
 
     writeFileSync(join(dir, 'index.html'), html, 'utf-8')
     console.log(`✅ Generado: /noticias/${noticia.slug}`)
