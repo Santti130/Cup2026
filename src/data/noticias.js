@@ -1,6 +1,6 @@
 export const noticias = [
     {
-        id: 1,
+        id: 1, slug: 'mexico-tres-veces-anfitrion-mundial-2026',
         categoria: 'Sedes Oficiales',
         imagen: '/news-img/EstadioAzteca-1.avif',
         titulo: 'México, tres veces anfitrión: el Azteca se viste de gala',
@@ -33,7 +33,7 @@ export const noticias = [
         `
     },
     {
-        id: 2,
+        id: 2, slug: 'neymar-regresa-seleccion-brasil-mundial-2026',
         categoria: 'Regresos Históricos',
         titulo: 'EL PRÍNCIPE VUELVE POR SU CORONA, "la 10"',
         resumen: 'Neymar regresa a la selección después de tres años. Con el Mundial cada vez más cerca, comienza una nueva oportunidad para hacer historia.',
@@ -54,7 +54,7 @@ export const noticias = [
         `
     },
     {
-        id: 3,
+        id: 3, slug: '48-equipos-3-anfitriones-mundial-2026',
         categoria: 'El Torneo',
         titulo: '3 ANFITRIONES, 45 INVITADOS',
         resumen: 'México, Estados Unidos y Canadá recibirán a 45 selecciones invitadas en el Mundial más grande de la historia.',
@@ -88,7 +88,7 @@ export const noticias = [
         `
     },
     {
-        id: 4,
+        id: 4, slug: 'convocados-colombia-mundial-2026',
         categoria: 'Selección Colombia',
         titulo: 'LOS 26 CONVOCADOS DE COLOMBIA PARA EL MUNDIAL 2026',
         resumen: 'Néstor Lorenzo confirmó la lista definitiva de jugadores que representarán a Colombia en la Copa Mundial de la FIFA 2026.',
@@ -131,7 +131,7 @@ export const noticias = [
         `
     },
     {
-        id: 5,
+        id: 5, slug: 'colombia-grupo-k-mundial-2026',
         categoria: 'Grupo K',
         titulo: 'COLOMBIA EN EL MUNDIAL 2026: GRUPO, RIVALES Y HORARIOS',
         resumen: 'Colombia enfrentará a Portugal, RD Congo y Uzbekistán en el Grupo K. Conoce las fechas y horarios de todos sus partidos.',
@@ -176,7 +176,7 @@ export const noticias = [
         `
     },
     {
-        id: 6,
+        id: 6, slug: 'argentina-defiende-titulo-grupo-j-mundial-2026',
         categoria: 'Grupo J',
         titulo: 'ARGENTINA DEFIENDE EL TÍTULO: GRUPO, RIVALES Y HORARIOS',
         resumen: 'La selección campeona del mundo enfrentará a Argelia, Austria y Jordania en el Grupo J.',
@@ -221,7 +221,7 @@ export const noticias = [
         `
     },
     {
-        id: 7,
+        id: 7, slug: 'brasil-busca-sexta-estrella-grupo-c-mundial-2026',
         categoria: 'Grupo C',
         titulo: 'BRASIL BUSCA SU SEXTA ESTRELLA: GRUPO, RIVALES Y HORARIOS',
         resumen: 'La Canarinha enfrentará a Marruecos, Haití y Escocia en el Grupo C del Mundial 2026.',
@@ -266,7 +266,7 @@ export const noticias = [
         `
     },
     {
-        id: 8,
+        id: 8, slug: 'espana-grupo-h-mundial-2026',
         categoria: 'Grupo H',
         titulo: 'CONVOCADOS DE ESPAÑA: UNA NUEVA GENERACIÓN SUEÑA CON LA SEGUNDA ESTRELLA',
         resumen: 'Campeones de Europa y del torneo olímpico, los dirigidos por Luis de la Fuente llegan a Norteamérica con una mezcla de juventud, talento y la ilusión de conquistar una segunda Copa del Mundo.',

@@ -2,12 +2,16 @@ import { noticias } from '../data/noticias.js'
 
 // === DECISOR — ¿lista o artículo? ===
 export function renderNews() {
-    const params = new URLSearchParams(window.location.search)
-    const id = params.get('id')
+    const path = window.location.pathname
 
-    if (id) {
-        return renderArticle(parseInt(id))
+    // Si la ruta es /noticias/slug → artículo
+    if (path.startsWith('/noticias/')) {
+        const slug = path.replace('/noticias/', '')
+        const noticia = noticias.find(n => n.slug === slug)
+        if (noticia) return renderArticle(noticia.id)
     }
+
+    // Si no → lista
     return renderNewsList()
 }
 
@@ -19,7 +23,7 @@ function renderNewsList() {
         const direction = index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
 
         return /*html*/`
-        <a href="/noticias?id=${noticia.id}" class="group relative flex flex-col ${direction} items-center bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-sm rounded-3xl md:rounded-[2.5rem] p-3 md:p-5 border border-white/5 hover:border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+        <a href="/noticias/${noticia.slug}" class="group relative flex flex-col ${direction} items-center bg-white/[0.02] hover:bg-white/[0.04] backdrop-blur-sm rounded-3xl md:rounded-[2.5rem] p-3 md:p-5 border border-white/5 hover:border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
             
             <div class="relative w-full md:w-1/2 h-60 md:h-80 overflow-hidden rounded-2xl md:rounded-[2rem]">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#070708]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
