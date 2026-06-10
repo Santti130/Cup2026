@@ -2,7 +2,7 @@
     "rewrites": [
         { "source": "/calendario", "destination": "/src/pages/calendario.html" },
         { "source": "/noticias", "destination": "/src/pages/noticias.html" },
-        { "source": "/noticias/:slug", "destination": "/src/pages/noticias.html" }
+        { "source": "/noticias/:slug", "destination": "/noticias/:slug/index.html" }
     ],
     "headers": [
         { "source": "/sitemap.xml", "headers": [{ "key": "Content-Type", "value": "application/xml" }] }
