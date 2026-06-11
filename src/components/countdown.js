@@ -99,8 +99,8 @@ async function obtenerClima(estadio) {
 // API — caché compartido con calendar.js
 // ============================================================================
 async function cargarPartidosAPI() {
-    const CACHE_KEY      = 'cuphub_fixtures_cache'
-    const CACHE_TIME_KEY = 'cuphub_fixtures_time'
+    const CACHE_KEY      = 'cuphub_fixtures_cache_v2'
+    const CACHE_TIME_KEY = 'cuphub_fixtures_time_v2'
     const CACHE_DURATION = 60 * 1000
     try {
         const ahora = Date.now()

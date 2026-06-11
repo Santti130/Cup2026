@@ -104,8 +104,8 @@ export async function inicializarCalendario(contenedorPadre) {
 }
 
 async function cargarDatosAPI() {
-    const CACHE_KEY = 'cuphub_fixtures_cache'
-    const CACHE_TIME_KEY = 'cuphub_fixtures_time'
+    const CACHE_KEY = 'cuphub_fixtures_cache_v2'
+    const CACHE_TIME_KEY = 'cuphub_fixtures_time_v2'
     const CACHE_DURATION = 60 * 1000
 
     try {
@@ -115,9 +115,17 @@ async function cargarDatosAPI() {
         const cacheData = localStorage.getItem(CACHE_KEY)
 
         if (cacheValido && cacheData) {
-            console.log('✅ Usando caché')
-            partidosGlobales = JSON.parse(cacheData)
-        } else {
+            const parsed = JSON.parse(cacheData)
+            if (parsed.length > 0 && parsed[0].equipo1?.codigo) {
+                console.log('✅ Usando caché')
+                partidosGlobales = parsed
+            } else {
+                localStorage.removeItem(CACHE_KEY)
+                localStorage.removeItem(CACHE_TIME_KEY)
+            }
+        }
+
+        if (!partidosGlobales.length) {
             console.log('🔄 Llamando a la API...')
             const API_KEY = import.meta.env.VITE_API_FOOTBALL_KEY
             const response = await fetch('https://v3.football.api-sports.io/fixtures?league=1&season=2026', {
