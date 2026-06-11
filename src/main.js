@@ -3,7 +3,7 @@ import './css/main.css'
 import { renderNavbar } from './components/navbar.js'
 import { renderCountdown } from './components/countdown.js'
 import { renderFooter } from './components/footer.js'
-import { renderCalendar } from './components/calendar.js'
+import { inicializarCalendario } from './components/calendar.js'
 import { renderNews } from './components/news.js'
 
 // Favicon adaptable a modo claro/oscuro
@@ -33,7 +33,7 @@ if (path === '/' || path.includes('index.html')) {
 }
 
 if (path.includes('calendario')) {
-    main.append(renderCalendar())
+    inicializarCalendario(main)
 }
 
 if (path.includes('noticias')) {
