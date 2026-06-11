@@ -106,7 +106,14 @@ async function cargarPartidosAPI() {
         const ahora = Date.now()
         const ultimo = parseInt(localStorage.getItem(CACHE_TIME_KEY) || '0')
         const cacheData = localStorage.getItem(CACHE_KEY)
-        if ((ahora - ultimo) < CACHE_DURATION && cacheData) return JSON.parse(cacheData)
+        if ((ahora - ultimo) < CACHE_DURATION && cacheData) {
+            const parsed = JSON.parse(cacheData)
+            // Validar que los datos tienen la estructura correcta
+            if (parsed.length > 0 && parsed[0].equipo1?.logo) return parsed
+            // Si no tienen logo, limpiar caché y llamar API de nuevo
+            localStorage.removeItem('cuphub_fixtures_cache')
+            localStorage.removeItem('cuphub_fixtures_time')
+        }
 
         const API_KEY = import.meta.env.VITE_API_FOOTBALL_KEY
         const response = await fetch('https://v3.football.api-sports.io/fixtures?league=1&season=2026', {
