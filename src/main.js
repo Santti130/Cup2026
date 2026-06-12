@@ -5,6 +5,8 @@ import { renderCountdown } from './components/countdown.js'
 import { renderFooter } from './components/footer.js'
 import { inicializarCalendario } from './components/calendar.js'
 import { renderNews } from './components/news.js'
+import { renderSeccionGrupos } from './components/groups.js'
+
 
 // Favicon adaptable a modo claro/oscuro
 const faviconLink = document.querySelector('link[rel="icon"]')
@@ -34,6 +36,10 @@ if (path === '/' || path.includes('index.html')) {
 
 if (path.includes('calendario')) {
     inicializarCalendario(main)
+}
+
+if (path.includes('grupos')) {
+    main.append(renderSeccionGrupos())
 }
 
 if (path.includes('noticias')) {

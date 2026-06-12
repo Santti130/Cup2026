@@ -10,7 +10,8 @@ export default defineConfig({
       input: {
         main: './index.html',
         calendario: './src/pages/calendario.html',
-        noticias: './src/pages/noticias.html'
+        noticias: './src/pages/noticias.html',
+        grupos: './src/pages/grupos.html'
       }
     }
   }

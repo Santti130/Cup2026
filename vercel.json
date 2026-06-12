@@ -1,6 +1,7 @@
 {
     "rewrites": [
         { "source": "/calendario", "destination": "/src/pages/calendario.html" },
+        { "source": "/grupos", "destination": "/src/pages/grupos.html" },
         { "source": "/noticias", "destination": "/src/pages/noticias.html" },
         { "source": "/noticias/:slug", "destination": "/noticias/:slug/index.html" }
     ],

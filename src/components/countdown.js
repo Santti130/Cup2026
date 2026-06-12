@@ -1,6 +1,6 @@
 // === CONSTANTES ===
-const START_DATE = new Date('2025-12-01T00:00:00Z')
-const WORLD_CUP  = new Date('2026-06-11T19:00:00Z') // 14:00 Colombia = 19:00 UTC
+const MUNDIAL_INICIO = new Date('2026-06-11T19:00:00Z') // 14:00 Colombia = 19:00 UTC
+const MUNDIAL_FIN    = new Date('2026-07-19T20:00:00Z') // 15:00 Colombia — Final MetLife
 
 const PARTIDOS_FALLBACK = [
     {
@@ -21,7 +21,6 @@ const PARTIDOS_FALLBACK = [
     }
 ]
 
-// === MAPAS ===
 const GRUPOS_MAP = {
     'Mexico': 'Grupo A', 'South Africa': 'Grupo A', 'South Korea': 'Grupo A', 'Czech Republic': 'Grupo A',
     'Canada': 'Grupo B', 'Bosnia & Herzegovina': 'Grupo B', 'Qatar': 'Grupo B', 'Switzerland': 'Grupo B',
@@ -44,7 +43,6 @@ const FASES_MAP = {
     'Semi-finals': 'Semifinales', '3rd Place Final': 'Tercer Puesto', 'Final': 'Final',
 }
 
-// Coordenadas de sedes para Open-Meteo
 const SEDES_COORDS = {
     'Estadio Azteca':          { lat: 19.30,  lon: -99.15  },
     'Estadio Akron':           { lat: 20.67,  lon: -103.46 },
@@ -77,7 +75,6 @@ function climaDesdeWMO(code) {
     return { emoji: '🌡️', desc: 'Variable' }
 }
 
-// Caché de clima para no repetir llamadas
 const climaCache = {}
 
 async function obtenerClima(estadio) {
@@ -108,13 +105,10 @@ async function cargarPartidosAPI() {
         const cacheData = localStorage.getItem(CACHE_KEY)
         if ((ahora - ultimo) < CACHE_DURATION && cacheData) {
             const parsed = JSON.parse(cacheData)
-            // Validar que los datos tienen la estructura correcta
             if (parsed.length > 0 && parsed[0].equipo1?.logo) return parsed
-            // Si no tienen logo, limpiar caché y llamar API de nuevo
-            localStorage.removeItem('cuphub_fixtures_cache')
-            localStorage.removeItem('cuphub_fixtures_time')
+            localStorage.removeItem(CACHE_KEY)
+            localStorage.removeItem(CACHE_TIME_KEY)
         }
-
         const API_KEY = import.meta.env.VITE_API_FOOTBALL_KEY
         const response = await fetch('https://v3.football.api-sports.io/fixtures?league=1&season=2026', {
             headers: { 'x-apisports-key': API_KEY }
@@ -177,7 +171,7 @@ export function renderCountdown() {
 
     <!-- MÓVIL -->
     <div class="md:hidden flex flex-col items-center gap-6 w-full px-6 pt-5 pb-28 z-10">
-        <h2 class="text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">FALTAN</h2>
+        <h2 class="text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">FALTAN PARA LA FINAL</h2>
 
         <div class="relative w-52 h-52 flex items-center justify-center">
             <div class="absolute -inset-3 rounded-full bg-amber-900/20 blur-2xl"></div>
@@ -218,12 +212,12 @@ export function renderCountdown() {
         </div>
 
         <span class="text-xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
-            PARA EL INICIO DE LA COPA DEL MUNDO 2026
+            PARA LA FINAL DEL MUNDIAL 2026
         </span>
         <p id="hora-local-mobile" class="text-amber-400/80 font-bebas text-base tracking-widest text-center -mt-4"></p>
 
         <div class="w-full max-w-sm border-t border-white/10"></div>
-        <h2 class="text-white font-bebas text-xl tracking-widest uppercase">Próximos Partidos</h2>
+        <h2 class="text-white font-bebas text-xl tracking-widest uppercase">Partidos de Hoy</h2>
         <div id="cards-container-mobile" class="flex flex-col gap-3 w-full max-w-sm"></div>
 
         <a href="/calendario" class="w-full max-w-sm flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl py-4 text-white/80 font-bebas tracking-widest hover:bg-white/10 transition-colors">
@@ -237,7 +231,7 @@ export function renderCountdown() {
     <div class="hidden md:flex flex-col items-center gap-6 z-10">
 
         <div class="absolute top-15 left-4 bg-black/70 backdrop-blur-sm border border-white/10 rounded-xl px-5 py-3 w-64 font-bebas transition-all hover:border-cyan-400/50 hover:shadow-[0_8px_50px_0_rgba(34,211,238,0.2)]">
-            <p class="text-white/90 text-xl tracking-wide">Cargando Mundial 2026...</p>
+            <p class="text-white/90 text-xl tracking-wide">Mundial 2026 en curso</p>
             <div class="flex items-center gap-2">
                 <div class="flex-1 bg-white/15 rounded-full h-2 relative">
                     <div id="progress-bar" class="h-2 rounded-full bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-600 relative" style="width: 0%">
@@ -249,6 +243,7 @@ export function renderCountdown() {
         </div>
 
         <div class="relative mt-5 md:mt-6 xl:mt-10 flex flex-col items-center gap-6 top-5">
+            <h2 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">FALTAN PARA LA FINAL</h2>
             <div class="flex gap-8 items-center font-bebas">
                 <div class="relative group">
                     <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
@@ -276,16 +271,16 @@ export function renderCountdown() {
                     <span class="text-gray-300 text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Segundos</span>
                 </div>
             </div>
-            <h2 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">PARA EL INICIO DEL MUNDIAL 2026</h2>
+            <h2 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">DEL MUNDIAL 2026</h2>
             <p class="text-lg xl:text-xl 2xl:text-2xl text-white/70 text-center font-bebas tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
-                El evento más importante del mundo del fútbol está por comenzar.
+                El torneo más grande de la historia está en curso.
             </p>
             <p id="hora-local-desktop" class="text-amber-400/80 font-bebas text-lg tracking-widest text-center -mt-4"></p>
         </div>
 
         <div class="flex items-center gap-4">
             <div class="w-30 h-px bg-gradient-to-r from-transparent to-lime-500"></div>
-            <h2 class="text-white text-xl xl:text-4xl 2xl:text-5xl font-bold uppercase tracking-widest font-bebas bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">Próximos Partidos</h2>
+            <h2 class="text-white text-xl xl:text-4xl 2xl:text-5xl font-bold uppercase tracking-widest font-bebas bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">Partidos de Hoy</h2>
             <div class="w-30 h-px bg-gradient-to-l from-transparent to-sky-500"></div>
         </div>
         <div id="cards-container" class="flex justify-center items-center gap-6 w-full px-8 font-bebas tracking-wide mb-20"></div>
@@ -294,14 +289,19 @@ export function renderCountdown() {
     <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#0b1220] pointer-events-none z-20"></div>
     `
 
-    // COUNTDOWN
+    // COUNTDOWN — cuenta regresiva a la Final + porcentaje transcurrido
     function updateCountdown() {
-        const now  = new Date()
-        const diff = WORLD_CUP - now
-        const days    = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)))
-        const hours   = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))
-        const minutes = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)))
-        const seconds = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000))
+        const now      = new Date()
+        const total    = MUNDIAL_FIN - MUNDIAL_INICIO
+        const elapsed  = now - MUNDIAL_INICIO
+        const restante = MUNDIAL_FIN - now
+
+        const percent = Math.min(Math.max(Math.floor((elapsed / total) * 100), 0), 100)
+
+        const days    = Math.max(0, Math.floor(restante / (1000 * 60 * 60 * 24)))
+        const hours   = Math.max(0, Math.floor((restante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))
+        const minutes = Math.max(0, Math.floor((restante % (1000 * 60 * 60)) / (1000 * 60)))
+        const seconds = Math.max(0, Math.floor((restante % (1000 * 60)) / 1000))
 
         updateElement(section, '#days', days)
         updateElement(section, '#hours', hours)
@@ -312,9 +312,6 @@ export function renderCountdown() {
         updateElement(section, '#minutes-mobile', minutes)
         updateElement(section, '#seconds-mobile', seconds)
 
-        const total   = WORLD_CUP - START_DATE
-        const elapsed = now - START_DATE
-        const percent = Math.min(Math.max(Math.floor((elapsed / total) * 100), 0), 100)
         updateProgress(section, '#progress-bar', '#progress-percent', percent)
 
         const ring = section.querySelector('#ring-progress')
@@ -323,12 +320,12 @@ export function renderCountdown() {
             ring.setAttribute('stroke-dashoffset', c - (c * percent / 100))
         }
 
-        // Hora local de inicio
-        const horaLocal = WORLD_CUP.toLocaleTimeString(navigator.language, {
+        // Hora local de la final
+        const horaFinal = MUNDIAL_FIN.toLocaleTimeString(navigator.language, {
             hour: '2-digit', minute: '2-digit', hour12: false,
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
         })
-        const textoHora = `Inicio en tu país: ${horaLocal} hrs`
+        const textoHora = `Llevamos ${percent}% del Mundial · Final: ${horaFinal} hrs (hora local)`
         const elDesktop = section.querySelector('#hora-local-desktop')
         const elMobile  = section.querySelector('#hora-local-mobile')
         if (elDesktop) elDesktop.textContent = textoHora
@@ -353,8 +350,8 @@ function updateElement(section, selector, value) {
 function updateProgress(section, barSel, textSel, percent) {
     const bar  = section.querySelector(barSel)
     const text = section.querySelector(textSel)
-    if (bar)  bar.style.width    = percent + '%'
-    if (text) text.textContent   = percent + '%'
+    if (bar)  bar.style.width  = percent + '%'
+    if (text) text.textContent = percent + '%'
 }
 
 // ============================================================================
@@ -393,7 +390,7 @@ async function renderMobileCards(section) {
 }
 
 function tarjetaMobile(p) {
-    const enVivo    = ['1H','HT','2H','ET','PEN'].includes(p.status)
+    const enVivo     = ['1H','HT','2H','ET','PEN'].includes(p.status)
     const finalizado = p.status === 'FT'
 
     const marcador = enVivo
@@ -425,7 +422,6 @@ function tarjetaMobile(p) {
                     <span class="text-white font-bebas text-xs tracking-wider text-center leading-tight">${p.equipo2.abrev}</span>
                 </div>
             </div>
-            </div>
         </div>`
 }
 
@@ -439,11 +435,9 @@ async function renderDesktopCards(section) {
     const dibujar = async (partidos) => {
         const actuales = obtenerPartidosActuales(partidos)
         if (actuales.length > 0) {
-            // Construir tarjetas con clima (async)
             const tarjetas = await Promise.all(actuales.map(p => tarjetaDesktop(p)))
             container.innerHTML = tarjetas.join('')
         } else {
-            // Fallback con datos fijos
             container.innerHTML = PARTIDOS_FALLBACK.map(p => `
                 <div class="relative cursor-pointer group flex-shrink-0" style="width:300px;height:240px;perspective:1000px">
                     <div class="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)] [transform-origin:center] will-change-transform" style="transform-style:preserve-3d">
@@ -499,9 +493,9 @@ async function renderDesktopCards(section) {
 }
 
 async function tarjetaDesktop(p) {
-    const enVivo    = ['1H','HT','2H','ET','PEN'].includes(p.status)
+    const enVivo     = ['1H','HT','2H','ET','PEN'].includes(p.status)
     const finalizado = p.status === 'FT'
-    const border    = enVivo ? 'border-red-500/40' : 'border-white/10'
+    const border     = enVivo ? 'border-red-500/40' : 'border-white/10'
 
     const marcador = enVivo
         ? `<div class="flex flex-col items-center gap-1">
@@ -515,7 +509,6 @@ async function tarjetaDesktop(p) {
                <span class="text-white/30 font-bebas text-xs tracking-widest">HRS</span>
            </div>`
 
-    // Extraer jornada del campo fase: "Fase de Grupos - J1" → "Jornada 1"
     const jornadaMatch = p.fase?.match(/J(\d)/)
     const jornadaLabel = jornadaMatch ? `Jornada ${jornadaMatch[1]}` : ''
 
@@ -527,26 +520,23 @@ async function tarjetaDesktop(p) {
             ${finalizado ? `<span class="px-2.5 py-0.5 bg-white/5 border border-white/10 text-white/30 text-xs font-bebas rounded-full">FINALIZADO</span>` : ''}
         </div>`
 
-    // Clima real de Open-Meteo
     const clima = await obtenerClima(p.estadio)
     const climaHTML = clima
         ? `<div class="flex items-center justify-center gap-4 mt-1">
-               <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center">
                 <span class="text-2xl">${clima.emoji}</span>
                 <span class="text-white/40 text-xs font-bebas mt-1">${clima.desc}</span>
-               </div>
-               <div class="flex flex-col items-center">
+            </div>
+            <div class="flex flex-col items-center">
                 <span class="text-white font-bebas text-2xl">${clima.temp}</span>
                 <span class="text-white/40 text-xs font-bebas mt-1">Temp</span>
-               </div>
-           </div>`
+            </div>
+        </div>`
         : `<p class="text-white/20 text-xs font-bebas">Clima no disponible</p>`
 
     return `
         <div class="relative cursor-pointer group flex-shrink-0" style="width:300px;height:240px;perspective:1000px">
             <div class="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)] [transform-origin:center] will-change-transform" style="transform-style:preserve-3d">
-
-                <!-- FRONTAL -->
                 <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border ${border} rounded-3xl px-6 py-5 shadow-xl flex flex-col items-center justify-between"
                     style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translate3d(0,0,1px)">
                     ${badges}
@@ -563,8 +553,6 @@ async function tarjetaDesktop(p) {
                     </div>
                     <p class="text-white/25 text-xs font-bebas tracking-wider">Pasa el cursor para más info</p>
                 </div>
-
-                <!-- TRASERA -->
                 <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border ${border} rounded-3xl px-6 py-5 shadow-xl flex flex-col items-center justify-center gap-2"
                     style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg) translate3d(0,0,1px)">
                     <p class="text-white/50 text-xs font-bebas tracking-widest uppercase text-center">${p.ciudad}</p>
@@ -573,7 +561,6 @@ async function tarjetaDesktop(p) {
                     <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bebas rounded-full tracking-widest">${p.fase}</span>
                     ${climaHTML}
                 </div>
-
             </div>
         </div>`
 }
