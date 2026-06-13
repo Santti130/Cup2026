@@ -1,19 +1,20 @@
 // ============================================================================
-// SECCIÓN 1: API — STANDINGS CON CACHÉ DE 5 MINUTOS
-// Las tablas de posiciones solo cambian con goles o partidos finalizados,
-// por lo que 5 min reduce llamadas a la API 5x sin perder utilidad real.
+// SECCIÓN 1: API
+// ----------------------------------------------------------------------------
+// 1a. STANDINGS (tabla) — caché 5 min.
+// 1b. FIXTURES EN VIVO — caché 60 s (marcador en tiempo real).
 // ============================================================================
-const STANDINGS_CACHE_DURATION = 5 * 60 * 1000 // 5 minutos
+const STANDINGS_CACHE_DURATION = 5 * 60 * 1000  // 5 minutos
+const LIVE_CACHE_DURATION      = 60 * 1000       // 1 minuto
+const ESTADOS_VIVO = ['1H', 'HT', '2H', 'ET', 'BT', 'P', 'PEN', 'LIVE']
 
 async function cargarGruposAPI() {
     const CACHE_KEY      = 'cuphub_standings_cache'
     const CACHE_TIME_KEY = 'cuphub_standings_time'
-
     try {
         const ahora = Date.now()
         const ultimo = parseInt(localStorage.getItem(CACHE_TIME_KEY) || '0')
         const cacheData = localStorage.getItem(CACHE_KEY)
-
         if ((ahora - ultimo) < STANDINGS_CACHE_DURATION && cacheData) return JSON.parse(cacheData)
 
         const API_KEY = import.meta.env.VITE_API_FOOTBALL_KEY
@@ -22,27 +23,60 @@ async function cargarGruposAPI() {
         })
         const data = await response.json()
         const standings = data.response[0]?.league?.standings || []
-
         localStorage.setItem(CACHE_KEY, JSON.stringify(standings))
         localStorage.setItem(CACHE_TIME_KEY, ahora.toString())
         return standings
-
     } catch (error) {
         console.error('❌ Error cargando grupos:', error)
         return []
     }
 }
 
+async function cargarPartidosEnVivo() {
+    const CACHE_KEY      = 'cuphub_live_fixtures'
+    const CACHE_TIME_KEY = 'cuphub_live_time'
+    try {
+        const ahora = Date.now()
+        const ultimo = parseInt(localStorage.getItem(CACHE_TIME_KEY) || '0')
+        const cacheData = localStorage.getItem(CACHE_KEY)
+        if ((ahora - ultimo) < LIVE_CACHE_DURATION && cacheData) return JSON.parse(cacheData)
+
+        const API_KEY = import.meta.env.VITE_API_FOOTBALL_KEY
+        const res = await fetch('https://v3.football.api-sports.io/fixtures?league=1&season=2026', {
+            headers: { 'x-apisports-key': API_KEY }
+        })
+        const data = await res.json()
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+        const partidos = (data.response || []).map(item => ({
+            home:      item.teams.home.name,
+            homeLogo:  item.teams.home.logo,
+            homeGoals: item.goals.home,
+            away:      item.teams.away.name,
+            awayLogo:  item.teams.away.logo,
+            awayGoals: item.goals.away,
+            status:    item.fixture.status.short,
+            minuto:    item.fixture.status.elapsed,
+            estadio:   item.fixture.venue?.name || '',
+            hora:      new Date(item.fixture.date).toLocaleTimeString(navigator.language, {
+                           hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz
+                       })
+        }))
+        localStorage.setItem(CACHE_KEY, JSON.stringify(partidos))
+        localStorage.setItem(CACHE_TIME_KEY, ahora.toString())
+        return partidos
+    } catch {
+        return []
+    }
+}
+
 // ============================================================================
-// SECCIÓN 2: COMPONENTE PRINCIPAL
-// Fondo gris azulado claro + cards azul oscuro + acentos tricolor (MEX·CAN·USA)
+// SECCIÓN 2: COMPONENTE PRINCIPAL — TEMA OSCURO
 // ============================================================================
 export function renderSeccionGrupos() {
     const section = document.createElement('section')
-    section.className = 'relative w-full min-h-screen flex flex-col items-center pb-32 bg-[#eef2f7]'
+    section.className = 'relative w-full min-h-screen flex flex-col items-center pb-32 bg-[#0b1220] overflow-x-hidden'
 
-    // Ajuste de las 3 barras: Tamaño incrementado para mejor visibilidad, 
-    // manteniendo la verde y azul más pequeñas (h-4) y la roja más grande (h-6)
     const barraTricolor = () => `
         <span class="flex gap-1.5 shrink-0 items-center">
             <span class="w-2 h-4 bg-emerald-500 rounded-full shadow-sm"></span>
@@ -54,79 +88,70 @@ export function renderSeccionGrupos() {
         <style>
             .b-col   { display:flex; flex-direction:column; width:230px; margin-right:28px; }
             .b-col:last-child { margin-right:0; }
-            /* Se añade padding-bottom para que las tarjetas no se corten al final del contenedor */
-            .b-rows  { flex:1; display:flex; flex-direction:column; justify-content:space-around; padding-bottom: 20px; }
+            .b-rows  { flex:1; display:flex; flex-direction:column; justify-content:space-around; padding-bottom:20px; }
             .b-pair  { position:relative; flex:1; display:flex; flex-direction:column; justify-content:space-around; }
             .b-match { position:relative; }
-            .b-match::after {
-                content:''; position:absolute; top:50%; right:-14px;
-                width:14px; height:2px; background:rgba(139,92,246,0.3);
-            }
-            .b-pair::after {
-                content:''; position:absolute; right:-14px; top:25%; height:50%;
-                width:2px; background:rgba(139,92,246,0.3);
-            }
-            .b-pair::before {
-                content:''; position:absolute; right:-28px; top:50%;
-                width:14px; height:2px; background:rgba(139,92,246,0.3);
-            }
+            .b-match::after { content:''; position:absolute; top:50%; right:-14px; width:14px; height:2px; background:rgba(139,92,246,0.35); }
+            .b-pair::after  { content:''; position:absolute; right:-14px; top:25%; height:50%; width:2px; background:rgba(139,92,246,0.35); }
+            .b-pair::before { content:''; position:absolute; right:-28px; top:50%; width:14px; height:2px; background:rgba(139,92,246,0.35); }
             .b-final .b-match::after, .b-final .b-pair::after, .b-final .b-pair::before { display:none; }
             #bracket-card:fullscreen { background:#0b1220; padding:2rem; overflow:auto; }
         </style>
 
-        <div class="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] bg-[size:35px_35px]"></div>
+        <!-- Cuadrícula clara sobre fondo oscuro -->
+        <div class="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:35px_35px]"></div>
 
-        <div class="relative w-full max-w-[1400px] px-4 md:px-8 pt-10 md:pt-16 pb-10 z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b-[3px] border-black/25">
-
+        <!-- HEADER -->
+        <div class="relative w-full max-w-[1400px] px-4 md:px-8 pt-10 md:pt-16 pb-10 z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b border-white/10">
             <div class="lg:col-span-5 flex flex-col justify-center">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-500/10 border border-violet-500/30 text-violet-700 text-sm font-bold tracking-widest uppercase rounded-full mb-5 w-max">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-violet-500/15 border border-violet-500/30 text-violet-300 text-sm font-bold tracking-widest uppercase rounded-full mb-5 w-max">
                     Mundial 2026 · Estadísticas en Vivo
                 </div>
                 <div class="flex items-center gap-4 mb-4">
                     ${barraTricolor()}
-                    <h2 class="text-6xl md:text-7xl font-black font-bebas tracking-wider uppercase text-[#0f172a]">
-                        FASE DE GRUPOS
-                    </h2>
+                    <h2 class="text-6xl md:text-7xl font-black font-bebas tracking-wide uppercase text-white">FASE DE GRUPOS</h2>
                 </div>
-                
-                <p class="text-[#0f172a]/70 text-base md:text-lg max-w-xl font-sans leading-relaxed">
+                <p class="text-white/60 text-base md:text-lg max-w-xl font-sans leading-relaxed">
                     Los 2 primeros lugares de cada sector avanzan directo. Los 8 mejores terceros lugares completarán los casilleros del cuadro de eliminación directa.
                 </p>
                 <div class="flex items-center gap-6 mt-6">
-                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-sm text-[#0f172a]/60 font-sans">Clasifica directo</span></div>
-                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div><span class="text-sm text-[#0f172a]/60 font-sans">Posible mejor 3°</span></div>
-                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-black/20"></div><span class="text-sm text-[#0f172a]/60 font-sans">Eliminado</span></div>
+                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div><span class="text-sm text-white/50 font-sans">Clasifica directo</span></div>
+                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div><span class="text-sm text-white/50 font-sans">Posible mejor 3°</span></div>
+                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-white/20"></div><span class="text-sm text-white/50 font-sans">Eliminado</span></div>
                 </div>
             </div>
-
             <div class="lg:col-span-7 w-full">
-                <div id="mejores-terceros-container" class="bg-[#101828] border border-black/15 rounded-2xl p-5 animate-pulse min-h-[17rem] flex items-center justify-center text-white/30 font-bebas tracking-widest text-base shadow-2xl">
+                <div id="mejores-terceros-container" class="bg-[#101828] border border-white/10 rounded-2xl p-5 animate-pulse min-h-[17rem] flex items-center justify-center text-white/30 font-bebas tracking-widest text-base shadow-2xl">
                     Sincronizando coeficientes de terceros...
                 </div>
             </div>
         </div>
 
+        <!-- TIRA DE PARTIDOS EN VIVO -->
+        <div class="relative w-full max-w-[1400px] px-4 md:px-8 z-10 mt-8">
+            <div id="live-strip"></div>
+        </div>
+
+        <!-- GRUPOS -->
         <div class="relative w-full max-w-[1400px] px-4 md:px-8 z-10 flex flex-col gap-5 mt-12">
             <div class="flex items-center gap-4 mb-2">
-            ${barraTricolor()}
-                <h3 class="text-3xl md:text-4xl font-bebas tracking-widest text-[#0f172a] uppercase">Clasificación por Sectores</h3>
+                ${barraTricolor()}
+                <h3 class="text-3xl md:text-4xl font-black font-bebas tracking-wide text-white uppercase">Clasificación por Sectores</h3>
             </div>
             <div id="grid-grupos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 w-full">
-                ${Array(12).fill(0).map(() => `
-                    <div class="bg-[#101828]/10 border border-black/5 rounded-2xl p-4 animate-pulse h-52"></div>
-                `).join('')}
+                ${Array(12).fill(0).map(() => `<div class="bg-white/[0.02] border border-white/5 rounded-2xl p-4 animate-pulse h-52"></div>`).join('')}
             </div>
         </div>
 
-        <div class="relative w-full max-w-[1400px] px-4 md:px-8 z-10 flex flex-col gap-6 mt-16 pt-10 border-t-[3px] border-black/25">
-
-            <div id="bracket-card" class="bg-[#0d1320] border border-black/25 rounded-3xl overflow-hidden shadow-2xl">
+        <!-- KNOCKOUT STAGE -->
+        <div class="relative w-full max-w-[1400px] px-4 md:px-8 z-10 flex flex-col gap-6 mt-16 pt-10 border-t border-white/10">
+            <div id="bracket-card" class="bg-[#0d1320] border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 px-6 py-5 border-b border-white/5 bg-[#101828]/60">
                     <div>
                         <div class="flex items-center gap-4">
-                        ${barraTricolor()}
-                            <h3 class="text-3xl md:text-4xl font-bebas tracking-widest text-white uppercase">Knockout Stage</h3>
+                            ${barraTricolor()}
+                            <h3 class="text-3xl md:text-4xl font-black font-bebas tracking-wide text-white uppercase">Knockout Stage</h3>
                         </div>
                         <p class="text-white/40 text-sm font-sans mt-1.5">Los equipos aparecen automáticamente al registrar su primer partido oficial. Cruces oficiales FIFA.</p>
                     </div>
@@ -183,37 +208,115 @@ export function renderSeccionGrupos() {
             </div>
         </div>
 
-        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#0b1220] pointer-events-none z-20"></div>
+        <!-- Bloque SEO -->
+        <div class="relative w-full max-w-[1400px] px-4 md:px-8 z-10 mt-16 pt-8 border-t border-white/10">
+            <h3 class="text-2xl md:text-3xl font-black font-bebas tracking-wide text-white uppercase mb-3">Tabla de Posiciones del Mundial 2026 en Vivo</h3>
+            <p class="text-white/60 text-sm md:text-base font-sans leading-relaxed max-w-4xl mb-3">
+                Consulta la tabla de posiciones del Mundial 2026 actualizada en tiempo real: puntos, partidos jugados, goles a favor, goles en contra y diferencia de gol de los 12 grupos (A a la L) de la Copa del Mundo de México, Estados Unidos y Canadá. CupHub te muestra qué selecciones clasifican al Round of 32, el ranking de los 8 mejores terceros y el cuadro completo de eliminación directa con fechas y horarios oficiales de octavos de final, cuartos, semifinales y la gran final en el MetLife Stadium el 19 de julio de 2026.
+            </p>
+            <p class="text-white/45 text-sm font-sans leading-relaxed max-w-4xl">
+                Sigue la clasificación de México, Argentina, Colombia, España, Brasil y las 48 selecciones del primer Mundial de la historia con 104 partidos y tres países anfitriones.
+            </p>
+        </div>
     `
 
-    // Carga inicial + refresco automático cada 5 minutos
-    const cargarYRenderizar = () => {
+    // ----- Orquestación: standings (5 min) + en vivo (60 s) -----
+    let ultimoStandings = []
+    let equiposEnVivo   = new Set()
+
+    const pintarTablas = () => {
+        if (!ultimoStandings.length) return
+        section.querySelector('#grid-grupos').innerHTML =
+            ultimoStandings.map(g => tablaGrupo(g, equiposEnVivo)).join('')
+    }
+
+    const cargarStandings = () => {
         cargarGruposAPI().then(standings => {
-            if (!standings || standings.length === 0) {
-                section.querySelector('#grid-grupos').innerHTML = `
-                    <p class="text-red-500 col-span-full font-bebas text-center py-10 text-2xl">Error al enlazar datos con los servidores de la FIFA.</p>
-                `
+            if (!standings || !standings.length) {
+                section.querySelector('#grid-grupos').innerHTML =
+                    `<p class="text-red-400 col-span-full font-bebas text-center py-10 text-2xl">Error al enlazar datos con los servidores de la FIFA.</p>`
                 return
             }
-            section.querySelector('#grid-grupos').innerHTML = standings.map(g => tablaGrupo(g)).join('')
-
+            ultimoStandings = standings
+            pintarTablas()
             const cont = section.querySelector('#mejores-terceros-container')
             cont.innerHTML = tablaTerceros(mejoresTerceros(standings))
             cont.classList.remove('animate-pulse')
-
             section.querySelector('#bracket-container').innerHTML = renderBracket(standings)
         })
     }
 
-    cargarYRenderizar()
-    setInterval(cargarYRenderizar, STANDINGS_CACHE_DURATION)
+    const cargarLive = () => {
+        cargarPartidosEnVivo().then(partidos => {
+            const live = (partidos || []).filter(p => ESTADOS_VIVO.includes(p.status))
+            equiposEnVivo = new Set(live.flatMap(p => [p.home, p.away]))
+            renderLiveStrip(section, live)
+            pintarTablas()
+        })
+    }
+
+    cargarStandings()
+    cargarLive()
+    setInterval(cargarStandings, STANDINGS_CACHE_DURATION)
+    setInterval(cargarLive, LIVE_CACHE_DURATION)
 
     setupBracketControls(section)
     return section
 }
 
 // ============================================================================
-// SECCIÓN 3: CONTROLES DEL BRACKET — fullscreen y zoom
+// SECCIÓN 3: TIRA DE PARTIDOS EN VIVO
+// ============================================================================
+function tarjetaEnVivo(p) {
+    return `
+    <div class="shrink-0 w-64 bg-[#101828] border border-red-500/30 rounded-2xl p-3 shadow-lg">
+        <div class="flex items-center justify-between mb-2">
+            <span class="flex items-center gap-1.5 text-red-400 text-[11px] font-bold font-sans uppercase tracking-widest">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> En Vivo
+            </span>
+            <span class="text-white/40 text-[11px] font-sans tabular-nums">${p.minuto ? p.minuto + "'" : ''}</span>
+        </div>
+        <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0 flex-1">
+                <img src="${p.homeLogo}" class="w-6 h-6 object-contain shrink-0" alt="${p.home}">
+                <span class="text-white font-bebas text-sm tracking-wider truncate">${p.home.toUpperCase()}</span>
+            </div>
+            <span class="text-white font-bebas text-2xl tabular-nums shrink-0 px-1">${p.homeGoals ?? 0}-${p.awayGoals ?? 0}</span>
+            <div class="flex items-center gap-2 min-w-0 flex-1 justify-end">
+                <span class="text-white font-bebas text-sm tracking-wider truncate text-right">${p.away.toUpperCase()}</span>
+                <img src="${p.awayLogo}" class="w-6 h-6 object-contain shrink-0" alt="${p.away}">
+            </div>
+        </div>
+    </div>`
+}
+
+function renderLiveStrip(section, live) {
+    const cont = section.querySelector('#live-strip')
+    if (!cont) return
+
+    if (!live.length) {
+        cont.innerHTML = `
+            <div class="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#101828]/60 border border-white/10 text-white/45 text-sm font-sans">
+                <span class="w-2 h-2 rounded-full bg-white/25"></span>
+                No hay partidos en vivo en este momento. El marcador en tiempo real aparecerá aquí durante cada partido.
+            </div>`
+        return
+    }
+
+    cont.innerHTML = `
+        <div class="flex items-center gap-3 mb-3">
+            <span class="flex items-center gap-2 text-red-400 font-bold font-sans uppercase tracking-widest text-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span> Partidos en Vivo
+            </span>
+            <span class="text-white/40 text-sm font-sans">· ${live.length} en juego ahora</span>
+        </div>
+        <div class="flex gap-3 overflow-x-auto pb-2" style="scrollbar-width: thin;">
+            ${live.map(tarjetaEnVivo).join('')}
+        </div>`
+}
+
+// ============================================================================
+// SECCIÓN 4: CONTROLES DEL BRACKET — fullscreen y zoom
 // ============================================================================
 function setupBracketControls(section) {
     const card     = section.querySelector('#bracket-card')
@@ -225,22 +328,12 @@ function setupBracketControls(section) {
     const iconComp = section.querySelector('#icon-compress')
 
     let zoom = 1
-
-    btnIn.addEventListener('click', () => {
-        zoom = Math.min(1.5, zoom + 0.1)
-        zoomEl.style.zoom = zoom
-    })
-    btnOut.addEventListener('click', () => {
-        zoom = Math.max(0.5, zoom - 0.1)
-        zoomEl.style.zoom = zoom
-    })
+    btnIn.addEventListener('click', () => { zoom = Math.min(1.5, zoom + 0.1); zoomEl.style.zoom = zoom })
+    btnOut.addEventListener('click', () => { zoom = Math.max(0.5, zoom - 0.1); zoomEl.style.zoom = zoom })
 
     btnFull.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            card.requestFullscreen().catch(() => {})
-        } else {
-            document.exitFullscreen()
-        }
+        if (!document.fullscreenElement) card.requestFullscreen().catch(() => {})
+        else document.exitFullscreen()
     })
 
     document.addEventListener('fullscreenchange', () => {
@@ -252,26 +345,35 @@ function setupBracketControls(section) {
 }
 
 // ============================================================================
-// SECCIÓN 4: TABLA DE GRUPO — País·PJ·G·E·P·GF·GC·DG·Pts
+// SECCIÓN 5: TABLA DE GRUPO — País·PJ·G·E·P·GF·GC·DG·Pts (+ indicador EN VIVO)
 // ============================================================================
 const GRID_COLS = '1.1rem 1.1rem 1.2rem 1fr 1.2rem 1.2rem 1.2rem 1.2rem 1.2rem 1.2rem 1.5rem 1.5rem'
 
-function tablaGrupo(grupoData) {
+function tablaGrupo(grupoData, liveSet = new Set()) {
     const nombre = grupoData[0].group.replace('Group ', 'Grupo ')
+    const letra  = nombre.replace('Grupo ', '')
 
     const filas = grupoData.map((eq, i) => {
+        const enVivo = liveSet.has(eq.team.name)
         const dot = i < 2 ? 'bg-emerald-400' : i === 2 ? 'bg-amber-400' : 'bg-white/10'
         const gf = eq.all.goals.for
         const gc = eq.all.goals.against
         const dg = eq.goalsDiff > 0 ? `+${eq.goalsDiff}` : eq.goalsDiff
 
+        const indicador = enVivo
+            ? `<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse mx-auto block"></span>`
+            : `<div class="w-1.5 h-1.5 rounded-full ${dot} mx-auto"></div>`
+
         return /*html*/`
-        <div class="grid items-center py-2 border-b border-white/[0.03] last:border-0 hover:bg-white/[0.04] rounded-lg px-1 transition-colors"
+        <div class="grid items-center py-2 border-b border-white/[0.03] last:border-0 rounded-lg px-1 transition-colors ${enVivo ? 'bg-red-500/[0.07]' : 'hover:bg-white/[0.04]'}"
             style="grid-template-columns: ${GRID_COLS}">
-            <div class="w-1.5 h-1.5 rounded-full ${dot} mx-auto"></div>
+            ${indicador}
             <span class="text-white/30 font-bebas text-xs text-center">${i + 1}</span>
             <img src="${eq.team.logo}" class="w-4 h-4 object-contain mx-auto" alt="Logo de ${eq.team.name} en vivo Mundial 2026">
-            <span class="text-white font-bebas text-sm tracking-wider truncate px-1" title="${eq.team.name}">${eq.team.name.substring(0,10).toUpperCase()}</span>
+            <span class="text-white font-bebas text-sm tracking-wider truncate px-1 flex items-center gap-1" title="${eq.team.name}">
+                ${eq.team.name.substring(0,10).toUpperCase()}
+                ${enVivo ? `<span class="text-[8px] text-red-400 font-sans font-bold bg-red-500/15 px-1 rounded shrink-0">LIVE</span>` : ''}
+            </span>
             <span class="text-white/50 font-sans text-[11px] text-center tabular-nums">${eq.all.played}</span>
             <span class="text-white/40 font-sans text-[11px] text-center tabular-nums">${eq.all.win}</span>
             <span class="text-white/40 font-sans text-[11px] text-center tabular-nums">${eq.all.draw}</span>
@@ -285,9 +387,12 @@ function tablaGrupo(grupoData) {
     }).join('')
 
     return /*html*/`
-    <div class="bg-[#101828] border border-black/15 rounded-2xl p-4 flex flex-col hover:border-violet-500/50 transition-all duration-300 shadow-xl">
-        <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/5">
-            <h4 class="text-xl font-bebas text-white tracking-widest">${nombre}</h4>
+    <div class="bg-[#101828] border border-white/10 rounded-2xl p-4 flex flex-col hover:border-violet-500/50 transition-all duration-300 shadow-xl">
+        <div class="flex items-center justify-between mb-3 pb-2.5 border-b border-white/10">
+            <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-5 bg-violet-500 rounded-full shrink-0"></span>
+                <h4 class="text-xl font-black font-bebas text-white tracking-[0.12em]">GRUPO <span class="text-violet-300">${letra}</span></h4>
+            </div>
             <span class="text-[10px] text-violet-400/60 font-sans font-bold uppercase tracking-widest">WC26</span>
         </div>
         <div class="grid text-[10px] font-bold text-white/25 uppercase tracking-wider mb-1.5 px-1"
@@ -309,7 +414,7 @@ function tablaGrupo(grupoData) {
 }
 
 // ============================================================================
-// SECCIÓN 5: MEJORES TERCEROS — los 12 visibles, badges alineados
+// SECCIÓN 6: MEJORES TERCEROS
 // ============================================================================
 function mejoresTerceros(standings) {
     return standings
@@ -325,24 +430,19 @@ function mejoresTerceros(standings) {
 function tablaTerceros(terceros) {
     const filas = terceros.slice(0, 12).map((eq, i) => {
         const clasifica = i < 8
-        const badge = clasifica
-            ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400'
-            : 'bg-white/5 border-white/5 text-white/20'
-
-        // SEO Y RESPONSIVE CELLULAR: Quitamos 'GSTAGE' / 'Group Stage - ' y dejamos solo el ID limpio del grupo
-        const grupoLimpio = eq.group.replace(/Group Stage - |GSTAGE|Group /gi, '').trim();
+        const letra = eq.group.trim().split(/[\s-]+/).pop()
 
         return /*html*/`
         <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0 px-2 hover:bg-white/[0.04] rounded-lg transition-colors ${clasifica ? '' : 'opacity-50'}">
             <div class="flex items-center gap-2.5 min-w-0">
                 <span class="font-bebas text-base w-5 text-center shrink-0 ${clasifica ? 'text-amber-400' : 'text-white/25'}">${i + 1}</span>
                 <img src="${eq.team.logo}" class="w-5 h-5 object-contain shrink-0" alt="Logo de ${eq.team.name} - Terceros Mundial">
-                <span class="text-white font-bebas text-base tracking-wider w-28 truncate shrink-0" title="${eq.team.name}">${eq.team.name.toUpperCase()}</span>
-                <span class="text-[10px] text-white/40 bg-white/5 px-2 py-0.5 rounded font-sans font-bold uppercase shrink-0">G${grupoLimpio}</span>
+                <span class="text-white font-bebas text-base tracking-wider w-24 truncate shrink-0" title="${eq.team.name}">${eq.team.name.toUpperCase()}</span>
+                <span class="text-[10px] text-amber-300/80 bg-amber-400/10 border border-amber-400/20 w-6 h-5 flex items-center justify-center rounded font-sans font-bold shrink-0">${letra}</span>
             </div>
             <div class="flex items-center gap-3 shrink-0">
                 <span class="text-sm text-white/60 font-sans font-medium tabular-nums">${eq.points} pts</span>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${badge} min-w-[3.5rem] text-center">${clasifica ? '✓ PASA' : '✗ OUT'}</span>
+                <span class="w-6 h-6 flex items-center justify-center rounded-full border text-xs font-bold shrink-0 ${clasifica ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-white/5 border-white/10 text-white/25'}">${clasifica ? '✓' : '✗'}</span>
             </div>
         </div>
         `
@@ -350,14 +450,13 @@ function tablaTerceros(terceros) {
 
     return /*html*/`
     <div class="flex flex-col gap-1 w-full">
-        <span class="sr-only">Tabla de Posiciones de los Mejores Terceros Lugares de la Copa Mundial FIFA 2026 - CupHub Coeficientes en tiempo real</span>
-        
-        <div class="flex items-center justify-between mb-3 pb-3 border-b border-white/10">
-            <div class="flex items-center gap-2.5">
+        <span class="sr-only">Tabla de Posiciones de los Mejores Terceros Lugares de la Copa Mundial FIFA 2026 - CupHub coeficientes en tiempo real</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-white/10">
+            <div class="flex items-center gap-2.5 w-full sm:w-auto justify-center sm:justify-start">
                 <span class="w-2 h-6 bg-amber-400 rounded-full"></span>
                 <span class="text-base text-white font-sans uppercase tracking-widest font-bold">Ranking de Mejores Terceros</span>
             </div>
-            <span class="text-xs text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20 font-sans font-bold">Top 8 Avanzan</span>
+            <span class="text-xs text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20 font-sans font-bold mx-auto sm:mx-0">Top 8 Avanzan</span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-0">
             ${filas.length > 0 ? filas : `<p class="text-white/20 font-bebas text-center py-8 text-base col-span-full">Los datos se computarán al inicio de los partidos</p>`}
@@ -367,8 +466,7 @@ function tablaTerceros(terceros) {
 }
 
 // ============================================================================
-// SECCIÓN 6: BRACKET — KNOCKOUT STAGE
-// Cruces y fechas oficiales FIFA Mundial 2026
+// SECCIÓN 7: BRACKET — KNOCKOUT STAGE (cruces y fechas oficiales FIFA 2026)
 // ============================================================================
 const R32 = [
     { id: 'M74', fecha: '29 jun', hora: '15:30', t1: { g: 'E', pos: 1 }, t2: { tercero: '3A/3B/3C/3D/3F' } },
@@ -414,19 +512,11 @@ const SEMIS = [
 
 function resolverEquipo(standings, slot) {
     if (slot.tercero) return { tipo: 'tercero', label: slot.tercero }
-
     const idx = 'ABCDEFGHIJKL'.indexOf(slot.g)
     if (idx === -1 || !standings[idx]) return { tipo: 'vacio', label: `${slot.pos}${slot.g}` }
-
     const eq = standings[idx][slot.pos - 1]
     if (!eq || eq.all.played === 0) return { tipo: 'vacio', label: `${slot.pos}${slot.g}` }
-
-    return {
-        tipo: 'equipo',
-        nombre: eq.team.name.substring(0, 12).toUpperCase(),
-        logo: eq.team.logo,
-        puntos: eq.points
-    }
+    return { tipo: 'equipo', nombre: eq.team.name.substring(0, 12).toUpperCase(), logo: eq.team.logo, puntos: eq.points }
 }
 
 function filaEquipo(eq) {
@@ -482,7 +572,6 @@ function renderBracket(standings) {
     let r32HTML = ''
     for (let i = 0; i < 16; i += 2) {
         const m1 = R32[i], m2 = R32[i + 1]
-        // ESPACIADO: Añadido mb-5 a las tarjetas de enfrentamiento en el Round of 32 para separarlas elegantemente
         r32HTML += `
         <div class="b-pair mb-5 gap-1 last:mb-0">
             ${matchCard(filaEquipo(resolverEquipo(standings, m1.t1)), filaEquipo(resolverEquipo(standings, m1.t2)), m1.fecha, m1.hora)}
@@ -521,43 +610,24 @@ function renderBracket(standings) {
         <div class="flex flex-col items-center justify-center gap-6">
             <div class="flex flex-col items-center gap-3">
                 <img src="/icons/WorldCup.png" alt="Trofeo Copa del Mundo FIFA Oficial 2026"
-                    class="w-20 h-auto object-contain cursor-pointer
-                            drop-shadow-[0_0_20px_rgba(251,191,36,0.6)]
-                            hover:drop-shadow-[0_0_40px_rgba(251,191,36,0.95)]
-                    hover:scale-110 transition-all duration-500">
+                    class="w-20 h-auto object-contain cursor-pointer drop-shadow-[0_0_20px_rgba(251,191,36,0.6)] hover:drop-shadow-[0_0_40px_rgba(251,191,36,0.95)] hover:scale-110 transition-all duration-500">
                 ${matchCard(filaGanador('W101'), filaGanador('W102'), '19 jul', '14:00', true)}
                 <span class="text-[10px] text-amber-400 font-sans font-bold uppercase tracking-widest bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">Gran Final · MetLife</span>
             </div>
             <div class="flex flex-col items-center gap-2 opacity-60">
-            ${matchCard(filaGanador('L101'), filaGanador('L102'), '18 jul', '16:00')}
+                ${matchCard(filaGanador('L101'), filaGanador('L102'), '18 jul', '16:00')}
                 <span class="text-[10px] text-white/30 font-sans font-bold uppercase tracking-widest">Tercer Puesto</span>
             </div>
         </div>
     </div>`
 
-    // LÍNEAS DE SECCIÓN / HEADERS DEL BRACKET: Cambiado border-b a border-b-[3px] y mayor visibilidad (border-white/30) para que no se pierdan a la vista
     const header = (titulo) => `<div class="text-center font-sans font-bold text-[13px] text-violet-400 tracking-widest uppercase border-b-[3px] border-white/30 pb-3 mb-6">${titulo}</div>`
 
     return `
-        <div class="b-col">
-            ${header('Round of 32')}
-            <div class="b-rows">${r32HTML}</div>
-        </div>
-        <div class="b-col">
-            ${header('Octavos de Final')}
-            <div class="b-rows">${octHTML}</div>
-        </div>
-        <div class="b-col">
-            ${header('Cuartos de Final')}
-            <div class="b-rows">${cuartosHTML}</div>
-        </div>
-        <div class="b-col">
-            ${header('Semifinales')}
-            <div class="b-rows">${semisHTML}</div>
-        </div>
-        <div class="b-col b-final">
-            ${header('Final')}
-            ${finalHTML}
-        </div>
+        <div class="b-col">${header('Round of 32')}<div class="b-rows">${r32HTML}</div></div>
+        <div class="b-col">${header('Octavos de Final')}<div class="b-rows">${octHTML}</div></div>
+        <div class="b-col">${header('Cuartos de Final')}<div class="b-rows">${cuartosHTML}</div></div>
+        <div class="b-col">${header('Semifinales')}<div class="b-rows">${semisHTML}</div></div>
+        <div class="b-col b-final">${header('Final')}${finalHTML}</div>
     `
 }
