@@ -15,14 +15,21 @@ async function cargarGruposAPI() {
         const ahora = Date.now()
         const ultimo = parseInt(localStorage.getItem(CACHE_TIME_KEY) || '0')
         const cacheData = localStorage.getItem(CACHE_KEY)
-        if ((ahora - ultimo) < STANDINGS_CACHE_DURATION && cacheData) return JSON.parse(cacheData)
+        if ((ahora - ultimo) < STANDINGS_CACHE_DURATION && cacheData) {
+            const parsed = JSON.parse(cacheData)
+            if (parsed.length === 12 && parsed[0].length === 4) return parsed
+            localStorage.removeItem(CACHE_KEY)
+            localStorage.removeItem(CACHE_TIME_KEY)
+        }
 
         const API_KEY = import.meta.env.VITE_API_FOOTBALL_KEY
         const response = await fetch('https://v3.football.api-sports.io/standings?league=1&season=2026', {
             headers: { 'x-apisports-key': API_KEY }
         })
         const data = await response.json()
-        const standings = data.response[0]?.league?.standings || []
+        const rawStandings = data.response[0]?.league?.standings || []
+        const standings = normalizarStandings(rawStandings)
+
         localStorage.setItem(CACHE_KEY, JSON.stringify(standings))
         localStorage.setItem(CACHE_TIME_KEY, ahora.toString())
         return standings
@@ -30,6 +37,28 @@ async function cargarGruposAPI() {
         console.error('❌ Error cargando grupos:', error)
         return []
     }
+}
+
+function normalizarStandings(rawStandings) {
+    const todos = rawStandings.flat()
+    const porGrupo = {}
+    for (const eq of todos) {
+        const grupo = eq.group
+        if (!porGrupo[grupo]) porGrupo[grupo] = {}
+        const id = eq.team.id
+        if (!porGrupo[grupo][id] || eq.all.played > porGrupo[grupo][id].all.played) {
+            porGrupo[grupo][id] = eq
+        }
+    }
+    const gruposOrdenados = Object.keys(porGrupo).sort()
+    return gruposOrdenados.map(grupo => {
+        const equipos = Object.values(porGrupo[grupo])
+        return equipos.sort((a, b) => {
+            if (b.points !== a.points) return b.points - a.points
+            if (b.goalsDiff !== a.goalsDiff) return b.goalsDiff - a.goalsDiff
+            return b.all.goals.for - a.all.goals.for
+        })
+    })
 }
 
 async function cargarPartidosEnVivo() {
