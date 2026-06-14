@@ -40,14 +40,29 @@
     {
         "@context": "https://schema.org",
         "@type": "SportsEvent",
-        "name": "FIFA World Cup 2026",
-        "description": "Tabla de posiciones y clasificación del Mundial 2026.",
+        "name": "FIFA World Cup 2026 — Fase de Grupos",
+        "description": "Tabla de posiciones y clasificación en vivo de los 12 grupos del Mundial 2026. Puntos, goles, diferencia de gol y mejores terceros.",
+        "startDate": "2026-06-11T19:00:00-05:00",
+        "endDate": "2026-07-19T15:00:00-05:00",
         "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "MetLife Stadium",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "East Rutherford",
+                "addressRegion": "NJ",
+                "addressCountry": "US"
+            }
+        },
         "organizer": {
             "@type": "Organization",
-            "name": "FIFA"
+            "name": "FIFA",
+            "url": "https://www.fifa.com"
         },
-        "mainEntityOfPage": "https://cuphub.co/grupos"
+        "image": "https://cuphub-gamma.vercel.app/icons/WorldCup.png",
+        "mainEntityOfPage": "https://cuphub-gamma.vercel.app/grupos"
     }
     </script>
 
