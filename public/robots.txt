@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cuphub-gamma.vercel.app/sitemap.xml
+Sitemap: https://cup-hub.com/sitemap.xml
