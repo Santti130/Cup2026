@@ -88,8 +88,8 @@ async function cargarPartidosEnVivo() {
             minuto:    item.fixture.status.elapsed,
             estadio:   item.fixture.venue?.name || '',
             hora:      new Date(item.fixture.date).toLocaleTimeString(navigator.language, {
-                           hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz
-                       })
+            hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz
+            })
         }))
         localStorage.setItem(CACHE_KEY, JSON.stringify(partidos))
         localStorage.setItem(CACHE_TIME_KEY, ahora.toString())
