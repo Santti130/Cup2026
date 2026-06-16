@@ -6,7 +6,7 @@ export const noticias = [
         categoria: 'Convocatorias',
         titulo: 'LOS 26 CONVOCADOS DE COLOMBIA PARA EL MUNDIAL 2026', // [cite: 26]
         resumen: 'Néstor Lorenzo confirmó la lista definitiva de jugadores que representarán a Colombia en la Copa Mundial de la FIFA 2026.', // [cite: 26]
-        imagen: '/news-img/ColombiaConvocados.png',
+        imagen: '/news-img/ColombiaConvocados.webp',
         fecha: '25 Mayo 2026',
         contenido: (() => {
             // Plantilla reutilizable para cualquier país
@@ -67,7 +67,7 @@ export const noticias = [
     categoria: 'Convocatorias',
     titulo: 'LOS 26 CONVOCADOS DE ARGENTINA PARA EL MUNDIAL 2026',
     resumen: 'Lionel Scaloni confirmó la lista definitiva de jugadores que representarán a Argentina en la Copa Mundial de la FIFA 2026 con la esperanza de retener el título.',
-    imagen: '/news-img/ArgentinaConvocados.png',
+    imagen: '/news-img/ArgentinaConvocados.webp',
     fecha: '28 Mayo 2026',
     contenido: (() => {
         const plantilla = [
@@ -127,7 +127,7 @@ export const noticias = [
         categoria: 'Convocatorias',
         titulo: 'LOS 26 CONVOCADOS DE BRASIL PARA EL MUNDIAL 2026',
         resumen: 'Carlo Ancelotti hizo pública la lista definitiva de 26 jugadores que defenderán la camiseta de Brasil en la Copa Mundial de la FIFA 2026, con Neymar como gran novedad en la nómina.',
-        imagen: '/news-img/BrasiConvocados.png',
+        imagen: '/news-img/BrasiConvocados.webp',
         fecha: '18 Mayo 2026',
         contenido: (() => {
             const plantilla = [
@@ -190,7 +190,7 @@ export const noticias = [
         categoria: 'Convocatorias',
         titulo: 'LOS 26 CONVOCADOS DE URUGUAY PARA EL MUNDIAL 2026',
         resumen: 'Marcelo Bielsa entregó la lista definitiva de 26 jugadores que representarán a Uruguay en la Copa Mundial de la FIFA 2026, con Federico Valverde como gran líder de una generación que buscará hacer historia.',
-        imagen: '/news-img/UruguayConvocados.png',
+        imagen: '/news-img/UruguayConvocados.webp',
         fecha: '31 Mayo 2026',
         contenido: (() => {
             const plantilla = [
@@ -250,7 +250,7 @@ export const noticias = [
     categoria: 'Convocatorias',
     titulo: 'LOS 26 CONVOCADOS DE ECUADOR PARA EL MUNDIAL 2026',
     resumen: 'La Tri combina experiencia y juventud en su nómina mundialista, con Moisés Caicedo como gran figura y Enner Valencia liderando el ataque en busca de superar su mejor actuación histórica.',
-    imagen: '/news-img/EcuadorConvocados.png',
+    imagen: '/news-img/EcuadorConvocados.webp',
     fecha: '31 Mayo 2026',
     contenido: (() => {
         const plantilla = [
@@ -310,7 +310,7 @@ export const noticias = [
     categoria: 'Convocatorias',
     titulo: 'LOS 26 CONVOCADOS DE PARAGUAY PARA EL MUNDIAL 2026',
     resumen: 'Con líderes cargados de experiencia como Gustavo Gómez y Miguel Almirón, más una interesante generación de talentos del calibre de Diego Gómez y Julio Enciso, la Albirroja parece lista para dar más de una sorpresa en la Copa del Mundo 2026.',
-    imagen: '/news-img/ParaguayConvocados.png',
+    imagen: '/news-img/ParaguayConvocados.webp',
     fecha: '1 Junio 2026',
     contenido: (() => {
         const plantilla = [
@@ -370,7 +370,7 @@ export const noticias = [
         categoria: 'Convocatorias',
         titulo: 'LOS 26 CONVOCADOS DE FRANCIA PARA EL MUNDIAL 2026',
         resumen: 'Didier Deschamps se despedirá de la selección francesa tras el Mundial en Norteamérica, y lo hará con una plantilla que combina experiencia y juventud, aunque con ausencias sorpresivas como la de Eduardo Camavinga.',
-        imagen: '/news-img/FranciaConvocados.png',
+        imagen: '/news-img/FranciaConvocados.webp',
         fecha: '14 Mayo 2026',
         contenido: (() => {
             const plantilla = [
@@ -430,7 +430,7 @@ export const noticias = [
         categoria: 'Convocatorias',
         titulo: 'CONVOCADOS DE ESPAÑA: UNA NUEVA GENERACIÓN SUEÑA CON LA SEGUNDA ESTRELLA',
         resumen: 'Campeones de Europa y del torneo olímpico, los dirigidos por Luis de la Fuente llegan a Norteamérica con una mezcla de juventud, talento y la ilusión de conquistar una segunda Copa del Mundo.',
-        imagen: '/news-img/EspañaConvocados.png',
+        imagen: '/news-img/EspañaConvocados.webp',
         fecha: '5 Junio 2026',
         contenido: (() => {
             const plantilla = [
@@ -494,7 +494,7 @@ export const noticias = [
         id: 9,
         slug: 'por-que-el-mundial-2026-se-juega-en-tres-paises',
         categoria: 'Sedes',
-        imagen: '/news-img/Mascotas2026-2.jpg',
+        imagen: '/news-img/Mascotas2026-2.webp',
         titulo: '¿Por qué el Mundial 2026 se jugará en tres países diferentes?',
         resumen: 'Estados Unidos, México y Canadá compartirán por primera vez la organización de una Copa del Mundo, una decisión impulsada por la expansión del torneo a 48 selecciones.',
 
@@ -534,7 +534,7 @@ export const noticias = [
     {
         id: 10, slug: 'mexico-tres-veces-anfitrion-mundial-2026',
         categoria: 'Sedes',
-        imagen: '/news-img/EstadioAzteca-1.avif',
+        imagen: '/news-img/EstadioAzteca-1.webp',
         titulo: 'México, tres veces anfitrión: el Azteca se viste de gala',
         resumen: 'El Estadio Azteca se convertirá en el primer escenario en albergar la inauguración de tres Copas del Mundo: 1970, 1986 y 2026.',
         
@@ -570,7 +570,7 @@ export const noticias = [
         categoria: 'Selecciones',
         titulo: 'COLOMBIA EN EL MUNDIAL 2026: GRUPO, RIVALES Y HORARIOS',
         resumen: 'Colombia enfrentará a Portugal, RD Congo y Uzbekistán en el Grupo K. Conoce las fechas y horarios de todos sus partidos.',
-        imagen: '/news-img/GrupoK-Colombia.png',
+        imagen: '/news-img/GrupoK-Colombia.webp',
         fecha: '5 Junio 2026',
         contenido: `
             <p class="mb-8">Colombia clasificó al Mundial 2026 y quedó ubicada en el Grupo K junto a Portugal, República Democrática del Congo y Uzbekistán.</p>
@@ -616,7 +616,7 @@ export const noticias = [
         categoria: 'Figuras',
         titulo: 'EL PRÍNCIPE VUELVE POR SU CORONA, "la 10"',
         resumen: 'Neymar regresa a la selección después de tres años. Con el Mundial cada vez más cerca, comienza una nueva oportunidad para hacer historia.',
-        imagen: '/news-img/NeymarConvocado.jpg',
+        imagen: '/news-img/NeymarConvocado.webp',
         fecha: '25 Mayo 2026',
         contenido: `
             <p class="mb-6">Neymar regresa a la selección brasileña después de tres años de ausencia por lesiones que marcaron la etapa más difícil de su carrera.</p>
@@ -638,7 +638,7 @@ export const noticias = [
         categoria: 'Selecciones',
         titulo: 'BRASIL BUSCA SU SEXTA ESTRELLA: GRUPO, RIVALES Y HORARIOS',
         resumen: 'La Canarinha enfrentará a Marruecos, Haití y Escocia en el Grupo C del Mundial 2026.',
-        imagen: '/news-img/BrasilRumboHexa.png',
+        imagen: '/news-img/BrasilRumboHexa.webp',
         fecha: '5 Junio 2026',
         contenido: `
             <p class="mb-8">Brasil llega al Mundial 2026 con la misión de conquistar su sexta Copa del Mundo. La Canarinha quedó ubicada en el Grupo C.</p>
@@ -686,7 +686,7 @@ export const noticias = [
         categoria: 'Actualidad',
         titulo: 'CABO VERDE HACE HISTORIA: EMPATE LEGENDARIO ANTE ESPAÑA EN SU DEBUT MUNDIALISTA',
         resumen: 'Los Tiburones Azules igualaron 0-0 ante la vigente campeona de Europa en su primer partido en la historia de una Copa del Mundo. Vozinha, figura del partido.',
-        imagen: '/news-img/VozinhaEmpate.png',
+        imagen: '/news-img/VozinhaEmpate.webp',
         fecha: '15 Junio 2026',
         contenido: (() => {
             return `
