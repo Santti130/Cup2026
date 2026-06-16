@@ -46,10 +46,23 @@ const MAPA_LEGACY = {
 
 // Devuelve la sección de una noticia: usa `seccion` si existe; si no, deduce.
 function seccionDe(n) {
+    // Si tiene campo `seccion` explícito, úsalo
     if (n.seccion && SECCIONES.includes(n.seccion)) return n.seccion
+    // Si la `categoria` coincide directamente con una sección, úsala
+    if (SECCIONES.includes(n.categoria)) return n.categoria
+    // Si no, busca en el mapa de categorías viejas
     return MAPA_LEGACY[n.categoria] || 'Actualidad'
 }
 
+// Convierte "15 Junio 2026" -> "2026-06-15" (para los datos estructurados)
+const MESES = { enero:1, febrero:2, marzo:3, abril:4, mayo:5, junio:6, julio:7, agosto:8, septiembre:9, octubre:10, noviembre:11, diciembre:12 }
+function fechaISO(fechaStr) {
+    const m = (fechaStr || '').trim().toLowerCase().match(/(\d{1,2})\s+([a-záéíóú]+)\s+(\d{4})/)
+    if (!m) return new Date().toISOString().split('T')[0]
+    const dia = m[1].padStart(2, '0')
+    const mes = String(MESES[m[2]] || 1).padStart(2, '0')
+    return `${m[3]}-${mes}-${dia}`
+}
 
 /* ----------------------------------------------------------------------------
  * 2) ESTILOS  (Playfair para titulares · Teko para la navegación)
@@ -139,8 +152,8 @@ const injectStyles = () => {
         .np-hero a:hover h2{ color:var(--hover); }
         .np-hero .deck{ color:var(--gray); font-size:1.05rem; line-height:1.6; text-align:justify; }
 
-        .np-aside{ border-left:1px solid var(--line); padding-left:44px; display:flex; flex-direction:column; gap:22px; }
-        .np-aside .item{ padding-bottom:22px; border-bottom:1px solid var(--line); }
+        .np-aside{ border-left:1px solid var(--line); padding-left:44px; display:flex; flex-direction:column; gap:14px; }
+        .np-aside .item{ padding-bottom:14px; border-bottom:1px solid var(--line); }
         .np-aside .item:last-child{ padding-bottom:0; border-bottom:none; }
         .np-aside .item a{ display:flex; gap:14px; text-decoration:none; color:inherit; align-items:flex-start; }
         .np-aside .thumb{ flex:0 0 86px; aspect-ratio:1/1; overflow:hidden; border-radius:2px; border:1px solid var(--line); }
@@ -175,9 +188,9 @@ const injectStyles = () => {
         .np-empty{ text-align:center; color:var(--gray); font-style:italic; font-size:1.3rem; padding:70px 0 110px; }
 
         /* ============================ ARTÍCULO ============================ */
-        .news-articulo .container{ max-width:760px; margin:0 auto; padding:0 24px 120px; }
+        .news-articulo .container{ max-width:760px; margin:0 auto; padding-top:20px; padding-right:24px; padding-bottom:120px; padding-left:24px;}
         .news-articulo .art-back{
-            display:inline-flex; align-items:center; gap:8px; margin-top:40px;
+            display:inline-flex; align-items:center; gap:8px; margin-top:50px;
             font-family:'Plus Jakarta Sans', sans-serif; font-size:.72rem; font-weight:700;
             text-transform:uppercase; letter-spacing:.16em; color:var(--gray); text-decoration:none; transition:color .2s ease;
         }
@@ -235,6 +248,8 @@ const injectStyles = () => {
         }
         @media (max-width:520px){
             .news-portada .container, .news-articulo .container{ padding-left:18px; padding-right:18px; }
+            .news-articulo .container{ padding-top:10px; }
+            .news-articulo .art-back{ margin-top:20px; }   /* 👈 asegura que en móvil no haya margen */
             .np-grid{ grid-template-columns:1fr; }
             .np-aside .thumb{ flex-basis:74px; }
             .news-articulo .art-stats .share-label{ display:none; }
@@ -322,9 +337,11 @@ function renderNewsList() {
             return
         }
 
-        const hero  = lista[0]
-        const aside = lista.slice(1, 4)   // 3 noticias laterales (con foto)
-        const grid  = lista.slice(4)      // resto en recuadros retro
+        const heroIndex = lista.findIndex(n => n.destacada)
+        const hero  = heroIndex !== -1 ? lista[heroIndex] : lista[0]
+        const resto = lista.filter(n => n !== hero)
+        const aside = resto.slice(0, 4)
+        const grid  = resto.slice(4)
 
         root.innerHTML = /*html*/`
             <div class="np-top${aside.length ? '' : ' solo'}">
@@ -380,12 +397,48 @@ function renderArticle(id) {
         return section
     }
 
-    // SEO dinámico
+    // === SEO dinámico + datos estructurados ===
+    const urlArticulo = `https://cup-hub.com/noticias/${noticia.slug}`
+    const imgArticulo = `https://cup-hub.com${noticia.imagen}`
+    const set = (sel, attr, val) => document.querySelector(sel)?.setAttribute(attr, val)
+
     document.title = `${noticia.titulo} — Noticias Mundial 2026 | CupHub`
-    document.querySelector('meta[name="description"]')?.setAttribute('content', noticia.resumen)
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', noticia.titulo)
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', noticia.resumen)
-    document.querySelector('meta[property="og:image"]')?.setAttribute('content', `https://cup-hub.com${noticia.imagen}`)
+    set('meta[name="description"]', 'content', noticia.resumen)
+    set('link[rel="canonical"]', 'href', urlArticulo)          // 👈 canonical correcto por artículo
+    set('meta[property="og:type"]', 'content', 'article')
+    set('meta[property="og:url"]', 'content', urlArticulo)
+    set('meta[property="og:title"]', 'content', noticia.titulo)
+    set('meta[property="og:description"]', 'content', noticia.resumen)
+    set('meta[property="og:image"]', 'content', imgArticulo)
+    set('meta[name="twitter:title"]', 'content', noticia.titulo)
+    set('meta[name="twitter:description"]', 'content', noticia.resumen)
+    set('meta[name="twitter:image"]', 'content', imgArticulo)
+
+    // Datos estructurados NewsArticle (Google los usa para Noticias / resultados enriquecidos)
+    const ld = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": noticia.titulo,
+        "image": [imgArticulo],
+        "datePublished": fechaISO(noticia.fecha),
+        "dateModified": fechaISO(noticia.fecha),
+        "author": { "@type": "Organization", "name": "CupHub", "url": "https://cup-hub.com" },
+        "publisher": {
+            "@type": "Organization",
+            "name": "CupHub",
+            "logo": { "@type": "ImageObject", "url": "https://cup-hub.com/icons/WorldCup.png" }
+        },
+        "description": noticia.resumen,
+        "mainEntityOfPage": { "@type": "WebPage", "@id": urlArticulo }
+    }
+    let ldScript = document.getElementById('ld-noticia')
+    if (!ldScript) {
+        ldScript = document.createElement('script')
+        ldScript.type = 'application/ld+json'
+        ldScript.id = 'ld-noticia'
+        document.head.appendChild(ldScript)
+    }
+    ldScript.textContent = JSON.stringify(ld)
 
     const stats = {
         1: { vistas: '4.2K', likes: 318 },
