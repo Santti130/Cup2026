@@ -62,125 +62,176 @@ export const noticias = [
     },
     /* NOTICIA NÚMERO 2 */
     {
-    id: 2,
-    slug: 'convocados-argentina-mundial-2026',
-    categoria: 'Convocatorias',
-    titulo: 'LOS 26 CONVOCADOS DE ARGENTINA PARA EL MUNDIAL 2026',
-    resumen: 'Lionel Scaloni confirmó la lista definitiva de jugadores que representarán a Argentina en la Copa Mundial de la FIFA 2026 con la esperanza de retener el título.',
-    imagen: '/news-img/ArgentinaConvocados.webp',
-    fecha: '28 Mayo 2026',
-    contenido: (() => {
-        const plantilla = [
-            { pos: 'Arqueros', count: '03', jugadores: ['Emiliano Martínez', 'Gerónimo Rulli', 'Juan Musso'] },
-            { pos: 'Defensas', count: '08', jugadores: ['Gonzalo Montiel', 'Nahuel Molina', 'Lisandro Martínez', 'Nicolás Otamendi', 'Leonardo Balerdi', 'Cristian Romero', 'Facundo Medina', 'Nicolás Tagliafico'] },
-            { pos: 'Mediocampistas', count: '08', jugadores: ['Leandro Paredes', 'Rodrigo De Paul', 'Exequiel Palacios', 'Enzo Fernández', 'Alexis Mac Allister', 'Giovani Lo Celso', 'Valentín Barco', 'Nicolás Paz'] },
-            { pos: 'Delanteros', count: '07', jugadores: ['Lionel Messi', 'Julián Álvarez', 'Lautaro Martínez', 'Nicolás González', 'Thiago Almada', 'Giuliano Simeone', 'José Manuel López'] }
-        ];
+        id: 2,
+        slug: 'noruega-haaland-doblete-irak-mundial-2026',
+        categoria: 'Resultados',
+        titulo: 'HAALAND SE ESTRENA CON DOBLETE EN EL MUNDIAL EN LA VICTORIA DE NORUEGA FRENTE A IRAK',
+        resumen: 'Un doblete de Erling Haaland en su debut absoluto en una Copa del Mundo impulsó a Noruega a imponerse 4-1 ante Irak en Boston, en el regreso de la selección nórdica a un Mundial 28 años después.',
+        imagen: '/news-img/Noruega-Irak.webp',
+        fecha: '16 Junio 2026',
+        contenido: (() => {
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-zinc-100 first-letter:leading-[0.8] mt-2">
+                    Un doblete de Erling Haaland en su debut absoluto en una Copa del Mundo impulsó este lunes a una Noruega muy en forma a imponerse por 4-1 a una combativa Irak en Boston (Estados Unidos), en el regreso de la selección nórdica a un Mundial 28 años después, desde Francia 1998.</p>
 
-        const rosterHTML = plantilla.map(grupo => `
-            <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
-                <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
-                
-                <div class="mb-5 md:mb-0">
-                    <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
-                    <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Los tres puntos ponen a Noruega a la par de Francia al frente del Grupo I del Mundial, el considerado como "grupo de la muerte". Franceses y noruegos se medirán, también en Boston, en la tercera jornada, en uno de los partidos más atractivos de la primera fase.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Irak, que fue el último de los 48 clasificados para este Mundial, sorprendió de inicio a los noruegos, con ocasiones y corriendo mucho, en una combinación de fútbol y físico que ha rodeado de aura a esta selección en su camino a Norteamérica. Boston fue una fiesta vikinga, con las gradas del estadio de los New England Patriots repletas de aficionados noruegos que imitaban el gesto de remar en un ambiente intimidante para el rival.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">Irak</span>
+                        <span class="text-zinc-300 font-teko text-2xl">1</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">Noruega</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">4</span>
+                    </div>
                 </div>
-                
-                <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
-                    ${grupo.jugadores.map(jugador => `
-                        <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
-                            <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
-                            <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `).join('');
 
-        return `
-            <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
-                Lionel Scaloni hizo oficial este jueves 28 de mayo la lista de 26 convocados que acudirán a la Copa Mundial 2026 con la esperanza de retener el título, una situación que no se da desde que Brasil repitió festejo en 1958 y 1962. </p>
-
-            <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
-                Aunque no hay demasiadas sorpresas, Scaloni apuesta a algunos jugadores que no fueron parte de Catar, como Valentín Barco, de muy buena temporada europea, José Manuel López, centrodelantero del Palmeiras que le brinda opciones de recambio a Julián Álvarez y Lautaro Martínez, o Nico Paz, muy considerado por el cuerpo técnico luego de un alto rendimiento en Como. </p>
-
-            <div class="my-16">
-                <div class="mb-8 border-b-2 pb-4">
-                    <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
-                    <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Lionel Scaloni</p>
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['NOR', 'Erling Haaland', "29'"],
+                            ['IRQ', 'Aymen Hussein', "39'"],
+                            ['NOR', 'Erling Haaland', "43'"],
+                            ['NOR', 'Leo Ostigard', "76'"],
+                            ['NOR', 'Kristian Thorstvedt', "90+6'"],
+                        ].map(([eq, jugador, min]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
+                                <span class="text-zinc-300 font-sans text-sm font-medium flex-1">${jugador}</span>
+                                <span class="text-zinc-100 font-teko text-lg tabular-nums">${min}</span>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-                
-                <div class="flex flex-col border-b border-zinc-800/60">
-                    ${rosterHTML}
-                </div>
-            </div>
 
-            <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
-                Campeona del mundo en Qatar 2022, la Selección Argentina llega al 2026 de nuevo como candidata. Argentina integrará el Grupo C junto a Alemania, Túnez y Australia. La ilusión de volver a levantar la copa sigue intacta en una generación que ya hizo historia y busca escribir un nuevo capítulo dorado. </p>
-        `;
-    })()
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Una nueva estrella mundial se presentó en el Mundial 2026: Erling Haaland, gran referencia de Noruega. El estreno para el seleccionado europeo se produjo frente a una Irak que consiguió la clasificación vía repechaje internacional, al vencer a su par de Bolivia.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Noruega e Irak integran la misma zona de Francia y Senegal, equipos que jugaron a primer turno. Vale recordar que la selección de Medio Oriente disputa su segundo Mundial, luego de su paso por México 1986 (tres derrotas), mientras que para los noruegos es su cuarta participación histórica y la primera desde Francia 1998.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Noruega convirtió el 1-0 promediando la primera parte, cortesía de, cuándo no, Erling Haaland. El delantero del Manchester City aprovechó una buena asistencia de David Moller Wolfe y anotó así su primer tanto en una Copa del Mundo, en el que también es su primer partido.</p>
+
+                <blockquote class="relative p-8 my-10 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                    <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                    <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                        Irak llegó al empate 1-1 gracias a un excelente cabezazo de Aymen Hussein, pero la alegría les duró poco: horror en la salida, anticipo de Haaland contra el arquero Jalal Hassan y doblete del noruego.
+                    </p>
+                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— El momento clave del partido</footer>
+                </blockquote>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Ya en la segunda parte, llegó la tranquilidad para los europeos, con el 3-1 marcado por Leo Ostigaard, mientras que en la última jugada del partido, Kristian Thorstvedt colocó el 4-1 definitivo.</p>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
+                    Con este resultado, Noruega arranca el Mundial igualada en puntos con Francia en la cima del Grupo I, en lo que ya se perfila como una de las zonas más disputadas del torneo.</p>
+            `
+        })()
     },
     /* NOTICIA NÚMERO 3 */
     {
         id: 3,
-        slug: 'convocados-brasil-mundial-2026',
-        categoria: 'Convocatorias',
-        titulo: 'LOS 26 CONVOCADOS DE BRASIL PARA EL MUNDIAL 2026',
-        resumen: 'Carlo Ancelotti hizo pública la lista definitiva de 26 jugadores que defenderán la camiseta de Brasil en la Copa Mundial de la FIFA 2026, con Neymar como gran novedad en la nómina.',
-        imagen: '/news-img/BrasiConvocados.webp',
-        fecha: '18 Mayo 2026',
+        destacada: true,
+        slug: 'messi-triplete-argentina-argelia-mundial-2026',
+        categoria: 'Resultados',
+        titulo: '¡TRIPLETE DE UN YA HISTÓRICO MESSI! ARGENTINA GANA 3-0 CONTRA ARGELIA',
+        resumen: 'La Albiceleste debutó con una goleada sobre Argelia en Kansas City. Lionel Messi marcó su primer hat trick en un Mundial e igualó el récord histórico de Klose con 16 goles en Copas del Mundo.',
+        imagen: '/news-img/Argentina-Algeria.webp',
+        fecha: '16 Junio 2026',
         contenido: (() => {
-            const plantilla = [
-                { pos: 'Arqueros', count: '03', jugadores: ['Alisson', 'Ederson', 'Weverton'] },
-                { pos: 'Defensores', count: '09', jugadores: ['Marquinhos', 'Gabriel Magalhães', 'Bremer', 'Leo Pereira', 'Ibañez', 'Danilo', 'Douglas Santos', 'Alex Sandro'] },
-                { pos: 'Mediocampistas', count: '06', jugadores: ['Casemiro', 'Bruno Guimarães', 'Fabinho', 'Danilo Santos', 'Lucas Paquetá', 'Éderson'] },
-                { pos: 'Delanteros', count: '08', jugadores: ['Vinícius Jr.', 'Raphinha', 'Matheus Cunha', 'Gabriel Martinelli', 'Luiz Henrique', 'Igor Thiago', 'Endrick', 'Rayan', 'Neymar'] }
-            ];
-
-            const rosterHTML = plantilla.map(grupo => `
-                <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
-                    <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
-                    
-                    <div class="mb-5 md:mb-0">
-                        <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
-                        <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
-                    </div>
-                    
-                    <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
-                        ${grupo.jugadores.map(jugador => `
-                            <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
-                                <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
-                                <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-            `).join('');
-
             return `
-                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
-                    El lunes 18 de mayo, Carlo Ancelotti oficializó su nómina de 26 futbolistas para disputar la Copa del Mundo 2026. La gran sorpresa de la lista es el regreso de Neymar, quien se ganó un lugar por encima de otros atacantes que venían teniendo un buen presente, como Joao Pedro. Cabe recordar que Estevão no podrá estar presente debido a una lesión. </p>
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-zinc-100 first-letter:leading-[0.8] mt-2">
+                    La selección argentina ganó en su debut con tres goles de Lionel Messi, quien hizo historia al participar en su sexta Copa del Mundo y que ahora figura primero como máximo anotador histórico de los torneos FIFA, junto a Miroslav Klose. La Albiceleste debutó con una goleada 3-0 sobre Argelia en Kansas City.</p>
 
-                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
-                    Entre los convocados finalmente no aparece el experimentado Thiago Silva, quien sí había integrado la prelista de 55 jugadores. Se trata de una convocatoria con marcado perfil ofensivo, con pocos volantes —dos de ellos de características más ofensivas como Lucas Paquetá y Danilo Santos— y hasta nueve atacantes. </p>
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Lionel Messi marcó su primer hat trick en este, su sexto Mundial, e igualó el récord de máximo anotador en Copas del Mundo con 16 tantos. Además, llegó a los 200 partidos y 120 goles con la selección argentina desde su debut, en 2005. Una noche soñada para el 10.</p>
 
-                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
-                    El domingo 7 de junio, a menos de una semana del estreno mundialista, se produjo una modificación de último momento: Wesley fue descartado por lesión y en su lugar fue convocado Éderson. </p>
-
-                <div class="my-16">
-                    <div class="mb-8 border-b-2 pb-4">
-                        <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
-                        <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Carlo Ancelotti</p>
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">Argentina</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">3</span>
                     </div>
-                    
-                    <div class="flex flex-col border-b border-zinc-800/60">
-                        ${rosterHTML}
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">Argelia</span>
+                        <span class="text-zinc-300 font-teko text-2xl">0</span>
                     </div>
                 </div>
 
-                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
-                    Brasil llega al Mundial 2026 con la presión de volver a levantar el trofeo después de 24 años. La Canarinha integrará el Grupo H junto a España, Marruecos y Nueva Zelanda. La mezcla entre experiencia y juventud será la gran apuesta de Ancelotti para buscar la tan anhelada sexta estrella. </p>
-            `;
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['ARG', 'Lionel Messi', "Hat trick"],
+                        ].map(([eq, jugador, det]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
+                                <span class="text-zinc-300 font-sans text-sm font-medium flex-1">${jugador}</span>
+                                <span class="text-zinc-100 font-teko text-lg">${det}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">MESSI, RÉCORD HISTÓRICO</h3>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Con este triplete, Messi se convirtió en el máximo anotador de la historia de los Mundiales junto a Miroslav Klose, ambos con 16 goles. El astro argentino llega a este Mundial 2026 disputando su sexta Copa del Mundo, una marca que pocos jugadores en la historia han alcanzado, y lo hace en plena forma goleadora.</p>
+
+                <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 via-transparent to-emerald-500/10 border border-white/10">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Messi en números</h4>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">16</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Goles en Mundiales</span>
+                        </div>
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">200</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Partidos con Argentina</span>
+                        </div>
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">120</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Goles con Argentina</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">LAS PALABRAS DE MESSI</h3>
+
+                <p class="mb-8 font-playfair text-xl leading-loose text-zinc-300">
+                    Tras finalizado el partido, Messi declaró estar feliz por el triunfo. Habló del equipo argentino, de lo "unido" y "fuerte" que está, reconociendo que "nunca es fácil" el debut en un Mundial, aunque aún así lograron la victoria contra Argelia.</p>
+
+                <div class="my-10 flex flex-col gap-4">
+                    <blockquote class="relative p-8 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                        <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                        <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                            "Es muy lindo haber empezado de esta manera."
+                        </p>
+                        <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Lionel Messi</footer>
+                    </blockquote>
+
+                    <blockquote class="relative p-8 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                        <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                        <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                            "Estoy agradecido a la gente porque una vez más demuestra que Argentina es una locura. Volvimos a llenar el estadio. Siempre están, sea donde sea, incluso haciendo un esfuerzo muy grande."
+                        </p>
+                        <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Lionel Messi, sobre la afición</footer>
+                    </blockquote>
+                </div>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
+                    Una noche soñada para el 10. Argentina arranca su defensa del título con paso firme, y Messi reafirma que, a sus 38 años, sigue escribiendo historia en cada Mundial que disputa.</p>
+            `
         })()
     },
     /* NOTICIA NÚMERO 4 */
@@ -245,62 +296,89 @@ export const noticias = [
     },
     /* NOTICIA NÚMERO 5 */
     {
-    id: 5,
-    slug: 'convocados-ecuador-mundial-2026',
-    categoria: 'Convocatorias',
-    titulo: 'LOS 26 CONVOCADOS DE ECUADOR PARA EL MUNDIAL 2026',
-    resumen: 'La Tri combina experiencia y juventud en su nómina mundialista, con Moisés Caicedo como gran figura y Enner Valencia liderando el ataque en busca de superar su mejor actuación histórica.',
-    imagen: '/news-img/EcuadorConvocados.webp',
-    fecha: '31 Mayo 2026',
-    contenido: (() => {
-        const plantilla = [
-            { pos: 'Arqueros', count: '03', jugadores: ['Hernán Galíndez', 'Gonzalo Valle', 'Moisés Ramírez'] },
-            { pos: 'Defensores', count: '08', jugadores: ['Ángelo Preciado', 'Willian Pacho', 'Joel Ordóñez', 'Piero Hincapié', 'Félix Torres', 'Jackson Porozo', 'Pervis Estupiñán', 'Yaimar Medina'] },
-            { pos: 'Mediocampistas', count: '06', jugadores: ['Pedro Vite', 'Jordy Alcívar', 'Alan Franco', 'Moisés Caicedo', 'Kendry Páez', 'Denil Castillo'] },
-            { pos: 'Delanteros', count: '09', jugadores: ['John Yeboah', 'Gonzalo Plata', 'Anthony Valencia', 'Nilson Angulo', 'Alan Minda', 'Enner Valencia', 'Kevin Rodríguez', 'Jordy Caicedo', 'Jeremy Arévalo'] }
-        ];
+        id: 15,
+        slug: 'francia-vence-senegal-debut-mundial-2026',
+        categoria: 'Resultados',
+        titulo: 'FRANCIA REAFIRMA SU CANDIDATURA A FAVORITA CON VICTORIA EN SU DEBUT',
+        resumen: 'Los dirigidos por Didier Deschamps vencieron 3-1 a Senegal en Nueva York con un doblete de Mbappé y un gol de Barcola. El francés quedó a solo dos tantos del récord histórico de Klose en Mundiales.',
+        imagen: '/news-img/Francia-Senegal.webp',
+        fecha: '16 Junio 2026',
+        contenido: (() => {
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                    De la Selección de Francia, con una delantera que impacta, se esperan muchos goles en este Mundial 2026. Y a pesar de un flojo comienzo ante Senegal, sin alguna oportunidad clara en la primera parte, terminó con tres goles y una victoria clara en Nueva York en su debut.</p>
 
-        const rosterHTML = plantilla.map(grupo => `
-            <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
-                <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
-                
-                <div class="mb-5 md:mb-0">
-                    <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
-                    <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El equipo de Didier Deschamps se impuso por dos goles de Kylian Mbappé, que quedó a solo dos tantos del récord de goles en la historia de los Mundiales (los 16 de Miroslav Klose), y por la gran actuación de Michael Olise en la segunda mitad, cuando se acomodó como el conductor del equipo por el centro del campo en vez de jugar sobre la banda derecha. Bradley Barcola, que ingresó para los 10 minutos finales, convirtió el gol restante.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Los senegaleses se pueden haber ilusionado durante los 45 minutos iniciales con repetir su hazaña del Mundial 2002 ante Francia, que esta vez no hubiera sido tan sorprendente por tener varios jugadores de jerarquía en su equipo. Sin embargo, el poste no colaboró en un remate de Nicolas Jackson, Ismaïla Sarr desaprovechó una chance clara y en la segunda parte fueron superados con claridad por los galos.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
+                    <div class="grid grid-cols-4 gap-2 text-center mb-4">
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans"></span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">1T</span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">2T</span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">Res.</span>
+                    </div>
+                    <div class="grid grid-cols-4 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">Francia</span>
+                        <span class="text-zinc-300 font-teko text-xl">1</span>
+                        <span class="text-zinc-300 font-teko text-xl">2</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">3</span>
+                    </div>
+                    <div class="grid grid-cols-4 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">Senegal</span>
+                        <span class="text-zinc-300 font-teko text-xl">0</span>
+                        <span class="text-zinc-300 font-teko text-xl">1</span>
+                        <span class="text-zinc-300 font-teko text-2xl">1</span>
+                    </div>
                 </div>
-                
-                <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
-                    ${grupo.jugadores.map(jugador => `
-                        <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
-                            <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
-                            <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `).join('');
 
-        return `
-            <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
-                De cara al Mundial 2026, el plantel ecuatoriano combina experiencia y juventud. Los pilares defensivos Willian Pacho, Piero Hincapié y Pervis Estupiñán encabezan una última línea de primer nivel, mientras que en el mediocampo Moisés Caicedo se mantiene como la gran figura del equipo. Enner Valencia volverá a liderar el ataque acompañado por nombres como Gonzalo Plata, Kendry Páez y John Yeboah, exponentes de una nueva generación que promete velocidad y desequilibrio. </p>
-
-            <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
-                Con esto en mente, Ecuador apunta a superar su mejor actuación mundialista y consolidarse como uno de los proyectos más sólidos de la región. ¿Qué nombres integran su lista para la próxima Copa del Mundo? Lo repasamos al detalle, a continuación. </p>
-
-            <div class="my-16">
-                <div class="mb-8 border-b-2 pb-4">
-                    <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
-                    <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Ecuador</p>
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['FRA', 'Kylian Mbappé', "66'"],
+                            ['FRA', 'Bradley Barcola', "82'"],
+                            ['SEN', 'Ibrahim Mbaye', "90+5'"],
+                            ['FRA', 'Kylian Mbappé', "90+6'"],
+                        ].map(([eq, jugador, min]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
+                                <span class="text-zinc-300 font-sans text-sm font-medium flex-1">${jugador}</span>
+                                <span class="text-zinc-100 font-teko text-lg tabular-nums">${min}</span>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-                
-                <div class="flex flex-col border-b border-zinc-800/60">
-                    ${rosterHTML}
-                </div>
-            </div>
 
-            <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
-            El domingo 24 de mayo, Ecuador presentó una prelista de 28 jugadores. Luego, el domingo 31 de mayo confirmó a sus 26 convocados. La Tri integrará el Grupo E junto a Costa de Marfil, Suecia y Japón. La combinación de solidez defensiva y juventud en ataque ilusiona a una nación que busca escribir su mejor página en la historia de los Mundiales. </p>
-            `;
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Francia, con una generación que se ilusiona con llegar a su tercera final consecutiva, empezó el Mundial 2026 frente a Senegal en Nueva York. Los dirigidos por Didier Deschamps quieren tomarse revancha de la derrota contra Argentina en Qatar 2022 y empezar con el pie derecho era clave.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Los senegaleses no partían como favoritos, aunque se aferraban al antecedente mundialista de 2002, cuando vencieron 1-0 a los franceses en Corea-Japón con gol de Papa Bouba Diop. Esta vez no hubo sorpresa y Francia se llevó los tres puntos.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El primer tiempo terminó sin goles pero no faltaron emociones, sobre todo de parte de los africanos, que tuvieron las oportunidades más claras: Nicolas Jackson destrozó el palo, mientras que Ismaïla Sarr se perdió el 1-0 en la última jugada. El subcampeón del mundo no mostraba reacción.</p>
+
+                <blockquote class="relative p-8 my-10 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                    <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                    <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                        Didier Deschamps hizo un cambio táctico clave en el segundo tiempo, ubicando a Michael Olise detrás de Kylian Mbappé. La decisión dio frutos casi de inmediato.
+                    </p>
+                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Jugada clave del partido</footer>
+                </blockquote>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El cambio dio frutos: el centrodelantero marcó el 1-0 a pase del atacante del Bayern Múnich. El cooling break le vino bien a Senegal, que mostró tener armas para lastimar (le anularon un gol por fuera de juego). A los 82 minutos, ingresado en lugar de Ousmane Dembélé, Bradley Barcola marcó el 2-0. Senegal descontó por medio de Ibrahim Mbaye a los 90+5, pero Mbappé volvió a estirar diferencias para el 3-1 final.</p>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
+                    Francia volverá a jugar el 22 de junio ante Irak en Filadelfia, mientras que Senegal lo hará el mismo día en un partido clave ante Noruega, de nuevo en Nueva York.</p>
+            `
         })()
     },
     /* NOTICIA NÚMERO 6 */
@@ -681,7 +759,6 @@ export const noticias = [
     /* NOTICIA NÚMERO 14 */
     {
         id: 14,
-        destacada: true,
         slug: 'cabo-verde-empate-historico-espana-mundial-2026',
         categoria: 'Actualidad',
         titulo: 'CABO VERDE HACE HISTORIA: EMPATE LEGENDARIO ANTE ESPAÑA EN SU DEBUT MUNDIALISTA',
@@ -690,7 +767,7 @@ export const noticias = [
         fecha: '15 Junio 2026',
         contenido: (() => {
             return `
-                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-zinc-100 first-letter:leading-[0.8] mt-2">
+                <p class="mb-6 font-playfair text-xl leading-loose text-black-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
                     Hay debuts y hay DEBUTS. El de Cabo Verde en el Mundial 2026 será de los que se recuerden por años. Este lunes 15 de junio, los Tiburones Azules disputaron el primer partido de su historia en una Copa del Mundo, y no les tocó un rival cualquiera: enfrente tenían a España, vigente campeona de Europa y una de las grandes favoritas a levantar el trofeo.</p>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
@@ -746,6 +823,189 @@ export const noticias = [
                     El sueño caboverdiano apenas comienza. Y si Vozinha sigue así, nadie querrá enfrentarlos.</p>
             `
         })()
-    }
+    },
+    /* NOTICIA NÚMERO 15 */
+    {
+    id: 15,
+    slug: 'convocados-ecuador-mundial-2026',
+    categoria: 'Convocatorias',
+    titulo: 'LOS 26 CONVOCADOS DE ECUADOR PARA EL MUNDIAL 2026',
+    resumen: 'La Tri combina experiencia y juventud en su nómina mundialista, con Moisés Caicedo como gran figura y Enner Valencia liderando el ataque en busca de superar su mejor actuación histórica.',
+    imagen: '/news-img/EcuadorConvocados.webp',
+    fecha: '31 Mayo 2026',
+    contenido: (() => {
+        const plantilla = [
+            { pos: 'Arqueros', count: '03', jugadores: ['Hernán Galíndez', 'Gonzalo Valle', 'Moisés Ramírez'] },
+            { pos: 'Defensores', count: '08', jugadores: ['Ángelo Preciado', 'Willian Pacho', 'Joel Ordóñez', 'Piero Hincapié', 'Félix Torres', 'Jackson Porozo', 'Pervis Estupiñán', 'Yaimar Medina'] },
+            { pos: 'Mediocampistas', count: '06', jugadores: ['Pedro Vite', 'Jordy Alcívar', 'Alan Franco', 'Moisés Caicedo', 'Kendry Páez', 'Denil Castillo'] },
+            { pos: 'Delanteros', count: '09', jugadores: ['John Yeboah', 'Gonzalo Plata', 'Anthony Valencia', 'Nilson Angulo', 'Alan Minda', 'Enner Valencia', 'Kevin Rodríguez', 'Jordy Caicedo', 'Jeremy Arévalo'] }
+        ];
+
+        const rosterHTML = plantilla.map(grupo => `
+            <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
+                <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
+                
+                <div class="mb-5 md:mb-0">
+                    <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
+                    <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                </div>
+                
+                <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
+                    ${grupo.jugadores.map(jugador => `
+                        <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
+                            <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
+                            <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `).join('');
+
+        return `
+            <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                De cara al Mundial 2026, el plantel ecuatoriano combina experiencia y juventud. Los pilares defensivos Willian Pacho, Piero Hincapié y Pervis Estupiñán encabezan una última línea de primer nivel, mientras que en el mediocampo Moisés Caicedo se mantiene como la gran figura del equipo. Enner Valencia volverá a liderar el ataque acompañado por nombres como Gonzalo Plata, Kendry Páez y John Yeboah, exponentes de una nueva generación que promete velocidad y desequilibrio. </p>
+
+            <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
+                Con esto en mente, Ecuador apunta a superar su mejor actuación mundialista y consolidarse como uno de los proyectos más sólidos de la región. ¿Qué nombres integran su lista para la próxima Copa del Mundo? Lo repasamos al detalle, a continuación. </p>
+
+            <div class="my-16">
+                <div class="mb-8 border-b-2 pb-4">
+                    <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
+                    <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Ecuador</p>
+                </div>
+                
+                <div class="flex flex-col border-b border-zinc-800/60">
+                    ${rosterHTML}
+                </div>
+            </div>
+
+            <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
+            El domingo 24 de mayo, Ecuador presentó una prelista de 28 jugadores. Luego, el domingo 31 de mayo confirmó a sus 26 convocados. La Tri integrará el Grupo E junto a Costa de Marfil, Suecia y Japón. La combinación de solidez defensiva y juventud en ataque ilusiona a una nación que busca escribir su mejor página en la historia de los Mundiales. </p>
+            `;
+        })()
+    },
+    /* NOTICIA NÚMERO 16 */
+    {
+    id: 2,
+    slug: 'convocados-argentina-mundial-2026',
+    categoria: 'Convocatorias',
+    titulo: 'LOS 26 CONVOCADOS DE ARGENTINA PARA EL MUNDIAL 2026',
+    resumen: 'Lionel Scaloni confirmó la lista definitiva de jugadores que representarán a Argentina en la Copa Mundial de la FIFA 2026 con la esperanza de retener el título.',
+    imagen: '/news-img/ArgentinaConvocados.webp',
+    fecha: '28 Mayo 2026',
+    contenido: (() => {
+        const plantilla = [
+            { pos: 'Arqueros', count: '03', jugadores: ['Emiliano Martínez', 'Gerónimo Rulli', 'Juan Musso'] },
+            { pos: 'Defensas', count: '08', jugadores: ['Gonzalo Montiel', 'Nahuel Molina', 'Lisandro Martínez', 'Nicolás Otamendi', 'Leonardo Balerdi', 'Cristian Romero', 'Facundo Medina', 'Nicolás Tagliafico'] },
+            { pos: 'Mediocampistas', count: '08', jugadores: ['Leandro Paredes', 'Rodrigo De Paul', 'Exequiel Palacios', 'Enzo Fernández', 'Alexis Mac Allister', 'Giovani Lo Celso', 'Valentín Barco', 'Nicolás Paz'] },
+            { pos: 'Delanteros', count: '07', jugadores: ['Lionel Messi', 'Julián Álvarez', 'Lautaro Martínez', 'Nicolás González', 'Thiago Almada', 'Giuliano Simeone', 'José Manuel López'] }
+        ];
+
+        const rosterHTML = plantilla.map(grupo => `
+            <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
+                <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
+                
+                <div class="mb-5 md:mb-0">
+                    <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
+                    <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                </div>
+                
+                <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
+                    ${grupo.jugadores.map(jugador => `
+                        <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
+                            <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
+                            <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `).join('');
+
+        return `
+            <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                Lionel Scaloni hizo oficial este jueves 28 de mayo la lista de 26 convocados que acudirán a la Copa Mundial 2026 con la esperanza de retener el título, una situación que no se da desde que Brasil repitió festejo en 1958 y 1962. </p>
+
+            <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
+                Aunque no hay demasiadas sorpresas, Scaloni apuesta a algunos jugadores que no fueron parte de Catar, como Valentín Barco, de muy buena temporada europea, José Manuel López, centrodelantero del Palmeiras que le brinda opciones de recambio a Julián Álvarez y Lautaro Martínez, o Nico Paz, muy considerado por el cuerpo técnico luego de un alto rendimiento en Como. </p>
+
+            <div class="my-16">
+                <div class="mb-8 border-b-2 pb-4">
+                    <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
+                    <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Lionel Scaloni</p>
+                </div>
+                
+                <div class="flex flex-col border-b border-zinc-800/60">
+                    ${rosterHTML}
+                </div>
+            </div>
+
+            <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
+                Campeona del mundo en Qatar 2022, la Selección Argentina llega al 2026 de nuevo como candidata. Argentina integrará el Grupo C junto a Alemania, Túnez y Australia. La ilusión de volver a levantar la copa sigue intacta en una generación que ya hizo historia y busca escribir un nuevo capítulo dorado. </p>
+        `;
+    })()
+    },    
+    /* NOTICIA NÚMERO 17 */
+    {
+        id: 17,
+        slug: 'convocados-brasil-mundial-2026',
+        categoria: 'Convocatorias',
+        titulo: 'LOS 26 CONVOCADOS DE BRASIL PARA EL MUNDIAL 2026',
+        resumen: 'Carlo Ancelotti hizo pública la lista definitiva de 26 jugadores que defenderán la camiseta de Brasil en la Copa Mundial de la FIFA 2026, con Neymar como gran novedad en la nómina.',
+        imagen: '/news-img/BrasiConvocados.webp',
+        fecha: '18 Mayo 2026',
+        contenido: (() => {
+            const plantilla = [
+                { pos: 'Arqueros', count: '03', jugadores: ['Alisson', 'Ederson', 'Weverton'] },
+                { pos: 'Defensores', count: '09', jugadores: ['Marquinhos', 'Gabriel Magalhães', 'Bremer', 'Leo Pereira', 'Ibañez', 'Danilo', 'Douglas Santos', 'Alex Sandro'] },
+                { pos: 'Mediocampistas', count: '06', jugadores: ['Casemiro', 'Bruno Guimarães', 'Fabinho', 'Danilo Santos', 'Lucas Paquetá', 'Éderson'] },
+                { pos: 'Delanteros', count: '08', jugadores: ['Vinícius Jr.', 'Raphinha', 'Matheus Cunha', 'Gabriel Martinelli', 'Luiz Henrique', 'Igor Thiago', 'Endrick', 'Rayan', 'Neymar'] }
+            ];
+
+            const rosterHTML = plantilla.map(grupo => `
+                <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
+                    <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
+                    
+                    <div class="mb-5 md:mb-0">
+                        <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
+                        <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                    </div>
+                    
+                    <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
+                        ${grupo.jugadores.map(jugador => `
+                            <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
+                                <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
+                                <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                    El lunes 18 de mayo, Carlo Ancelotti oficializó su nómina de 26 futbolistas para disputar la Copa del Mundo 2026. La gran sorpresa de la lista es el regreso de Neymar, quien se ganó un lugar por encima de otros atacantes que venían teniendo un buen presente, como Joao Pedro. Cabe recordar que Estevão no podrá estar presente debido a una lesión. </p>
+
+                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
+                    Entre los convocados finalmente no aparece el experimentado Thiago Silva, quien sí había integrado la prelista de 55 jugadores. Se trata de una convocatoria con marcado perfil ofensivo, con pocos volantes —dos de ellos de características más ofensivas como Lucas Paquetá y Danilo Santos— y hasta nueve atacantes. </p>
+
+                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
+                    El domingo 7 de junio, a menos de una semana del estreno mundialista, se produjo una modificación de último momento: Wesley fue descartado por lesión y en su lugar fue convocado Éderson. </p>
+
+                <div class="my-16">
+                    <div class="mb-8 border-b-2 pb-4">
+                        <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
+                        <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Carlo Ancelotti</p>
+                    </div>
+                    
+                    <div class="flex flex-col border-b border-zinc-800/60">
+                        ${rosterHTML}
+                    </div>
+                </div>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
+                    Brasil llega al Mundial 2026 con la presión de volver a levantar el trofeo después de 24 años. La Canarinha integrará el Grupo H junto a España, Marruecos y Nueva Zelanda. La mezcla entre experiencia y juventud será la gran apuesta de Ancelotti para buscar la tan anhelada sexta estrella. </p>
+            `;
+        })()
+    },
 
 ]
