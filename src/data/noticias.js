@@ -1,94 +1,31 @@
 export const noticias = [
     /* NOTICIA NÚMERO 1 */
     {
-        id: 1, 
-        slug: 'convocados-colombia-mundial-2026',
-        categoria: 'Convocatorias',
-        titulo: 'LOS 26 CONVOCADOS DE COLOMBIA PARA EL MUNDIAL 2026', // [cite: 26]
-        resumen: 'Néstor Lorenzo confirmó la lista definitiva de jugadores que representarán a Colombia en la Copa Mundial de la FIFA 2026.', // [cite: 26]
-        imagen: '/news-img/ColombiaConvocados.webp',
-        fecha: '25 Mayo 2026',
+        id: 1,
+        destacada: true,
+        slug: 'colombia-vence-uzbekistan-debut-mundial-2026',
+        categoria: 'Resultados',
+        titulo: '¡GRAN REGRESO MUNDIALISTA PARA COLOMBIA! TRIUNFO 3-1 SOBRE UZBEKISTÁN',
+        resumen: 'La Tricolor venció 3-1 a Uzbekistán en el Estadio Azteca con goles de Muñoz, Luis Díaz y Campaz. Colombia vuelve a ganar en un Mundial tras 8 años de ausencia. Lucho Díaz, figura del partido.',
+        imagen: '/news-img/Colombia-Uzbekistan.webp',
+        fecha: '17 Junio 2026',
         contenido: (() => {
-            // Plantilla reutilizable para cualquier país
-            const plantilla = [
-                { pos: 'Arqueros', count: '03', jugadores: ['Camilo Vargas', 'Álvaro Montero', 'David Ospina'] }, // [cite: 29]
-                { pos: 'Defensas', count: '08', jugadores: ['Dávinson Sánchez', 'John Lucumí', 'Yerry Mina', 'Willer Ditta', 'Daniel Muñoz', 'Santiago Arias', 'Johan Mojica', 'Deiver Machado'] }, // [cite: 30]
-                { pos: 'Volantes', count: '10', jugadores: ['Richard Ríos', 'Jefferson Lerma', 'Kevin Castaño', 'Juan Portilla', 'Gustavo Puerta', 'Jhon Arias', 'Jorge Carrascal', 'Juan Fernando Quintero', 'James Rodríguez', 'Jaminton Campaz'] }, // [cite: 32]
-                { pos: 'Delanteros', count: '05', jugadores: ['Luis Díaz', 'Jhon Córdoba', 'Luis Suárez', 'Carlos Andrés Gómez', 'Juan Camilo Hernández'] } // [cite: 33]
-            ];
-
-            const rosterHTML = plantilla.map(grupo => `
-                <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[180px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
-                    <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
-                    
-                    <div class="mb-5 md:mb-0">
-                        <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
-                        <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
-                    </div>
-                    
-                    <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
-                        ${grupo.jugadores.map(jugador => `
-                            <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
-                                <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
-                                <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-            `).join('');
-
             return `
                 <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
-                    La Selección Colombia ya tiene definidos los 26 futbolistas que disputarán la Copa Mundial de la FIFA 2026. El entrenador Néstor Lorenzo apostó por una base consolidada que combina experiencia internacional, liderazgo y juventud para afrontar el torneo que se celebrará en México, Estados Unidos y Canadá. </p>
-
-                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
-                    Entre los nombres más destacados aparecen James Rodríguez, Luis Díaz, Jhon Arias, Richard Ríos, Daniel Muñoz y Dávinson Sánchez, jugadores que han sido piezas fundamentales durante el proceso clasificatorio de la Tricolor. Colombia regresará a una Copa del Mundo con el objetivo de superar su histórica actuación de Brasil 2014. </p>
-
-                <div class="my-16">
-                    <div class="mb-8 border-b-2 pb-4">
-                        <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
-                        <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Néstor Lorenzo</p>
-                    </div>
-                    
-                    <div class="flex flex-col border-b border-zinc-800/60">
-                        ${rosterHTML}
-                    </div>
-                </div>
-
-                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
-                    Colombia integrará el Grupo K junto a Portugal, Uzbekistán y República Democrática del Congo. La ilusión de millones de colombianos vuelve a estar puesta en una generación que buscará escribir una nueva página dorada en la historia del fútbol nacional. </p>
-            `;
-        })()
-    },
-    /* NOTICIA NÚMERO 2 */
-    {
-        id: 2,
-        slug: 'noruega-haaland-doblete-irak-mundial-2026',
-        categoria: 'Resultados',
-        titulo: 'HAALAND SE ESTRENA CON DOBLETE EN EL MUNDIAL EN LA VICTORIA DE NORUEGA FRENTE A IRAK',
-        resumen: 'Un doblete de Erling Haaland en su debut absoluto en una Copa del Mundo impulsó a Noruega a imponerse 4-1 ante Irak en Boston, en el regreso de la selección nórdica a un Mundial 28 años después.',
-        imagen: '/news-img/Noruega-Irak.webp',
-        fecha: '16 Junio 2026',
-        contenido: (() => {
-            return `
-                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-zinc-100 first-letter:leading-[0.8] mt-2">
-                    Un doblete de Erling Haaland en su debut absoluto en una Copa del Mundo impulsó este lunes a una Noruega muy en forma a imponerse por 4-1 a una combativa Irak en Boston (Estados Unidos), en el regreso de la selección nórdica a un Mundial 28 años después, desde Francia 1998.</p>
+                    La selección de Colombia resolvió su debut en el Mundial 2026 con una victoria 3-1 sobre Uzbekistán en el Estadio Azteca. La Tricolor fue mejor de inicio a fin y se fue al frente en el primer tiempo con un gol de Daniel Muñoz al minuto 40, pero luego vino el sorpresivo empate uzbeko al minuto 60, de la mano de Abbosbek Fayzullaev.</p>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Los tres puntos ponen a Noruega a la par de Francia al frente del Grupo I del Mundial, el considerado como "grupo de la muerte". Franceses y noruegos se medirán, también en Boston, en la tercera jornada, en uno de los partidos más atractivos de la primera fase.</p>
-
-                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Irak, que fue el último de los 48 clasificados para este Mundial, sorprendió de inicio a los noruegos, con ocasiones y corriendo mucho, en una combinación de fútbol y físico que ha rodeado de aura a esta selección en su camino a Norteamérica. Boston fue una fiesta vikinga, con las gradas del estadio de los New England Patriots repletas de aficionados noruegos que imitaban el gesto de remar en un ambiente intimidante para el rival.</p>
+                    Luis Díaz rápidamente remontó el marcador cinco minutos después. Y el triunfo fue coronado por Jáminton Campaz en el agregado, al minuto 97. Un gran regreso de Colombia a la Copa del Mundo luego de 8 años de ausencia.</p>
 
                 <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
                     <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
                     <div class="grid grid-cols-2 gap-2 text-center items-center py-2 border-b border-white/5">
-                        <span class="text-zinc-100 font-medium text-left">Irak</span>
-                        <span class="text-zinc-300 font-teko text-2xl">1</span>
+                        <span class="text-zinc-100 font-medium text-left">Colombia</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">3</span>
                     </div>
                     <div class="grid grid-cols-2 gap-2 text-center items-center py-2">
-                        <span class="text-zinc-100 font-medium text-left">Noruega</span>
-                        <span class="text-emerald-400 font-teko text-2xl font-bold">4</span>
+                        <span class="text-zinc-100 font-medium text-left">Uzbekistán</span>
+                        <span class="text-zinc-300 font-teko text-2xl">1</span>
                     </div>
                 </div>
 
@@ -96,11 +33,10 @@ export const noticias = [
                     <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
                     <div class="flex flex-col gap-2">
                         ${[
-                            ['NOR', 'Erling Haaland', "29'"],
-                            ['IRQ', 'Aymen Hussein', "39'"],
-                            ['NOR', 'Erling Haaland', "43'"],
-                            ['NOR', 'Leo Ostigard', "76'"],
-                            ['NOR', 'Kristian Thorstvedt', "90+6'"],
+                            ['COL', 'Daniel Muñoz', "40'"],
+                            ['UZB', 'Abbosbek Fayzullaev', "60'"],
+                            ['COL', 'Luis Díaz', "65'"],
+                            ['COL', 'Jáminton Campaz', "90+7'"],
                         ].map(([eq, jugador, min]) => `
                             <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
                                 <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
@@ -114,34 +50,163 @@ export const noticias = [
                 <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Una nueva estrella mundial se presentó en el Mundial 2026: Erling Haaland, gran referencia de Noruega. El estreno para el seleccionado europeo se produjo frente a una Irak que consiguió la clasificación vía repechaje internacional, al vencer a su par de Bolivia.</p>
+                    Colombia dominó el trámite desde el inicio en un Estadio Azteca que se sintió como local. La Tricolor tuvo la posesión y las ideas, y encontró el premio al minuto 40 con un gol de Daniel Muñoz que puso el 1-0 antes del descanso.</p>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Noruega e Irak integran la misma zona de Francia y Senegal, equipos que jugaron a primer turno. Vale recordar que la selección de Medio Oriente disputa su segundo Mundial, luego de su paso por México 1986 (tres derrotas), mientras que para los noruegos es su cuarta participación histórica y la primera desde Francia 1998.</p>
+                    El segundo tiempo trajo un susto: Uzbekistán igualó el marcador al minuto 60 con un tanto de Abbosbek Fayzullaev que puso nervioso al equipo de Néstor Lorenzo. Pero la reacción colombiana fue inmediata. Solo cinco minutos después, Luis Díaz — el motor ofensivo de esta selección — volvió a poner adelante a Colombia con una jugada que desató la euforia en las gradas.</p>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Noruega convirtió el 1-0 promediando la primera parte, cortesía de, cuándo no, Erling Haaland. El delantero del Manchester City aprovechó una buena asistencia de David Moller Wolfe y anotó así su primer tanto en una Copa del Mundo, en el que también es su primer partido.</p>
+                    Ya en el tiempo agregado, Jáminton Campaz selló el triunfo con un cabezazo al minuto 97 que cerró una noche perfecta para la Tricolor.</p>
+
+                <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-yellow-500/10 via-transparent to-blue-500/10 border border-white/10">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Figura del Partido</h4>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">1</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Gol</span>
+                        </div>
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">1</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Asistencia</span>
+                        </div>
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">MVP</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Luis Díaz</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">LAS VOCES DEL TRIUNFO</h3>
+
+                <p class="mb-8 font-playfair text-xl leading-loose text-zinc-300">
+                    Lucho Díaz se llevó el trofeo al mejor jugador del partido. El goleador de 29 años se fue con un gol, una asistencia y la ovación de un Estadio Azteca rendido al motor de esta selección colombiana.</p>
+
+                <div class="my-10 flex flex-col gap-4">
+                    <blockquote class="relative p-8 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                        <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                        <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                            "Hermoso debut con un gol. En mi carrera llevo apenas tres goles de cabeza, gracias a Dios que hoy se dio otra vez."
+                        </p>
+                        <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Jáminton Campaz</footer>
+                    </blockquote>
+
+                    <blockquote class="relative p-8 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                        <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                        <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                            "Estamos para cosas grandes, para luchar, con el apoyo de la gente."
+                        </p>
+                        <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Jáminton Campaz</footer>
+                    </blockquote>
+                </div>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
+                    Colombia vuelve a ganar en un Mundial después de 8 años. Con Luis Díaz encendido y una generación que ilusiona, la Tricolor arranca su camino en el Grupo K con paso firme. El próximo reto: Portugal.</p>
+            `
+        })()
+    },
+    /* NOTICIA NÚMERO 2 */
+    {
+        id: 2,
+        slug: 'portugal-congo-empate-debut-mundial-2026',
+        categoria: 'Resultados',
+        titulo: 'RD CONGO HACE HISTORIA Y LE SACA UN PUNTO A PORTUGAL EN SU REGRESO AL MUNDIAL',
+        resumen: 'Los Leopardos lograron su primer gol y su primer punto en una Copa del Mundo. Wissa empató el partido en el descuento del primer tiempo y Cristiano Ronaldo no pudo marcar en su sexto Mundial.',
+        imagen: '/news-img/Portugal-RDCongo.webp',
+        fecha: '17 Junio 2026',
+        contenido: (() => {
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black first-letter:leading-[0.8] mt-2">
+                    Las sorpresas no paran en este Mundial 2026. Portugal, señalada como una de las firmes candidatas al título, no pasó del empate 1-1 ante la República Democrática del Congo en Houston, en lo que supuso el debut de ambas selecciones en el Grupo K. Para los africanos, el punto tiene un valor histórico incalculable: es el primer gol y el primer punto de la nación en una Copa del Mundo, 52 años después de su única participación bajo el nombre de Zaire en Alemania 1974.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El guion del partido parecía escrito a favor de los lusos. João Neves adelantó a Portugal apenas al minuto 6 con un cabezazo que anticipaba una goleada. Sin embargo, esos no eran los planes de Los Leopardos. La selección africana, con un bloque físico resistente y transiciones rápidas orquestadas por el técnico Sébastien Desabre, aguantó la presión y esperó su momento.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">Portugal</span>
+                        <span class="text-zinc-300 font-teko text-2xl">1</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">RD Congo</span>
+                        <span class="text-zinc-300 font-teko text-2xl">1</span>
+                    </div>
+                </div>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['POR', 'João Neves', "6'"],
+                            ['COD', 'Yoane Wissa', "45+5'"],
+                        ].map(([eq, jugador, min]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
+                                <span class="text-zinc-300 font-sans text-sm font-medium flex-1">${jugador}</span>
+                                <span class="text-zinc-100 font-teko text-lg tabular-nums">${min}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El arranque fue todo de Portugal. Con el 68% de posesión y un dominio territorial claro, la selección de Roberto Martínez parecía tener el control absoluto. Pero tras el gol tempranero, los lusos bajaron la intensidad y empezaron a encontrarse con un muro congoleño bien plantado en defensa.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Los Leopardos no se limitaron a defender. Cedric Bakambu estrelló un balón en el palo y generó peligro en las transiciones. Y justo cuando parecía que Portugal se iría al descanso con la ventaja mínima, llegó el momento que cambiará la historia del fútbol congoleño para siempre: al minuto 45+5, Yoane Wissa, delantero del Newcastle, conectó un cabezazo imparable al fondo de la red. Primer gol de RD Congo en un Mundial. Primer punto. Delirio en las gradas de Houston.</p>
 
                 <blockquote class="relative p-8 my-10 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
                     <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
                     <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
-                        Irak llegó al empate 1-1 gracias a un excelente cabezazo de Aymen Hussein, pero la alegría les duró poco: horror en la salida, anticipo de Haaland contra el arquero Jalal Hassan y doblete del noruego.
+                        En 1974, como Zaire, se fueron del Mundial con tres derrotas y cero goles. 52 años después, bajo el nombre de República Democrática del Congo, lograron lo que parecía imposible: su primer gol y su primer punto en una Copa del Mundo.
                     </p>
-                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— El momento clave del partido</footer>
+                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Una hazaña histórica</footer>
                 </blockquote>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Ya en la segunda parte, llegó la tranquilidad para los europeos, con el 3-1 marcado por Leo Ostigaard, mientras que en la última jugada del partido, Kristian Thorstvedt colocó el 4-1 definitivo.</p>
+                    La segunda parte no mejoró para Portugal. Cristiano Ronaldo, en su sexto Mundial a los 41 años — convirtiéndose en el jugador de campo más veterano en disputar un partido mundialista —, perdonó en al menos dos ocasiones claras. Francisco Conceição, ingresado al entretiempo, y Bruno Fernandes, con un disparo que rozó el poste, fueron los únicos que generaron algo de peligro real. Pero la defensa congoleña, liderada por Mbemba y Tuanzebe, resistió todo.</p>
+
+                <div class="my-10 grid grid-cols-2 gap-4 text-center">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <span class="block font-teko text-5xl text-zinc-100 leading-none">68%</span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Posesión Portugal</span>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <span class="block font-teko text-5xl text-zinc-100 leading-none">7 vs 8</span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Remates totales</span>
+                    </div>
+                </div>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Con este resultado, el Grupo K queda completamente abierto. Colombia lidera con 3 puntos tras vencer a Uzbekistán, mientras que Portugal y RD Congo comparten la segunda posición con 1 punto cada uno. La próxima fecha promete emociones fuertes: Portugal se medirá con Uzbekistán el 23 de junio, mientras que RD Congo enfrentará a Colombia el mismo día.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Así quedó el Grupo K tras la jornada 1</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['Colombia', '3'],
+                            ['Portugal', '1'],
+                            ['RD Congo', '1'],
+                            ['Uzbekistán', '0'],
+                        ].map(([equipo, pts]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-zinc-300 font-sans text-sm font-medium">${equipo}</span>
+                                <span class="text-zinc-100 font-teko text-xl tracking-wider">${pts} pts</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
 
                 <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
-                    Con este resultado, Noruega arranca el Mundial igualada en puntos con Francia en la cima del Grupo I, en lo que ya se perfila como una de las zonas más disputadas del torneo.</p>
+                    Yoane Wissa, del Newcastle, se llevó el trofeo al mejor jugador del partido. Su gol no solo le dio el empate a RD Congo: le dio un lugar en la historia del fútbol africano. El sueño de Los Leopardos en el Mundial 2026 apenas comienza.</p>
             `
         })()
     },
     /* NOTICIA NÚMERO 3 */
     {
         id: 3,
-        destacada: true,
         slug: 'messi-triplete-argentina-argelia-mundial-2026',
         categoria: 'Resultados',
         titulo: '¡TRIPLETE DE UN YA HISTÓRICO MESSI! ARGENTINA GANA 3-0 CONTRA ARGELIA',
@@ -237,61 +302,79 @@ export const noticias = [
     /* NOTICIA NÚMERO 4 */
     {
         id: 4,
-        slug: 'convocados-uruguay-mundial-2026',
-        categoria: 'Convocatorias',
-        titulo: 'LOS 26 CONVOCADOS DE URUGUAY PARA EL MUNDIAL 2026',
-        resumen: 'Marcelo Bielsa entregó la lista definitiva de 26 jugadores que representarán a Uruguay en la Copa Mundial de la FIFA 2026, con Federico Valverde como gran líder de una generación que buscará hacer historia.',
-        imagen: '/news-img/UruguayConvocados.webp',
-        fecha: '31 Mayo 2026',
+        slug: 'noruega-haaland-doblete-irak-mundial-2026',
+        categoria: 'Resultados',
+        titulo: 'HAALAND SE ESTRENA CON DOBLETE EN EL MUNDIAL EN LA VICTORIA DE NORUEGA FRENTE A IRAK',
+        resumen: 'Un doblete de Erling Haaland en su debut absoluto en una Copa del Mundo impulsó a Noruega a imponerse 4-1 ante Irak en Boston, en el regreso de la selección nórdica a un Mundial 28 años después.',
+        imagen: '/news-img/Noruega-Irak.webp',
+        fecha: '16 Junio 2026',
         contenido: (() => {
-            const plantilla = [
-                { pos: 'Arqueros', count: '03', jugadores: ['Sergio Rochet', 'Fernando Muslera', 'Santiago Mele'] },
-                { pos: 'Defensas', count: '08', jugadores: ['Guillermo Varela', 'Ronald Araujo', 'José María Giménez', 'Santiago Bueno', 'Sebastián Cáceres', 'Mathías Olivera', 'Joaquín Piquerez', 'Matías Viña'] },
-                { pos: 'Mediocampistas', count: '12', jugadores: ['Manuel Ugarte', 'Emiliano Martínez', 'Rodrigo Bentancur', 'Federico Valverde', 'Agustín Canobbio', 'Juan Manuel Sanabria', 'Giorgian De Arrascaeta', 'Nicolás De La Cruz', 'Rodrigo Zalazar', 'Facundo Pellistri', 'Maximiliano Araújo', 'Brian Rodríguez'] },
-                { pos: 'Delanteros', count: '03', jugadores: ['Rodrigo Aguirre', 'Federico Viñas', 'Darwin Núñez'] }
-            ];
-
-            const rosterHTML = plantilla.map(grupo => `
-                <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
-                    <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
-                    
-                    <div class="mb-5 md:mb-0">
-                        <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
-                        <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
-                    </div>
-                    
-                    <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
-                        ${grupo.jugadores.map(jugador => `
-                            <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
-                                <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
-                                <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-            `).join('');
-
             return `
-                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
-                    La historia de Uruguay en los Mundiales es ampliamente reconocida: forma parte del selecto grupo de naciones que ha levantado el trofeo en más de una ocasión. Sin embargo, disputar el torneo de manera constante es un logro reciente para la Celeste, que por primera vez consigue clasificar a cinco ediciones consecutivas del campeonato. </p>
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-zinc-100 first-letter:leading-[0.8] mt-2">
+                    Un doblete de Erling Haaland en su debut absoluto en una Copa del Mundo impulsó este lunes a una Noruega muy en forma a imponerse por 4-1 a una combativa Irak en Boston (Estados Unidos), en el regreso de la selección nórdica a un Mundial 28 años después, desde Francia 1998.</p>
 
-                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
-                    El domingo 31 de mayo, Uruguay presentó su nómina de convocados para el Mundial 2026. Marcelo Bielsa optó por solo tres atacantes, con Darwin Núñez como principal referencia ofensiva. Llama la atención la inclusión de Joaquín Piquerez, a quien muchos daban por descartado tras una lesión en el tobillo. Federico Valverde se erige como el gran referente de esta generación. </p>
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Los tres puntos ponen a Noruega a la par de Francia al frente del Grupo I del Mundial, el considerado como "grupo de la muerte". Franceses y noruegos se medirán, también en Boston, en la tercera jornada, en uno de los partidos más atractivos de la primera fase.</p>
 
-                <div class="my-16">
-                    <div class="mb-8 border-b-2 pb-4">
-                        <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
-                        <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Marcelo Bielsa</p>
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Irak, que fue el último de los 48 clasificados para este Mundial, sorprendió de inicio a los noruegos, con ocasiones y corriendo mucho, en una combinación de fútbol y físico que ha rodeado de aura a esta selección en su camino a Norteamérica. Boston fue una fiesta vikinga, con las gradas del estadio de los New England Patriots repletas de aficionados noruegos que imitaban el gesto de remar en un ambiente intimidante para el rival.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">Irak</span>
+                        <span class="text-zinc-300 font-teko text-2xl">1</span>
                     </div>
-                    
-                    <div class="flex flex-col border-b border-zinc-800/60">
-                        ${rosterHTML}
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">Noruega</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">4</span>
                     </div>
                 </div>
 
-                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
-                    Uruguay llega al Mundial 2026 con la ilusión de volver a protagonizar una gran actuación. La Celeste integrará el Grupo D junto a Francia, Canadá y Senegal. La experiencia defensiva sumada a la calidad de Valverde en el mediocampo serán las grandes armas de Bielsa para buscar superar las expectativas. </p>
-            `;
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['NOR', 'Erling Haaland', "29'"],
+                            ['IRQ', 'Aymen Hussein', "39'"],
+                            ['NOR', 'Erling Haaland', "43'"],
+                            ['NOR', 'Leo Ostigard', "76'"],
+                            ['NOR', 'Kristian Thorstvedt', "90+6'"],
+                        ].map(([eq, jugador, min]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
+                                <span class="text-zinc-300 font-sans text-sm font-medium flex-1">${jugador}</span>
+                                <span class="text-zinc-100 font-teko text-lg tabular-nums">${min}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Una nueva estrella mundial se presentó en el Mundial 2026: Erling Haaland, gran referencia de Noruega. El estreno para el seleccionado europeo se produjo frente a una Irak que consiguió la clasificación vía repechaje internacional, al vencer a su par de Bolivia.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Noruega e Irak integran la misma zona de Francia y Senegal, equipos que jugaron a primer turno. Vale recordar que la selección de Medio Oriente disputa su segundo Mundial, luego de su paso por México 1986 (tres derrotas), mientras que para los noruegos es su cuarta participación histórica y la primera desde Francia 1998.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Noruega convirtió el 1-0 promediando la primera parte, cortesía de, cuándo no, Erling Haaland. El delantero del Manchester City aprovechó una buena asistencia de David Moller Wolfe y anotó así su primer tanto en una Copa del Mundo, en el que también es su primer partido.</p>
+
+                <blockquote class="relative p-8 my-10 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                    <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                    <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                        Irak llegó al empate 1-1 gracias a un excelente cabezazo de Aymen Hussein, pero la alegría les duró poco: horror en la salida, anticipo de Haaland contra el arquero Jalal Hassan y doblete del noruego.
+                    </p>
+                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— El momento clave del partido</footer>
+                </blockquote>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Ya en la segunda parte, llegó la tranquilidad para los europeos, con el 3-1 marcado por Leo Ostigaard, mientras que en la última jugada del partido, Kristian Thorstvedt colocó el 4-1 definitivo.</p>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
+                    Con este resultado, Noruega arranca el Mundial igualada en puntos con Francia en la cima del Grupo I, en lo que ya se perfila como una de las zonas más disputadas del torneo.</p>
+            `
         })()
     },
     /* NOTICIA NÚMERO 5 */
@@ -1007,5 +1090,125 @@ export const noticias = [
             `;
         })()
     },
+    /* NOTICIA NÚMERO 18 */
+    {
+        id: 18, 
+        slug: 'convocados-colombia-mundial-2026',
+        categoria: 'Convocatorias',
+        titulo: 'LOS 26 CONVOCADOS DE COLOMBIA PARA EL MUNDIAL 2026', // [cite: 26]
+        resumen: 'Néstor Lorenzo confirmó la lista definitiva de jugadores que representarán a Colombia en la Copa Mundial de la FIFA 2026.', // [cite: 26]
+        imagen: '/news-img/ColombiaConvocados.webp',
+        fecha: '25 Mayo 2026',
+        contenido: (() => {
+            // Plantilla reutilizable para cualquier país
+            const plantilla = [
+                { pos: 'Arqueros', count: '03', jugadores: ['Camilo Vargas', 'Álvaro Montero', 'David Ospina'] }, // [cite: 29]
+                { pos: 'Defensas', count: '08', jugadores: ['Dávinson Sánchez', 'John Lucumí', 'Yerry Mina', 'Willer Ditta', 'Daniel Muñoz', 'Santiago Arias', 'Johan Mojica', 'Deiver Machado'] }, // [cite: 30]
+                { pos: 'Volantes', count: '10', jugadores: ['Richard Ríos', 'Jefferson Lerma', 'Kevin Castaño', 'Juan Portilla', 'Gustavo Puerta', 'Jhon Arias', 'Jorge Carrascal', 'Juan Fernando Quintero', 'James Rodríguez', 'Jaminton Campaz'] }, // [cite: 32]
+                { pos: 'Delanteros', count: '05', jugadores: ['Luis Díaz', 'Jhon Córdoba', 'Luis Suárez', 'Carlos Andrés Gómez', 'Juan Camilo Hernández'] } // [cite: 33]
+            ];
 
+            const rosterHTML = plantilla.map(grupo => `
+                <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[180px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
+                    <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
+                    
+                    <div class="mb-5 md:mb-0">
+                        <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
+                        <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                    </div>
+                    
+                    <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
+                        ${grupo.jugadores.map(jugador => `
+                            <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
+                                <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
+                                <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                    La Selección Colombia ya tiene definidos los 26 futbolistas que disputarán la Copa Mundial de la FIFA 2026. El entrenador Néstor Lorenzo apostó por una base consolidada que combina experiencia internacional, liderazgo y juventud para afrontar el torneo que se celebrará en México, Estados Unidos y Canadá. </p>
+
+                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
+                    Entre los nombres más destacados aparecen James Rodríguez, Luis Díaz, Jhon Arias, Richard Ríos, Daniel Muñoz y Dávinson Sánchez, jugadores que han sido piezas fundamentales durante el proceso clasificatorio de la Tricolor. Colombia regresará a una Copa del Mundo con el objetivo de superar su histórica actuación de Brasil 2014. </p>
+
+                <div class="my-16">
+                    <div class="mb-8 border-b-2 pb-4">
+                        <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
+                        <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Néstor Lorenzo</p>
+                    </div>
+                    
+                    <div class="flex flex-col border-b border-zinc-800/60">
+                        ${rosterHTML}
+                    </div>
+                </div>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
+                    Colombia integrará el Grupo K junto a Portugal, Uzbekistán y República Democrática del Congo. La ilusión de millones de colombianos vuelve a estar puesta en una generación que buscará escribir una nueva página dorada en la historia del fútbol nacional. </p>
+            `;
+        })()
+    },
+    /* NOTICIA NÚMERO 19 */
+    {
+        id: 19,
+        slug: 'convocados-uruguay-mundial-2026',
+        categoria: 'Convocatorias',
+        titulo: 'LOS 26 CONVOCADOS DE URUGUAY PARA EL MUNDIAL 2026',
+        resumen: 'Marcelo Bielsa entregó la lista definitiva de 26 jugadores que representarán a Uruguay en la Copa Mundial de la FIFA 2026, con Federico Valverde como gran líder de una generación que buscará hacer historia.',
+        imagen: '/news-img/UruguayConvocados.webp',
+        fecha: '31 Mayo 2026',
+        contenido: (() => {
+            const plantilla = [
+                { pos: 'Arqueros', count: '03', jugadores: ['Sergio Rochet', 'Fernando Muslera', 'Santiago Mele'] },
+                { pos: 'Defensas', count: '08', jugadores: ['Guillermo Varela', 'Ronald Araujo', 'José María Giménez', 'Santiago Bueno', 'Sebastián Cáceres', 'Mathías Olivera', 'Joaquín Piquerez', 'Matías Viña'] },
+                { pos: 'Mediocampistas', count: '12', jugadores: ['Manuel Ugarte', 'Emiliano Martínez', 'Rodrigo Bentancur', 'Federico Valverde', 'Agustín Canobbio', 'Juan Manuel Sanabria', 'Giorgian De Arrascaeta', 'Nicolás De La Cruz', 'Rodrigo Zalazar', 'Facundo Pellistri', 'Maximiliano Araújo', 'Brian Rodríguez'] },
+                { pos: 'Delanteros', count: '03', jugadores: ['Rodrigo Aguirre', 'Federico Viñas', 'Darwin Núñez'] }
+            ];
+
+            const rosterHTML = plantilla.map(grupo => `
+                <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
+                    <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
+                    
+                    <div class="mb-5 md:mb-0">
+                        <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
+                        <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                    </div>
+                    
+                    <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
+                        ${grupo.jugadores.map(jugador => `
+                            <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
+                                <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
+                                <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                    La historia de Uruguay en los Mundiales es ampliamente reconocida: forma parte del selecto grupo de naciones que ha levantado el trofeo en más de una ocasión. Sin embargo, disputar el torneo de manera constante es un logro reciente para la Celeste, que por primera vez consigue clasificar a cinco ediciones consecutivas del campeonato. </p>
+
+                <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
+                    El domingo 31 de mayo, Uruguay presentó su nómina de convocados para el Mundial 2026. Marcelo Bielsa optó por solo tres atacantes, con Darwin Núñez como principal referencia ofensiva. Llama la atención la inclusión de Joaquín Piquerez, a quien muchos daban por descartado tras una lesión en el tobillo. Federico Valverde se erige como el gran referente de esta generación. </p>
+
+                <div class="my-16">
+                    <div class="mb-8 border-b-2 pb-4">
+                        <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
+                        <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Marcelo Bielsa</p>
+                    </div>
+                    
+                    <div class="flex flex-col border-b border-zinc-800/60">
+                        ${rosterHTML}
+                    </div>
+                </div>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
+                    Uruguay llega al Mundial 2026 con la ilusión de volver a protagonizar una gran actuación. La Celeste integrará el Grupo D junto a Francia, Canadá y Senegal. La experiencia defensiva sumada a la calidad de Valverde en el mediocampo serán las grandes armas de Bielsa para buscar superar las expectativas. </p>
+            `;
+        })()
+    }
 ]
