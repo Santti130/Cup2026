@@ -78,8 +78,8 @@ export function renderFooter(){
         <div class="max-w-7xl mx-auto px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
             <p class="text-sm text-gray-500">© World Cup 2026. Todos los derechos reservados. </br>V.1.0.1</p>
             <div class="flex items-center gap-6 text-sm">
-                <a href="/privacidad.html" class="w-fit hover:text-white transition-colors">Privacidad</a>
-                <a href="/terminos.html" class="w-fit hover:text-white transition-colors">Términos</a>
+                <a href="/privacidad" class="w-fit hover:text-white transition-colors">Privacidad</a>
+                <a href="/terminos" class="w-fit hover:text-white transition-colors">Términos</a>
                 <a href="" class="w-fit hover:text-white transition-colors">Cookies</a>
             </div>
         </div>
