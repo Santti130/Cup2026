@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="c-Ti5MKt-ZFeV_K2MSwsRjdnwtcHXN6eiIXQOc9dRo4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS CDN para asegurar el renderizado de los nuevos estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+                        bebas: ['Bebas Neue', 'sans-serif'],
+                        teko: ['Teko', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { background-color: #0a0b10; scroll-behavior: smooth; }
+        /* Barra de desplazamiento premium personalizada */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0b10; }
+        ::-webkit-scrollbar-thumb { background: #1a1c23; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2d313f; }
+    </style>
+
+    <title>Acerca de CupHub | Pasión y Analítica de Datos Deportivos</title>
+    <meta name="description" content="Conoce CupHub. Somos una plataforma independiente donde fusionamos la pasión por el fútbol con la precisión de los datos en tiempo real.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cup-hub.com/acerca">
+
+    <link rel="icon" type="image/png" href="/favicon-light.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Teko:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KMRY9054T"></script>
+    <script>
+        if (window.location.hostname !== 'localhost') {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0KMRY9054T');
+        }
+    </script>
+</head>
+<body class="bg-[#0a0b10] text-zinc-300 min-h-screen flex flex-col font-jakarta antialiased selection:bg-zinc-800 selection:text-white">
+
+    <main id="main-content" class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        
+        <!-- CABECERA DE LA PÁGINA -->
+        <header class="mb-16 border-b border-zinc-900 pb-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/60 border border-zinc-800/80 text-xs font-medium text-zinc-400 mb-4 tracking-wide">
+                <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Identidad y Propósito Corporativo
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-3">
+                Acerca de CupHub
+            </h1>
+            <p class="text-emerald-400 font-medium text-lg font-mono tracking-wider uppercase">
+                // Live the World Cup 2026
+            </p>
+        </header>
+
+        <!-- DISTRIBUCIÓN EN DOS COLUMNAS -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- MENÚ DE NAVEGACIÓN RÁPIDA (Sticky Index) -->
+            <aside class="hidden lg:block lg:col-span-4 sticky top-8 bg-zinc-900/30 border border-zinc-800/50 rounded-2xl p-6">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4 border-b border-zinc-800 pb-2">Secciones</h3>
+                <nav class="flex flex-col gap-2.5 text-sm font-medium">
+                    <a href="#sec-1" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">¿Qué es CupHub?</a>
+                    <a href="#sec-2" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">Nuestra Propuesta</a>
+                    <a href="#sec-3" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">Misión y Datos</a>
+                    <a href="#sec-4" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">Evolución Global</a>
+                    <a href="#sec-5" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">Infraestructura Humana</a>
+                    <a href="#sec-6" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">Comunidad y Redes</a>
+                    <a href="#sec-7" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2">Contacto Oficial</a>
+                </nav>
+            </aside>
+
+            <!-- CUERPO INFORMATIVO -->
+            <article class="lg:col-span-8 space-y-12 text-zinc-300 leading-relaxed text-base font-light">
+                
+                <!-- SECCIÓN 1: ¿QUÉ ES? -->
+                <section id="sec-1" class="scroll-mt-8 border-b border-zinc-900/60 pb-8">
+                    <h2 class="text-2xl font-bold text-white mb-4">¿Qué es CupHub?</h2>
+                    <p>
+                        CupHub es una plataforma tecnológica e informativa independiente especializada en la arquitectura de datos deportivos. No somos un medio de comunicación tradicional; nacimos como un ecosistema diseñado para entregar a la comunidad global de habla hispana un análisis riguroso, métricas avanzadas y un seguimiento automatizado del evento futbolístico más masivo del planeta: la Copa Mundial de la FIFA 2026.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 2: QUÉ OFRECEMOS -->
+                <section id="sec-2" class="scroll-mt-8 border-b border-zinc-900/60 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4">Nuestra oferta tecnológica</h2>
+                    <p class="mb-6">
+                        Desarrollamos herramientas dinámicas enfocadas en optimizar la experiencia del usuario a través de tres pilares de contenido:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-xl">
+                            <div class="text-emerald-400 font-bold mb-2 text-sm font-mono">// 01. TELEMETRÍA</div>
+                            <h4 class="text-white font-semibold text-sm mb-1">Calendario Inteligente</h4>
+                            <p class="text-zinc-400 text-xs">Procesamiento de los 104 partidos con conversión automática de husos horarios y filtros adaptativos por selección.</p>
+                        </div>
+                        <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-xl">
+                            <div class="text-emerald-400 font-bold mb-2 text-sm font-mono">// 02. ALGORITMOS</div>
+                            <h4 class="text-white font-semibold text-sm mb-1">Tablas en Tiempo Real</h4>
+                            <p class="text-zinc-400 text-xs">Evolución en vivo de los 12 grupos de la competición, calculando al instante la diferencia de gol y clasificaciones virtuales.</p>
+                        </div>
+                        <div class="bg-zinc-950 border border-zinc-900 p-5 rounded-xl">
+                            <div class="text-emerald-400 font-bold mb-2 text-sm font-mono">// 03. CRÓNICA</div>
+                            <h4 class="text-white font-semibold text-sm mb-1">The Daily CupHub</h4>
+                            <p class="text-zinc-400 text-xs">Módulo informativo dedicado a desglosar convocatorias oficiales, novedades tácticas, e historias basadas en rendimiento real.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN 3: MISIÓN Y REESTRUCTURACIÓN DE DATOS -->
+                <section id="sec-3" class="scroll-mt-8 border-b border-zinc-900/60 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4">Nuestra misión: Pasión + Datos Verdaderos</h2>
+                    <p>
+                        CupHub surge de una premisa clara: el fútbol se vive con el corazón, pero se entiende a través de las estadísticas. Nuestra meta principal es erradicar la especulación informativa brindando a los usuarios **datos reales, limpios y actualizados en tiempo absoluto**. Creemos firmemente que la información estadística de alto rendimiento debe ser accesible, estéticamente impecable y veloz, permitiendo a los aficionados contrastar la realidad del campo con métricas sólidas.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 4: VISIÓN FUTURA (ROADMAP) -->
+                <section id="sec-4" class="scroll-mt-8 bg-zinc-950 border border-zinc-900/80 p-6 rounded-2xl">
+                    <h2 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Expansión y Visión Global
+                    </h2>
+                    <p class="text-sm text-zinc-400">
+                        Si bien en la actualidad nuestra infraestructura de servidores y desarrollo editorial está volcada al 100% en la cobertura del Mundial de la FIFA 2026, el código central y la base de datos de CupHub han sido estructurados de forma escalable. **Nuestro plan de ruta contempla la expansión progresiva de la plataforma para albergar las competiciones de clubes y selecciones más importantes a nivel global (UEFA Champions League, ligas locales y torneos continentales)**, con el objetivo de convertirnos en el Hub de analítica deportiva de referencia en habla hispana.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 5: ¿QUIÉN ESTÁ DETRÁS? -->
+                <section id="sec-5" class="scroll-mt-8 border-b border-zinc-900/60 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4">Infraestructura Humana</h2>
+                    <p>
+                        Detrás de CupHub opera un equipo interdisciplinario radicado en Colombia, donde convergen ingenieros de software, diseñadores de interfaces de usuario (UI/UX) y analistas deportivos. Esta amalgama técnica nos permite programar código robusto, diseñar vistas responsivas atractivas y mantener un estándar periodístico veraz e independiente de las grandes cadenas hegemónicas de medios.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 6: COMUNIDAD -->
+                <section id="sec-6" class="scroll-mt-8 border-b border-zinc-900/60 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4">Comunidad y Redes Oficiales</h2>
+                    <p>
+                        Complementamos nuestro software con una capa social activa, compartiendo visualizaciones de datos y análisis de rendimiento diariamente. Puedes interactuar con nuestra comunidad en Instagram, TikTok y X (Twitter) bajo el identificador oficial <strong class="text-white">@cuphub</strong>, o participar en los hilos de debate e interpretación de datos que moderamos activamente en Reddit.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 7: AVISO LEGAL -->
+                <section class="scroll-mt-8 border-b border-zinc-900/60 pb-8 text-xs text-zinc-500">
+                    <strong class="text-zinc-400 block mb-1">Cláusula de Exención de Responsabilidad (Disclaimer):</strong>
+                    CupHub es un canal de divulgación estadística estrictamente independiente y autónomo. No cuenta con afiliación, patrocinio, derechos comerciales ni vínculos oficiales con la Fédération Internationale de Football Association (FIFA), federaciones nacionales de fútbol locales, ni los comités organizadores del Mundial 2026. Todas las marcas registradas y logos se exponen con fines ilustrativos y pedagógicos.
+                </section>
+
+                <!-- SECCIÓN 8: CONTACTO -->
+                <section id="sec-7" class="scroll-mt-8 bg-zinc-900/20 border border-zinc-800/60 rounded-2xl p-6 md:p-8">
+                    <h3 class="text-lg font-bold text-white mb-3">Contacto Administrativo y Alianzas</h3>
+                    <p class="text-zinc-400 text-sm mb-4">
+                        ¿Eres desarrollador, analista de datos, o una marca interesada en colaborar con nuestro despliegue tecnológico? Puedes establecer comunicación directa con nuestra mesa de control a través de nuestro correo institucional unificado:
+                    </p>
+                    <a href="mailto:cuphub.oficial@gmail.com" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm font-semibold text-white hover:bg-zinc-900 transition-all hover:border-zinc-700">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L22 8m-2 11H4a2 2 0 01-2-2V8a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2z" />
+                        </svg>
+                        cuphub.oficial@gmail.com
+                    </a>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

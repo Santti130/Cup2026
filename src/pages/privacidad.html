@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="google-site-verification" content="c-Ti5MKt-ZFeV_K2MSwsRjdnwtcHXN6eiIXQOc9dRo4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS CDN para asegurar el renderizado de los nuevos estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+                        bebas: ['Bebas Neue', 'sans-serif'],
+                        teko: ['Teko', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { background-color: #0b1220; scroll-behavior: smooth; }
+        /* Ajuste fino para la barra de desplazamiento */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b1220; }
+        ::-webkit-scrollbar-thumb { background: #1f293d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #374151; }
+    </style>
+
+    <title>Política de Privacidad | CupHub</title>
+    <meta name="description" content="Política de privacidad de CupHub. Conoce cómo recopilamos, usamos y protegemos tu información personal conforme a las normativas vigentes.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cup-hub.com/privacidad">
+
+    <link rel="icon" type="image/png" href="/favicon-light.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Teko:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0KMRY9054T"></script>
+    <script>
+        if (window.location.hostname !== 'localhost') {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0KMRY9054T');
+        }
+    </script>
+</head>
+<body class="bg-[#0a0b10] text-zinc-300 min-h-screen flex flex-col font-jakarta antialiased selection:bg-zinc-700 selection:text-white">
+
+    <main id="main-content" class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        
+        <!-- CABECERA DE LA PÁGINA -->
+        <header class="mb-16 border-b border-zinc-800/80 pb-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-400 mb-4 tracking-wide">
+                <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                Cumplimiento de Privacidad Legal
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-4">
+                Política de Privacidad
+            </h1>
+            <p class="text-zinc-500 text-sm">
+                Última actualización jurídica: <time datetime="2026-06-19">19 de junio de 2026</time>
+            </p>
+        </header>
+
+        <!-- DISTRIBUCIÓN EN DOS COLUMNAS (ÍNDICE + CONTENIDO) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- MENÚ DE NAVEGACIÓN RÁPIDA (Oculto en móviles, fijo al hacer scroll en desktop) -->
+            <aside class="hidden lg:block lg:col-span-4 sticky top-8 bg-zinc-900/40 border border-zinc-800/60 rounded-2xl p-6">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4 border-b border-zinc-800 pb-2">Índice del documento</h3>
+                <nav class="flex flex-col gap-2.5 text-sm font-medium">
+                    <a href="#sec-1" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>1.</span> Información recopilada</a>
+                    <a href="#sec-2" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>2.</span> Uso de datos</a>
+                    <a href="#sec-3" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>3.</span> Google Analytics</a>
+                    <a href="#sec-4" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>4.</span> Google AdSense</a>
+                    <a href="#sec-5" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>5.</span> Terceros</a>
+                    <a href="#sec-6" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>6.</span> Enlaces externos</a>
+                    <a href="#sec-7" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>7.</span> Seguridad</a>
+                    <a href="#sec-8" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>8.</span> Tus derechos</a>
+                    <a href="#sec-9" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>9.</span> Actualizaciones</a>
+                    <a href="#sec-10" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-2"><span>10.</span> Contacto directo</a>
+                </nav>
+            </aside>
+
+            <!-- CUERPO LEGAL DEL DOCUMENTO -->
+            <article class="lg:col-span-8 space-y-12 text-zinc-300 leading-relaxed text-base font-light">
+                
+                <!-- SECCIÓN 1 -->
+                <section id="sec-1" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">01.</span> Información que recopilamos
+                    </h2>
+                    <p class="mb-4">
+                        CupHub (<a href="https://cup-hub.com" class="text-emerald-400 font-medium hover:underline">cup-hub.com</a>) es una plataforma informativa independiente sobre la Copa Mundial de la FIFA 2026. Al utilizar e interactuar con nuestro sitio web, podemos recopilar y procesar la siguiente información técnica de forma totalmente automatizada:
+                    </p>
+                    <div class="space-y-4 mt-6">
+                        <div class="bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5">
+                            <h4 class="text-white font-semibold text-sm mb-1">Datos de navegación y telemetría</h4>
+                            <p class="text-zinc-400 text-sm">Dirección IP enmascarada, tipo y versión del navegador web, sistema operativo del dispositivo, páginas internas visitadas, tiempos de permanencia exacta y la URL de procedencia o referencia. Esta información es recopilada de manera disociada y anónima.</p>
+                        </div>
+                        <div class="bg-zinc-900/30 border border-zinc-800/50 rounded-xl p-5">
+                            <h4 class="text-white font-semibold text-sm mb-1">Uso de Cookies y Almacenamiento Local</h4>
+                            <p class="text-zinc-400 text-sm">Implementamos cookies técnicas esenciales para optimizar el rendimiento de la plataforma y cookies analíticas de comportamiento agregado. Tienes la facultad total de rechazar, bloquear o eliminar estas cookies modificando los parámetros de privacidad de tu navegador.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN 2 -->
+                <section id="sec-2" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">02.</span> Uso de la información
+                    </h2>
+                    <p class="mb-4">
+                        Los datos recabados de forma automática e integrada se destinan estrictamente a los siguientes propósitos operativos:
+                    </p>
+                    <ul class="list-none space-y-2.5 mt-4 text-zinc-400 text-sm pl-2">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"></span>
+                            <span>Personalizar y mejorar continuamente la arquitectura informática y los contenidos del sitio.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"></span>
+                            <span>Analizar tendencias de tráfico orgánico y comportamiento demográfico general de los usuarios.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"></span>
+                            <span>Auditar la seguridad perimetral de la plataforma informática para evitar vulnerabilidades técnicas.</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- SECCIÓN 3 -->
+                <section id="sec-3" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">03.</span> Google Analytics
+                    </h2>
+                    <p>
+                        Este ecosistema digital utiliza Google Analytics, un software de analítica avanzada desarrollado por Google LLC. Google Analytics utiliza "cookies" de texto que se implantan en tu terminal para rastrear métricas del tráfico de red. La información que genera la cookie sobre tu patrón de uso será transferida de forma directa a los servidores de Google ubicados en Estados Unidos. Para mayor conocimiento de este tratamiento de datos, sugerimos revisar los términos legales explícitos en la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-emerald-400 hover:underline inline-flex items-center gap-1">Política de Privacidad de Google <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 4 (VITAL PARA ADSENSE) -->
+                <section id="sec-4" class="scroll-mt-8 border-b border-zinc-900 pb-8 bg-zinc-900/20 border border-zinc-800/40 p-6 rounded-2xl">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-emerald-400 font-mono text-sm">04.</span> Google AdSense y cookies publicitarias
+                    </h2>
+                    <p class="mb-4">
+                        Este espacio web integra el programa publicitario de Google AdSense con la finalidad de desplegar banners e inserciones comerciales. Google y sus proveedores asociados utilizan tecnologías como cookies o identificadores únicos para servir anuncios hiperpersonalizados basados en el historial de navegación de este portal o de otras webs externas en la red.
+                    </p>
+                    <p>
+                        Como usuario legítimo de internet, puedes deshabilitar completamente el seguimiento de publicidad conductual y geolocalizada ingresando de manera voluntaria a la plataforma de <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" class="text-emerald-400 font-semibold hover:underline">Configuración de Anuncios de Google</a>.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 5 -->
+                <section id="sec-5" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">05.</span> Compartir información con terceros
+                    </h2>
+                    <p>
+                        Declaramos formalmente bajo criterio legal que no vendemos, comercializamos, alquilamos ni cedemos bajo ninguna circunstancia información de identificación personal o patrones de navegación a terceras empresas o filiales de marketing externo. La recopilación está estrictamente acotada a las analíticas cifradas del motor de Google.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 6 -->
+                <section id="sec-6" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">06.</span> Enlaces a sitios externos
+                    </h2>
+                    <p>
+                        CupHub puede contener hipervínculos estructurados hacia redes sociales corporativas, portales informativos de medios deportivos de renombre o el sitio oficial de la FIFA. No asumimos responsabilidad jurídica, civil ni técnica sobre los protocolos de recolección de datos, el contenido dinámico o las políticas particulares de dichos dominios externos. Exhortamos a los usuarios a leer minuciosamente las políticas de privacidad de cada entorno al que accedan de forma externa.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 7 -->
+                <section id="sec-7" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">07.</span> Seguridad de los datos
+                    </h2>
+                    <p>
+                        Garantizamos que toda navegación dentro del sitio web se realiza bajo el protocolo de cifrado seguro SSL (HTTPS). Mantenemos controles perimetrales lógicos para mitigar pérdidas de información, robo de tráfico o accesos indebidos. Sin embargo, debido a que la transferencia de bits global en redes públicas no es infalible por naturaleza, no se puede proveer una garantía matemática inquebrantable de seguridad absoluta.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 8 -->
+                <section id="sec-8" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">08.</span> Derechos del usuario
+                    </h2>
+                    <p>
+                        Te asisten en todo momento los derechos de consulta, rectificación, oposición y supresión de cualquier información analítica residual que poseamos. En el momento en que lo requieras, puedes remitir una solicitud formal de revisión mediante las opciones habilitadas en nuestras vías de atención al ciudadano digital.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 9 -->
+                <section id="sec-9" class="scroll-mt-8 border-b border-zinc-900 pb-8">
+                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-zinc-600 font-mono text-sm">09.</span> Cambios en esta política
+                    </h2>
+                    <p>
+                        Nos reservamos el derecho estatutario de modificar y actualizar esta documentación legal conforme evolucionen las directrices de privacidad de los buscadores o las leyes locales. Toda enmienda estructural se verá reflejada de manera instantánea en este mismo apartado digital con su respectiva etiqueta temporal.
+                    </p>
+                </section>
+
+                <!-- SECCIÓN 10 -->
+                <section id="sec-10" class="scroll-mt-8 bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 md:p-8">
+                    <h3 class="text-lg font-bold text-white mb-3">10. Contacto legal y administrativo</h3>
+                    <p class="text-zinc-400 text-sm mb-4">
+                        Si requieres soporte sobre las cláusulas expuestas o deseas procesar un requerimiento técnico de privacidad de datos, puedes comunicarte de manera directa con nuestro oficial de cumplimiento:
+                    </p>
+                    <a href="mailto:cuphub.oficial@gmail.com" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm font-semibold text-white hover:bg-zinc-800 transition-all hover:border-zinc-700">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L22 8m-2 11H4a2 2 0 01-2-2V8a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2z" />
+                        </svg>
+                        cuphub.oficial@gmail.com
+                    </a>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

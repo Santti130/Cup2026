@@ -3,7 +3,10 @@
         { "source": "/calendario", "destination": "/src/pages/calendario.html" },
         { "source": "/grupos", "destination": "/src/pages/grupos.html" },
         { "source": "/noticias", "destination": "/src/pages/noticias.html" },
-        { "source": "/noticias/:slug", "destination": "/src/pages/noticias.html" }
+        { "source": "/noticias/:slug", "destination": "/src/pages/noticias.html" },
+        { "source": "/privacidad", "destination": "/src/pages/privacidad.html" },
+        { "source": "/terminos", "destination": "/src/pages/terminos.html" },
+        { "source": "/acerca", "destination": "/src/pages/acerca.html" }
     ],
     "headers": [
         { "source": "/sitemap.xml", "headers": [{ "key": "Content-Type", "value": "application/xml" }] }
