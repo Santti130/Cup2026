@@ -2,7 +2,6 @@ export const noticias = [
     /* NOTICIA NÚMERO 1 */
     {
         id: 1,
-        destacada: true,
         slug: 'colombia-vence-uzbekistan-debut-mundial-2026',
         categoria: 'Resultados',
         titulo: '¡GRAN REGRESO MUNDIALISTA PARA COLOMBIA! TRIUNFO 3-1 SOBRE UZBEKISTÁN',
@@ -379,43 +378,31 @@ export const noticias = [
     },
     /* NOTICIA NÚMERO 5 */
     {
-        id: 15,
-        slug: 'francia-vence-senegal-debut-mundial-2026',
+        id: 5,
+        destacada: true,
+        slug: 'mexico-primer-clasificado-dieciseisavos-mundial-2026',
         categoria: 'Resultados',
-        titulo: 'FRANCIA REAFIRMA SU CANDIDATURA A FAVORITA CON VICTORIA EN SU DEBUT',
-        resumen: 'Los dirigidos por Didier Deschamps vencieron 3-1 a Senegal en Nueva York con un doblete de Mbappé y un gol de Barcola. El francés quedó a solo dos tantos del récord histórico de Klose en Mundiales.',
-        imagen: '/news-img/Francia-Senegal.webp',
-        fecha: '16 Junio 2026',
+        titulo: 'MÉXICO ES EL PRIMER CLASIFICADO A DIECISEISAVOS DEL MUNDIAL 2026',
+        resumen: 'El Tri venció 1-0 a Corea del Sur en el Estadio Akron con un gol de Luis Romo y se convirtió en el primer equipo en asegurar su pase a la siguiente ronda, liderando el Grupo A con 6 puntos.',
+        imagen: '/news-img/Mexico-PrimerClasificado.webp',
+        fecha: '18 Junio 2026',
         contenido: (() => {
             return `
-                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
-                    De la Selección de Francia, con una delantera que impacta, se esperan muchos goles en este Mundial 2026. Y a pesar de un flojo comienzo ante Senegal, sin alguna oportunidad clara en la primera parte, terminó con tres goles y una victoria clara en Nueva York en su debut.</p>
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black first-letter:leading-[0.8] mt-2">
+                    México hizo historia este jueves al convertirse en la primera selección en clasificar a los dieciseisavos de final del Mundial 2026. El Tri venció 1-0 a Corea del Sur en el Estadio Akron de Guadalajara, con un solitario gol de Luis Romo al minuto 50, y aseguró su pase a la siguiente ronda como líder indiscutido del Grupo A.</p>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    El equipo de Didier Deschamps se impuso por dos goles de Kylian Mbappé, que quedó a solo dos tantos del récord de goles en la historia de los Mundiales (los 16 de Miroslav Klose), y por la gran actuación de Michael Olise en la segunda mitad, cuando se acomodó como el conductor del equipo por el centro del campo en vez de jugar sobre la banda derecha. Bradley Barcola, que ingresó para los 10 minutos finales, convirtió el gol restante.</p>
-
-                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Los senegaleses se pueden haber ilusionado durante los 45 minutos iniciales con repetir su hazaña del Mundial 2002 ante Francia, que esta vez no hubiera sido tan sorprendente por tener varios jugadores de jerarquía en su equipo. Sin embargo, el poste no colaboró en un remate de Nicolas Jackson, Ismaïla Sarr desaprovechó una chance clara y en la segunda parte fueron superados con claridad por los galos.</p>
+                    El choque entre aztecas y surcoreanos llegaba como un duelo clave: ambos habían ganado en su debut, por lo que el ganador daba un paso enorme hacia la clasificación. Tras el empate 1-1 entre Sudáfrica y República Checa en el primer turno, México sabía que un triunfo lo metía directo en la siguiente fase.</p>
 
                 <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
                     <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
-                    <div class="grid grid-cols-4 gap-2 text-center mb-4">
-                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans"></span>
-                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">1T</span>
-                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">2T</span>
-                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">Res.</span>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">México</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">1</span>
                     </div>
-                    <div class="grid grid-cols-4 gap-2 text-center items-center py-2 border-b border-white/5">
-                        <span class="text-zinc-100 font-medium text-left">Francia</span>
-                        <span class="text-zinc-300 font-teko text-xl">1</span>
-                        <span class="text-zinc-300 font-teko text-xl">2</span>
-                        <span class="text-emerald-400 font-teko text-2xl font-bold">3</span>
-                    </div>
-                    <div class="grid grid-cols-4 gap-2 text-center items-center py-2">
-                        <span class="text-zinc-100 font-medium text-left">Senegal</span>
-                        <span class="text-zinc-300 font-teko text-xl">0</span>
-                        <span class="text-zinc-300 font-teko text-xl">1</span>
-                        <span class="text-zinc-300 font-teko text-2xl">1</span>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">Corea del Sur</span>
+                        <span class="text-zinc-300 font-teko text-2xl">0</span>
                     </div>
                 </div>
 
@@ -423,10 +410,7 @@ export const noticias = [
                     <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
                     <div class="flex flex-col gap-2">
                         ${[
-                            ['FRA', 'Kylian Mbappé', "66'"],
-                            ['FRA', 'Bradley Barcola', "82'"],
-                            ['SEN', 'Ibrahim Mbaye', "90+5'"],
-                            ['FRA', 'Kylian Mbappé', "90+6'"],
+                            ['MEX', 'Luis Romo', "50'"],
                         ].map(([eq, jugador, min]) => `
                             <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
                                 <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
@@ -440,88 +424,153 @@ export const noticias = [
                 <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Francia, con una generación que se ilusiona con llegar a su tercera final consecutiva, empezó el Mundial 2026 frente a Senegal en Nueva York. Los dirigidos por Didier Deschamps quieren tomarse revancha de la derrota contra Argentina en Qatar 2022 y empezar con el pie derecho era clave.</p>
-
-                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    Los senegaleses no partían como favoritos, aunque se aferraban al antecedente mundialista de 2002, cuando vencieron 1-0 a los franceses en Corea-Japón con gol de Papa Bouba Diop. Esta vez no hubo sorpresa y Francia se llevó los tres puntos.</p>
-
-                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    El primer tiempo terminó sin goles pero no faltaron emociones, sobre todo de parte de los africanos, que tuvieron las oportunidades más claras: Nicolas Jackson destrozó el palo, mientras que Ismaïla Sarr se perdió el 1-0 en la última jugada. El subcampeón del mundo no mostraba reacción.</p>
+                    El primer tiempo fue de dominio surcoreano. Los dirigidos por Hong Myung-bo manejaron la posesión, aunque sin generar peligro claro ante una defensa azteca bien ordenada. La más clara del Tri en la primera mitad fue un cabezazo de Julián Quiñones que atajó el portero Kim Seung-gyu. Edson Álvarez, por su parte, evitó de manera milagrosa el primero de Corea con un cierre sobre la línea ante un remate de Son Heung-min, jugada que de todas formas fue anulada por fuera de juego.</p>
 
                 <blockquote class="relative p-8 my-10 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
                     <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
                     <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
-                        Didier Deschamps hizo un cambio táctico clave en el segundo tiempo, ubicando a Michael Olise detrás de Kylian Mbappé. La decisión dio frutos casi de inmediato.
+                        Al minuto 50, un grave error del portero Kim Seung-gyu en la salida —tras chocar con su compañero Lee Gi-hyuk— dejó el balón servido. Luis Romo no perdonó y desató la locura del "Cielito Lindo" en Guadalajara.
                     </p>
-                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Jugada clave del partido</footer>
+                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— La jugada del partido</footer>
                 </blockquote>
 
                 <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
-                    El cambio dio frutos: el centrodelantero marcó el 1-0 a pase del atacante del Bayern Múnich. El cooling break le vino bien a Senegal, que mostró tener armas para lastimar (le anularon un gol por fuera de juego). A los 82 minutos, ingresado en lugar de Ousmane Dembélé, Bradley Barcola marcó el 2-0. Senegal descontó por medio de Ibrahim Mbaye a los 90+5, pero Mbappé volvió a estirar diferencias para el 3-1 final.</p>
+                    El gol le dio tranquilidad al local, que volvió a tomar el control y estuvo cerca de aumentar la ventaja al minuto 75 con un remate de Raúl Jiménez que tapó Kim. Pero el cierre fue de sufrimiento: Corea del Sur se fue con todo en busca del empate y obligó a Raúl Rangel a vestirse de héroe con una doble atajada providencial ante Cho Gue-sung, manteniendo su arco en cero por segundo partido consecutivo.</p>
+
+                <div class="my-10 p-8 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-transparent to-red-500/10 border border-white/10">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Figura del Partido</h4>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">1</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Gol decisivo</span>
+                        </div>
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">30</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Pases correctos</span>
+                        </div>
+                        <div>
+                            <span class="block font-teko text-4xl text-emerald-400 leading-none">MVP</span>
+                            <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans mt-2 block">Luis Romo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Con la victoria, México llegó a 6 puntos en la cima del Grupo A, seguido por Corea del Sur con 3 unidades. República Checa y Sudáfrica, que empataron más temprano, registran un punto cada uno. En la última jornada, que se jugará el 24 de junio, México enfrentará a República Checa en el Estadio Azteca, mientras que Corea del Sur se medirá ante Sudáfrica en Monterrey.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Así quedó el Grupo A tras la jornada 2</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['México', '6'],
+                            ['Corea del Sur', '3'],
+                            ['República Checa', '1'],
+                            ['Sudáfrica', '1'],
+                        ].map(([equipo, pts]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-zinc-300 font-sans text-sm font-medium">${equipo}</span>
+                                <span class="text-zinc-100 font-teko text-xl tracking-wider">${pts} pts</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
 
                 <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
-                    Francia volverá a jugar el 22 de junio ante Irak en Filadelfia, mientras que Senegal lo hará el mismo día en un partido clave ante Noruega, de nuevo en Nueva York.</p>
+                    El Tri sufrió, pero cumplió. Como anfitrión, México arranca su Mundial con paso firme y ya tiene asegurado su lugar en los dieciseisavos de final. El próximo objetivo: cerrar la fase de grupos como líder y soñar con romper, por fin, la barrera de los cuartos.</p>
             `
         })()
     },
     /* NOTICIA NÚMERO 6 */
     {
-    id: 6,
-    slug: 'convocados-paraguay-mundial-2026',
-    categoria: 'Convocatorias',
-    titulo: 'LOS 26 CONVOCADOS DE PARAGUAY PARA EL MUNDIAL 2026',
-    resumen: 'Con líderes cargados de experiencia como Gustavo Gómez y Miguel Almirón, más una interesante generación de talentos del calibre de Diego Gómez y Julio Enciso, la Albirroja parece lista para dar más de una sorpresa en la Copa del Mundo 2026.',
-    imagen: '/news-img/ParaguayConvocados.webp',
-    fecha: '1 Junio 2026',
-    contenido: (() => {
-        const plantilla = [
-            { pos: 'Arqueros', count: '03', jugadores: ['Orlando Gill', 'Roberto Junior Fernández', 'Gastón Oliveira'] },
-            { pos: 'Defensores', count: '08', jugadores: ['Juan Cáceres', 'Gustavo Velázquez', 'Gustavo Gómez', 'Junior Alonso', 'José Canale', 'Omar Alderete', 'Alexandro Maidana', 'Fabián Balbuena'] },
-            { pos: 'Mediocampistas', count: '08', jugadores: ['Diego Gómez', 'Mauricio Magalhães', 'Damián Bobadilla', 'Braian Ojeda', 'Andrés Cubas', 'Matías Galarza Fonda', 'Alejandro Romero Gamarra'] },
-            { pos: 'Delanteros', count: '07', jugadores: ['Gustavo Caballero', 'Ramón Sosa', 'Alex Arce', 'Isidro Pitta', 'Gabriel Ávalos', 'Miguel Almirón', 'Julio Enciso', 'Antonio Sanabria'] }
-        ];
+        id: 6,
+        slug: 'canada-golea-qatar-primer-triunfo-mundial-2026',
+        categoria: 'Resultados',
+        titulo: 'CANADÁ GOLEA 6-0 A CATAR Y LOGRA SU PRIMER TRIUNFO MUNDIALISTA',
+        resumen: 'Un triplete de Jonathan David impulsó la goleada histórica de Canadá sobre Catar en Vancouver. Los anfitriones lideran el Grupo B y quedan a un paso de los dieciseisavos, en una noche marcada por la grave lesión de Ismael Koné.',
+        imagen: '/news-img/CanadaGolea6.webp',
+        fecha: '18 Junio 2026',
+        contenido: (() => {
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black first-letter:leading-[0.8] mt-2">
+                    Tuvieron que pasar tres participaciones en Copas del Mundo para que Canadá consiguiera su primera victoria mundialista, y cuando llegó, lo hizo a lo grande. Los anfitriones golearon 6-0 a Catar en el BC Place de Vancouver, con un triplete de Jonathan David como gran figura, y quedaron como líderes del Grupo B a un paso de los dieciseisavos de final. Sin embargo, lo que pintaba para una fiesta total se tiñó de preocupación por la grave lesión de uno de sus jugadores clave.</p>
 
-        const rosterHTML = plantilla.map(grupo => `
-            <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
-                <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
-                
-                <div class="mb-5 md:mb-0">
-                    <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
-                    <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El equipo de Jesse Marsch, que había sumado su primer punto histórico ante Bosnia y Herzegovina en el debut, dio un salto enorme con una actuación de autoridad, presión alta y eficacia goleadora ante 52.497 espectadores. Curiosamente, el capitán Alphonso Davies, ya recuperado de su lesión, volvió a quedarse en el banquillo.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">Canadá</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">6</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">Catar</span>
+                        <span class="text-zinc-300 font-teko text-2xl">0</span>
+                    </div>
                 </div>
-                
-                <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
-                    ${grupo.jugadores.map(jugador => `
-                        <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
-                            <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
-                            <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </div>
-        `).join('');
 
-        return `
-            <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
-                Con líderes cargados de experiencia como Gustavo Gómez y Miguel Almirón, más una interesante generación de talentos del calibre de Diego Gómez y Julio Enciso, la Selección de Paraguay parece lista para dar más de una sorpresa en la Copa del Mundo 2026, y el desafío será grande después del sorteo. </p>
-
-            <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
-                Y es que el conjunto de Alfaro cayó en el Grupo D junto con uno de los anfitriones, Estados Unidos, Australia y Turquía. </p>
-
-            <div class="my-16">
-                <div class="mb-8 border-b-2 pb-4">
-                    <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
-                    <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Gustavo Alfaro</p>
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['CAN', 'Cyle Larin', "16'"],
+                            ['CAN', 'Jonathan David', "29'"],
+                            ['CAN', 'Jonathan David', "45+3'"],
+                            ['CAN', 'Nathan Saliba', "64'"],
+                            ['CAN', 'Al Mannai (e/c)', "75'"],
+                            ['CAN', 'Jonathan David', "90+8'"],
+                        ].map(([eq, jugador, min]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
+                                <span class="text-zinc-300 font-sans text-sm font-medium flex-1">${jugador}</span>
+                                <span class="text-zinc-100 font-teko text-lg tabular-nums">${min}</span>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-                
-                <div class="flex flex-col border-b border-zinc-800/60">
-                    ${rosterHTML}
-                </div>
-            </div>
 
-            <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
-            El domingo 31 de mayo, a horas de que se entregue la lista definitiva para el Mundial 2026, se conoció que Gustavo Alfaro le comunicó a Adam Bareiro que no irá a la Copa del Mundo. El delantero de Boca Juniors peleaba por un lugar entre los 26 convocados. La lista definitiva se entregó el lunes 1 de junio. La Albirroja integrará el Grupo D junto a Estados Unidos, Australia y Turquía. </p>
-            `;
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Canadá dominó desde el primer minuto. La superioridad se reflejó en el marcador al minuto 16 con un tanto de Cyle Larin, que además se convertía momentáneamente en el máximo anotador canadiense en Mundiales. Poco después, Jonathan David amplió la ventaja con una volea dentro del área que batió al arquero qatarí.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El partido se rompió definitivamente al minuto 33: tras una revisión del VAR, Homam Al-Amin fue expulsado y dejó a Catar con diez hombres. Canadá se adueñó del balón y encerró a su rival. Antes del descanso, David firmó su doblete para el 3-0, empatando a Larin en el récord goleador histórico de Canadá en Copas del Mundo.</p>
+
+                <blockquote class="relative p-8 my-10 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                    <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                    <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                        Nathan Saliba, que entró por el lesionado Koné, marcó de tiro libre al minuto 64. Inmediatamente corrió hacia el banquillo, tomó la camiseta de su compañero y la besó. Fue el momento más emotivo de la noche.
+                    </p>
+                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— El gesto de la noche</footer>
+                </blockquote>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    La fiesta, sin embargo, quedó marcada por un episodio doloroso. Al minuto 50, una durísima falta de Assim Madibo —que fue expulsado, dejando a Catar con nueve— provocó una grave fractura en la pierna izquierda de Ismael Koné, mediocampista del Sassuolo. El jugador fue retirado en camilla y trasladado a un hospital de Vancouver. Ambos equipos quedaron visiblemente impactados.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Con nueve hombres, Catar ya no tuvo respuesta. El 5-0 llegó al minuto 75 con un autogol de Mohammed Al Mannai al desviar un remate de Shaffelburg. Y en el tiempo de descuento, David empujó el balón para completar su triplete y sellar el 6-0, igualando a Lionel Messi como los únicos jugadores con un hat-trick en lo que va del torneo.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Así quedó el Grupo B tras la jornada 2</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['Canadá', '4'],
+                            ['Suiza', '4'],
+                            ['Bosnia y Herzegovina', '1'],
+                            ['Catar', '0'],
+                        ].map(([equipo, pts]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-zinc-300 font-sans text-sm font-medium">${equipo}</span>
+                                <span class="text-zinc-100 font-teko text-xl tracking-wider">${pts} pts</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
+                    Canadá y Suiza, ambos con cuatro puntos, definirán el liderato del Grupo B en un mano a mano en la última jornada. Los anfitriones quedaron virtualmente clasificados gracias a su contundente diferencia de gol. Una noche histórica para el fútbol de la hoja de maple, que ojalá no quede opacada por la dura lesión de Koné.</p>
+            `
         })()
     },
     /* NOTICIA NÚMERO 7 */
@@ -1208,6 +1257,153 @@ export const noticias = [
 
                 <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
                     Uruguay llega al Mundial 2026 con la ilusión de volver a protagonizar una gran actuación. La Celeste integrará el Grupo D junto a Francia, Canadá y Senegal. La experiencia defensiva sumada a la calidad de Valverde en el mediocampo serán las grandes armas de Bielsa para buscar superar las expectativas. </p>
+            `;
+        })()
+    },
+    /* NOTICIA NÚMERO 20 */
+    {
+        id: 20,
+        slug: 'francia-vence-senegal-debut-mundial-2026',
+        categoria: 'Resultados',
+        titulo: 'FRANCIA REAFIRMA SU CANDIDATURA A FAVORITA CON VICTORIA EN SU DEBUT',
+        resumen: 'Los dirigidos por Didier Deschamps vencieron 3-1 a Senegal en Nueva York con un doblete de Mbappé y un gol de Barcola. El francés quedó a solo dos tantos del récord histórico de Klose en Mundiales.',
+        imagen: '/news-img/Francia-Senegal.webp',
+        fecha: '16 Junio 2026',
+        contenido: (() => {
+            return `
+                <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                    De la Selección de Francia, con una delantera que impacta, se esperan muchos goles en este Mundial 2026. Y a pesar de un flojo comienzo ante Senegal, sin alguna oportunidad clara en la primera parte, terminó con tres goles y una victoria clara en Nueva York en su debut.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El equipo de Didier Deschamps se impuso por dos goles de Kylian Mbappé, que quedó a solo dos tantos del récord de goles en la historia de los Mundiales (los 16 de Miroslav Klose), y por la gran actuación de Michael Olise en la segunda mitad, cuando se acomodó como el conductor del equipo por el centro del campo en vez de jugar sobre la banda derecha. Bradley Barcola, que ingresó para los 10 minutos finales, convirtió el gol restante.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Los senegaleses se pueden haber ilusionado durante los 45 minutos iniciales con repetir su hazaña del Mundial 2002 ante Francia, que esta vez no hubiera sido tan sorprendente por tener varios jugadores de jerarquía en su equipo. Sin embargo, el poste no colaboró en un remate de Nicolas Jackson, Ismaïla Sarr desaprovechó una chance clara y en la segunda parte fueron superados con claridad por los galos.</p>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-6 text-center">Resultado Final</h4>
+                    <div class="grid grid-cols-4 gap-2 text-center mb-4">
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans"></span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">1T</span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">2T</span>
+                        <span class="text-zinc-500 text-xs uppercase tracking-widest font-sans">Res.</span>
+                    </div>
+                    <div class="grid grid-cols-4 gap-2 text-center items-center py-2 border-b border-white/5">
+                        <span class="text-zinc-100 font-medium text-left">Francia</span>
+                        <span class="text-zinc-300 font-teko text-xl">1</span>
+                        <span class="text-zinc-300 font-teko text-xl">2</span>
+                        <span class="text-emerald-400 font-teko text-2xl font-bold">3</span>
+                    </div>
+                    <div class="grid grid-cols-4 gap-2 text-center items-center py-2">
+                        <span class="text-zinc-100 font-medium text-left">Senegal</span>
+                        <span class="text-zinc-300 font-teko text-xl">0</span>
+                        <span class="text-zinc-300 font-teko text-xl">1</span>
+                        <span class="text-zinc-300 font-teko text-2xl">1</span>
+                    </div>
+                </div>
+
+                <div class="p-6 my-10 bg-white/5 border border-white/10 rounded-2xl">
+                    <h4 class="font-teko text-2xl text-zinc-100 tracking-widest uppercase mb-4">Goles del Partido</h4>
+                    <div class="flex flex-col gap-2">
+                        ${[
+                            ['FRA', 'Kylian Mbappé', "66'"],
+                            ['FRA', 'Bradley Barcola', "82'"],
+                            ['SEN', 'Ibrahim Mbaye', "90+5'"],
+                            ['FRA', 'Kylian Mbappé', "90+6'"],
+                        ].map(([eq, jugador, min]) => `
+                            <div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                                <span class="text-emerald-400 font-sans text-xs font-bold tracking-widest w-12 shrink-0">${eq}</span>
+                                <span class="text-zinc-300 font-sans text-sm font-medium flex-1">${jugador}</span>
+                                <span class="text-zinc-100 font-teko text-lg tabular-nums">${min}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <h3 class="font-teko text-3xl md:text-4xl text-white mb-6 tracking-wide mt-12">CÓMO SE VIVIÓ EL PARTIDO</h3>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Francia, con una generación que se ilusiona con llegar a su tercera final consecutiva, empezó el Mundial 2026 frente a Senegal en Nueva York. Los dirigidos por Didier Deschamps quieren tomarse revancha de la derrota contra Argentina en Qatar 2022 y empezar con el pie derecho era clave.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    Los senegaleses no partían como favoritos, aunque se aferraban al antecedente mundialista de 2002, cuando vencieron 1-0 a los franceses en Corea-Japón con gol de Papa Bouba Diop. Esta vez no hubo sorpresa y Francia se llevó los tres puntos.</p>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El primer tiempo terminó sin goles pero no faltaron emociones, sobre todo de parte de los africanos, que tuvieron las oportunidades más claras: Nicolas Jackson destrozó el palo, mientras que Ismaïla Sarr se perdió el 1-0 en la última jugada. El subcampeón del mundo no mostraba reacción.</p>
+
+                <blockquote class="relative p-8 my-10 bg-gradient-to-br from-emerald-900/20 to-transparent border-l-4 border-emerald-500 rounded-r-2xl">
+                    <svg class="absolute top-4 left-4 w-8 h-8 text-emerald-500/20" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
+                    <p class="relative z-10 text-xl md:text-2xl font-light text-zinc-100 italic leading-relaxed pl-6">
+                        Didier Deschamps hizo un cambio táctico clave en el segundo tiempo, ubicando a Michael Olise detrás de Kylian Mbappé. La decisión dio frutos casi de inmediato.
+                    </p>
+                    <footer class="mt-4 pl-6 text-sm text-emerald-400 font-semibold tracking-widest uppercase">— Jugada clave del partido</footer>
+                </blockquote>
+
+                <p class="mb-10 font-playfair text-xl leading-loose text-zinc-300">
+                    El cambio dio frutos: el centrodelantero marcó el 1-0 a pase del atacante del Bayern Múnich. El cooling break le vino bien a Senegal, que mostró tener armas para lastimar (le anularon un gol por fuera de juego). A los 82 minutos, ingresado en lugar de Ousmane Dembélé, Bradley Barcola marcó el 2-0. Senegal descontó por medio de Ibrahim Mbaye a los 90+5, pero Mbappé volvió a estirar diferencias para el 3-1 final.</p>
+
+                <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic font-playfair">
+                    Francia volverá a jugar el 22 de junio ante Irak en Filadelfia, mientras que Senegal lo hará el mismo día en un partido clave ante Noruega, de nuevo en Nueva York.</p>
+            `
+        })()
+    },
+    /* NOTICIA NÚMERO 21 */
+    {
+    id: 21,
+    slug: 'convocados-paraguay-mundial-2026',
+    categoria: 'Convocatorias',
+    titulo: 'LOS 26 CONVOCADOS DE PARAGUAY PARA EL MUNDIAL 2026',
+    resumen: 'Con líderes cargados de experiencia como Gustavo Gómez y Miguel Almirón, más una interesante generación de talentos del calibre de Diego Gómez y Julio Enciso, la Albirroja parece lista para dar más de una sorpresa en la Copa del Mundo 2026.',
+    imagen: '/news-img/ParaguayConvocados.webp',
+    fecha: '1 Junio 2026',
+    contenido: (() => {
+        const plantilla = [
+            { pos: 'Arqueros', count: '03', jugadores: ['Orlando Gill', 'Roberto Junior Fernández', 'Gastón Oliveira'] },
+            { pos: 'Defensores', count: '08', jugadores: ['Juan Cáceres', 'Gustavo Velázquez', 'Gustavo Gómez', 'Junior Alonso', 'José Canale', 'Omar Alderete', 'Alexandro Maidana', 'Fabián Balbuena'] },
+            { pos: 'Mediocampistas', count: '08', jugadores: ['Diego Gómez', 'Mauricio Magalhães', 'Damián Bobadilla', 'Braian Ojeda', 'Andrés Cubas', 'Matías Galarza Fonda', 'Alejandro Romero Gamarra'] },
+            { pos: 'Delanteros', count: '07', jugadores: ['Gustavo Caballero', 'Ramón Sosa', 'Alex Arce', 'Isidro Pitta', 'Gabriel Ávalos', 'Miguel Almirón', 'Julio Enciso', 'Antonio Sanabria'] }
+        ];
+
+        const rosterHTML = plantilla.map(grupo => `
+            <div class="relative pl-5 md:pl-0 md:grid md:grid-cols-[220px_1fr] gap-8 items-start border-t border-zinc-800/60 py-8 hover:bg-zinc-900/10 transition-colors">
+                <div class="absolute left-0 top-8 bottom-8 w-[2px] bg-zinc-800 md:hidden"></div>
+                
+                <div class="mb-5 md:mb-0">
+                    <span class="block font-teko text-3xl md:text-4xl text-zinc-100 tracking-widest uppercase leading-none">${grupo.pos}</span>
+                    <span class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mt-2 block">Seleccionados: ${grupo.count}</span>
+                </div>
+                
+                <ul class="columns-1 sm:columns-2 lg:columns-3 gap-8 text-zinc-400 font-playfair text-lg md:text-xl leading-relaxed">
+                    ${grupo.jugadores.map(jugador => `
+                        <li class="break-inside-avoid flex items-center gap-3 mb-2 border-b border-zinc-800/30 pb-1">
+                            <span class="w-1.5 h-1.5 bg-zinc-700 rotate-45 shrink-0"></span>
+                            <span class="text-zinc-300 hover:text-white transition-colors cursor-default">${jugador}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `).join('');
+
+        return `
+            <p class="mb-6 font-playfair text-xl leading-loose text-zinc-300 first-letter:float-left first-letter:text-6xl first-letter:pr-3 first-letter:font-playfair first-letter:font-black first-letter:text-black-100 first-letter:leading-[0.8] mt-2">
+                Con líderes cargados de experiencia como Gustavo Gómez y Miguel Almirón, más una interesante generación de talentos del calibre de Diego Gómez y Julio Enciso, la Selección de Paraguay parece lista para dar más de una sorpresa en la Copa del Mundo 2026, y el desafío será grande después del sorteo. </p>
+
+            <p class="mb-12 font-playfair text-xl leading-loose text-zinc-300">
+                Y es que el conjunto de Alfaro cayó en el Grupo D junto con uno de los anfitriones, Estados Unidos, Australia y Turquía. </p>
+
+            <div class="my-16">
+                <div class="mb-8 border-b-2 pb-4">
+                    <h3 class="font-playfair text-4xl md:text-5xl text-zinc-100 font-bold italic tracking-tight">Roster Oficial</h3>
+                    <p class="text-zinc-500 font-sans text-xs uppercase tracking-widest mt-2">Convocatoria definitiva — Gustavo Alfaro</p>
+                </div>
+                
+                <div class="flex flex-col border-b border-zinc-800/60">
+                    ${rosterHTML}
+                </div>
+            </div>
+
+            <p class="mt-12 text-xl leading-loose text-zinc-300 p-8 border border-zinc-800 bg-zinc-900/20 rounded-2xl text-center italic">
+            El domingo 31 de mayo, a horas de que se entregue la lista definitiva para el Mundial 2026, se conoció que Gustavo Alfaro le comunicó a Adam Bareiro que no irá a la Copa del Mundo. El delantero de Boca Juniors peleaba por un lugar entre los 26 convocados. La lista definitiva se entregó el lunes 1 de junio. La Albirroja integrará el Grupo D junto a Estados Unidos, Australia y Turquía. </p>
             `;
         })()
     }
