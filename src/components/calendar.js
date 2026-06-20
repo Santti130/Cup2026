@@ -557,15 +557,15 @@ function createMatchCard(partido) {
 
                     <p class="text-[#1d1d1f]/35 text-[10px] font-semibold tracking-[0.08em] uppercase mb-3">Agendar partido</p>
                     <div class="grid grid-cols-3 gap-2">
-                        <a href="${enlaces.googleLink}" target="_blank" rel="noopener" class="cal-link flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-black/[0.04] hover:bg-black/[0.08] transition-colors duration-300">
+                        <a href="${enlaces.googleLink}" target="_blank" rel="noopener" aria-label="Agendar en Google Calendar" class="cal-link flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-black/[0.04] hover:bg-black/[0.08] transition-colors duration-300">
                             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M21.35 11.1h-9.1v2.73h5.36c-.23 1.17-.91 2.15-1.93 2.82v2.33h3.12c1.83-1.68 2.88-4.16 2.88-7.1 0-.6-.05-1.19-.14-1.78z" fill="#4285F4"/><path d="M12.25 21.36c2.56 0 4.7-.84 6.27-2.28l-3.12-2.33c-.85.57-1.93.9-3.15.9-2.42 0-4.47-1.63-5.2-3.83h-3.23v2.4c1.55 3.08 4.75 5.14 8.43 5.14z" fill="#34A853"/><path d="M7.05 13.82c-.19-.57-.29-1.17-.29-1.82s.1-1.25.29-1.82v-2.4H3.82c-.63 1.25-.99 2.66-.99 4.22s.36 2.97.99 4.22l3.23-2.4z" fill="#FBBC05"/><path d="M12.25 5.28c1.39 0 2.64.48 3.62 1.41l2.71-2.71C16.95 2.45 14.81 1.5 12.25 1.5 8.57 1.5 5.37 3.56 3.82 6.64l3.23 2.4c.73-2.2 2.78-3.76 5.2-3.76z" fill="#EA4335"/></svg>
                             <span class="text-[#1d1d1f] text-xs font-medium hidden sm:inline">Google</span>
                         </a>
-                        <a href="${enlaces.appleLink}" download="Mundial-Partido.ics" class="cal-link flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-black/[0.04] hover:bg-black/[0.08] transition-colors duration-300">
+                        <a href="${enlaces.appleLink}" download="Mundial-Partido.ics" aria-label="Agendar en Apple Calendar" class="cal-link flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-black/[0.04] hover:bg-black/[0.08] transition-colors duration-300">
                             <svg class="w-[15px] h-[15px]" viewBox="0 0 384 512" fill="#1d1d1f"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
                             <span class="text-[#1d1d1f] text-xs font-medium hidden sm:inline">Apple</span>
                         </a>
-                        <a href="${enlaces.outlookLink}" target="_blank" rel="noopener" class="cal-link flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-black/[0.04] hover:bg-black/[0.08] transition-colors duration-300">
+                        <a href="${enlaces.outlookLink}" target="_blank" rel="noopener" aria-label="Agendar en Outlook" class="cal-link flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-black/[0.04] hover:bg-black/[0.08] transition-colors duration-300">
                             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M12 12.5L2 6.5V18c0 .83.67 1.5 1.5 1.5h17c.83 0 1.5-.67 1.5-1.5V6.5L12 12.5z" fill="#0078D4"/><path d="M2 6.5v1.5L12 14l10-6V6.5c0-.83-.67-1.5-1.5-1.5H3.5C2.67 5 2 5.67 2 6.5z" fill="#0078D4" opacity="0.7"/></svg>
                             <span class="text-[#1d1d1f] text-xs font-medium hidden sm:inline">Outlook</span>
                         </a>

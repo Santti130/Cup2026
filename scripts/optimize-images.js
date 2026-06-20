@@ -1,5 +1,5 @@
 // scripts/optimize-images.js
-// Convierte imágenes de public/news-img y public/icons a WebP.
+// Convierte imágenes a WebP y las redimensiona a un ancho máximo según la carpeta.
 // NO sobreescribe los .webp ya existentes. Mantiene los originales como respaldo.
 // Uso: npm run optimize-images
 
@@ -10,22 +10,24 @@ import path from 'path'
 
 const QUALITY = 80
 
-// Carpetas a procesar
+// Carpetas a procesar con su ancho máximo (en px).
+// Los íconos se ven a ~80px, así que 240px cubre pantallas retina 3x de sobra.
+// Las noticias y fondos necesitan más resolución.
 const CARPETAS = [
-    'public/news-img',
-    'public/icons',
-    'public/img',
+    { ruta: 'public/icons',    maxWidth: 240 },
+    { ruta: 'public/news-img', maxWidth: 1200 },
+    { ruta: 'public/img',      maxWidth: 1920 },
 ]
 
 const EXTENSIONES = ['.jpg', '.jpeg', '.png', '.avif']
 
-async function procesarCarpeta(carpeta) {
-    if (!existsSync(carpeta)) {
-        console.log(`⏭️  Carpeta no encontrada (se omite): ${carpeta}`)
+async function procesarCarpeta({ ruta, maxWidth }) {
+    if (!existsSync(ruta)) {
+        console.log(`⏭️  Carpeta no encontrada (se omite): ${ruta}`)
         return { convertidas: 0, omitidas: 0 }
     }
 
-    const archivos = await readdir(carpeta)
+    const archivos = await readdir(ruta)
     let convertidas = 0
     let omitidas = 0
 
@@ -34,8 +36,8 @@ async function procesarCarpeta(carpeta) {
         if (!EXTENSIONES.includes(ext)) continue
 
         const nombreBase = path.basename(archivo, ext)
-        const rutaEntrada = path.join(carpeta, archivo)
-        const rutaSalida = path.join(carpeta, `${nombreBase}.webp`)
+        const rutaEntrada = path.join(ruta, archivo)
+        const rutaSalida = path.join(ruta, `${nombreBase}.webp`)
 
         // No sobreescribir si ya existe el .webp
         if (existsSync(rutaSalida)) {
@@ -44,12 +46,13 @@ async function procesarCarpeta(carpeta) {
         }
 
         try {
+            // Solo redimensiona si la imagen es más ancha que maxWidth (no agranda)
             const info = await sharp(rutaEntrada)
+                .resize({ width: maxWidth, withoutEnlargement: true })
                 .webp({ quality: QUALITY })
                 .toFile(rutaSalida)
 
-            const kbOriginal = (await sharp(rutaEntrada).metadata()).size
-            console.log(`✅ ${carpeta}/${archivo} → ${nombreBase}.webp (${(info.size / 1024).toFixed(1)} KB)`)
+            console.log(`✅ ${ruta}/${archivo} → ${nombreBase}.webp  (${info.width}x${info.height}, ${(info.size / 1024).toFixed(1)} KB)`)
             convertidas++
         } catch (err) {
             console.error(`❌ Error con ${archivo}:`, err.message)
@@ -60,7 +63,7 @@ async function procesarCarpeta(carpeta) {
 }
 
 async function main() {
-    console.log('🖼️  Optimizando imágenes a WebP...\n')
+    console.log('🖼️  Optimizando imágenes a WebP (con redimensión)...\n')
     let totalConvertidas = 0
     let totalOmitidas = 0
 
@@ -72,7 +75,7 @@ async function main() {
 
     console.log(`\n✨ Listo: ${totalConvertidas} convertidas, ${totalOmitidas} ya existían (omitidas)`)
     if (totalConvertidas > 0) {
-        console.log('👉 Ahora actualiza las referencias en tu código de .png a .webp')
+        console.log('👉 Recuerda referenciar los .webp en tu código si aún no lo hiciste')
     }
 }
 

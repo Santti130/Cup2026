@@ -18,12 +18,12 @@ export function renderFooter(){
                         <h2 class="text-white font-bold text-xl">
                             Copa Mundial de la FIFA 2026
                         </h2>
-                        <p class="text-sm text-gray-500 italic">
+                        <p class="text-sm text-gray-400 italic">
                             "Live the World Cup 2026"
                         </p>
                     </div>
                 </div>
-                <p class="text-sm leading-relaxed text-gray-500 ">
+                <p class="text-sm leading-relaxed text-gray-400 ">
                 Plataforma con horarios, resultados, grupos, estadísticas y noticias del Mundial 2026.
                 </p>
             </div>
@@ -66,7 +66,7 @@ export function renderFooter(){
                         <img class="w-20 opacity-70 hover:opacity-100 transition" width="80" height="53" src="/icons/Red-TT.webp"alt="TikTok">
                     </a>  
                 </div>
-                <p class="text-sm text-gray-500 leading-relaxed max-w-xs">
+                <p class="text-sm text-gray-400 leading-relaxed max-w-xs">
                     Muy pronto podrás seguir toda la información del Mundial 2026 a través de nuestras redes sociales.
                 </p>
             </div>
@@ -76,7 +76,7 @@ export function renderFooter(){
     <!-- COPYRIGHT -->
     <div class="border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-sm text-gray-500">© World Cup 2026. Todos los derechos reservados. </br>V.1.0.1</p>
+            <p class="text-sm text-gray-400">© World Cup 2026. Todos los derechos reservados. </br>V.1.0.1</p>
             <div class="flex items-center gap-6 text-sm">
                 <a href="/privacidad" class="w-fit hover:text-white transition-colors">Privacidad</a>
                 <a href="/terminos" class="w-fit hover:text-white transition-colors">Términos</a>
