@@ -10,7 +10,7 @@ export function renderNavbar() {
           <a href="/" class="transition-colors duration-300 hover:text-gray-400">INICIO</a>
           <a href="/noticias" class="transition-colors duration-300 hover:text-gray-400">NOTICIAS</a>
           <a href="/">
-            <img class="w-8 md:w-10 xl:w-12" src="/icons/CupHubBlanco-logo.png" alt="LogoPrincipal">
+            <img class="w-8 md:w-10 xl:w-12" src="/icons/CupHubBlanco-logo.webp" alt="LogoPrincipal">
           </a>
           <a href="/calendario" class="transition-colors duration-300 hover:text-gray-400">CALENDARIO</a>
           <a href="/grupos" class="transition-colors duration-300 hover:text-gray-400">GRUPOS</a>
@@ -33,7 +33,7 @@ export function renderNavbar() {
 
         <div id="nav-logo" class="flex-shrink-0">
           <a href="/" class="flex h-9 w-9 items-center justify-center">
-            <img class="w-9 h-9 object-contain" src="/icons/CupHubBlanco-logo.png" alt="LogoPrincipal">
+            <img class="w-9 h-9 object-contain" src="/icons/CupHubBlanco-logo.webp" alt="LogoPrincipal">
           </a>
         </div>
 

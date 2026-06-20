@@ -195,7 +195,7 @@ function generarEnlacesCalendario(partido) {
 export function renderCalendar() {
     const section = document.createElement('section')
     section.className = 'relative w-full flex flex-col items-center overflow-hidden bg-cover bg-center bg-no-repeat pb-32'
-    section.style.backgroundImage = window.innerWidth >= 768 ? "url('/img/fondo-home-plantilla2.webp')" : "url('/img/fondo-calendario-phone.webp')"
+    // section.style.backgroundImage = window.innerWidth >= 768 ? "url('/img/fondo-home-plantilla2.webp')" : "url('/img/fondo-calendario-phone.webp')"
     section.style.minHeight = '100vh'
 
     section.innerHTML = /*html*/`

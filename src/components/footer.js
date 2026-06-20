@@ -13,7 +13,7 @@ export function renderFooter(){
             <!-- Parte izquierda = LOGO + DESCRIPCIÓN -->
             <div class="flex flex-col gap-4 max-w-[340px]">
                 <div class="flex items-center gap-1">
-                    <img class="w-12" src="/icons/WorldCup-logo.png" alt="World Cup 2026">
+                    <img class="w-12" width="84" height="56" src="/icons/WorldCup-logo.webp" alt="World Cup 2026">
                     <div>
                         <h2 class="text-white font-bold text-xl">
                             Copa Mundial de la FIFA 2026
@@ -57,13 +57,13 @@ export function renderFooter(){
 
                 <div class="flex items-center gap-4 max-w-xs">
                     <a href="#" class="hover:opacity-80 transition-opacity">
-                        <img class="w-20 opacity-70 hover:opacity-100 transition" src="/icons/Red-X.png"alt="X">
+                        <img class="w-20 opacity-70 hover:opacity-100 transition" width="80" height="53" src="/icons/Red-X.webp"alt="X">
                     </a>
                     <a href="https://www.instagram.com/cuphub_stats/" target="_blank" class="hover:opacity-80 transition-opacity">
-                        <img class="w-20 opacity-70 hover:opacity-100 transition"src="/icons/Red-IG.png"alt="Instagram">
+                        <img class="w-20 opacity-70 hover:opacity-100 transition" width="80" height="53" src="/icons/Red-IG.webp"alt="Instagram">
                     </a>
                     <a href="https://www.tiktok.com/@cuphub_oficial" target="_blank class="hover:opacity-80 transition-opacity">
-                        <img class="w-20 opacity-70 hover:opacity-100 transition"src="/icons/Red-TT.png"alt="TikTok">
+                        <img class="w-20 opacity-70 hover:opacity-100 transition" width="80" height="53" src="/icons/Red-TT.webp"alt="TikTok">
                     </a>  
                 </div>
                 <p class="text-sm text-gray-500 leading-relaxed max-w-xs">
