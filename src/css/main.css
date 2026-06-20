@@ -25,3 +25,118 @@ nav.md\:hidden {
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     @apply translate-y-0 opacity-100;
 }
+
+/* ========================================================================== */
+/* CALENDARIO — Estética minimalista estilo Apple                              */
+/* ========================================================================== */
+
+/* ---- Banderas circulares ---- */
+.flag-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #e8e4da;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (min-width: 768px) {
+    .flag-circle { width: 50px; height: 50px; }
+}
+.flag-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.match-card:hover .flag-circle {
+    transform: scale(1.06);
+}
+
+/* ---- Panel expandible (anima sin medir altura) ---- */
+.info-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.info-panel.is-open {
+    grid-template-rows: 1fr;
+}
+.info-panel > div {
+    overflow: hidden;
+}
+
+/* ---- Chevron ---- */
+.chevron {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.chevron.is-rotated {
+    transform: rotate(180deg);
+}
+
+/* ---- Entrada suave de tarjetas (stagger) ---- */
+.match-card {
+    animation: cardFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes cardFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.partidos-lista .match-card:nth-child(1) { animation-delay: 0.02s; }
+.partidos-lista .match-card:nth-child(2) { animation-delay: 0.06s; }
+.partidos-lista .match-card:nth-child(3) { animation-delay: 0.10s; }
+.partidos-lista .match-card:nth-child(4) { animation-delay: 0.14s; }
+.partidos-lista .match-card:nth-child(5) { animation-delay: 0.18s; }
+.partidos-lista .match-card:nth-child(6) { animation-delay: 0.22s; }
+
+/* ---- Orbs de fondo (efecto premium, 100% CSS, sin peso) ---- */
+.cal-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 2;
+    will-change: transform;
+}
+.cal-orb-1 {
+    width: 360px; height: 360px;
+    background: #7c3aed;
+    top: 8%; left: -90px;
+    animation: orbA 19s ease-in-out infinite;
+}
+.cal-orb-2 {
+    width: 300px; height: 300px;
+    background: #059669;
+    top: 42%; right: -70px;
+    animation: orbB 23s ease-in-out infinite;
+}
+.cal-orb-3 {
+    width: 280px; height: 280px;
+    background: #2563eb;
+    bottom: 12%; left: 28%;
+    animation: orbC 21s ease-in-out infinite;
+}
+@keyframes orbA {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(50px, 70px); }
+}
+@keyframes orbB {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(-60px, 40px); }
+}
+@keyframes orbC {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(40px, -50px); }
+}
+
+/* ---- Respeta usuarios que prefieren menos movimiento ---- */
+@media (prefers-reduced-motion: reduce) {
+    .match-card, .info-panel, .chevron, .flag-circle, .cal-orb {
+        animation: none !important;
+        transition: none !important;
+    }
+}
