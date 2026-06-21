@@ -36,6 +36,29 @@ const GRUPOS_MAP = {
     'England': 'Grupo L', 'Croatia': 'Grupo L', 'Ghana': 'Grupo L', 'Panama': 'Grupo L',
 }
 
+// Mapa de banderas (mismo que calendario) para banderas circulares ligeras vía flagcdn
+const BANDERAS_MAP = {
+    'Mexico': 'mx', 'South Africa': 'za', 'South Korea': 'kr', 'Czech Republic': 'cz',
+    'Canada': 'ca', 'Bosnia & Herzegovina': 'ba', 'Qatar': 'qa', 'Switzerland': 'ch',
+    'Brazil': 'br', 'Morocco': 'ma', 'Haiti': 'ht', 'Scotland': 'gb-sct',
+    'USA': 'us', 'Paraguay': 'py', 'Australia': 'au', 'Türkiye': 'tr',
+    'Germany': 'de', 'Curaçao': 'cw', 'Ivory Coast': 'ci', 'Ecuador': 'ec',
+    'Netherlands': 'nl', 'Japan': 'jp', 'Sweden': 'se', 'Tunisia': 'tn',
+    'Belgium': 'be', 'Egypt': 'eg', 'Iran': 'ir', 'New Zealand': 'nz',
+    'Spain': 'es', 'Cape Verde Islands': 'cv', 'Saudi Arabia': 'sa', 'Uruguay': 'uy',
+    'France': 'fr', 'Senegal': 'sn', 'Iraq': 'iq', 'Norway': 'no',
+    'Argentina': 'ar', 'Algeria': 'dz', 'Austria': 'at', 'Jordan': 'jo',
+    'Portugal': 'pt', 'Congo DR': 'cd', 'Uzbekistan': 'uz', 'Colombia': 'co',
+    'England': 'gb-eng', 'Croatia': 'hr', 'Ghana': 'gh', 'Panama': 'pa',
+}
+
+// Devuelve la URL de bandera (flagcdn, ligera) según el nombre del equipo.
+// Si no hay código (ej. eliminatorias con equipo por definir), usa el logo de la API.
+function banderaURL(eq, ancho = 160) {
+    const code = BANDERAS_MAP[eq.abrev]
+    return code ? `https://flagcdn.com/w${ancho}/${code}.png` : eq.logo
+}
+
 const FASES_MAP = {
     'Group Stage - 1': 'Fase de Grupos - J1', 'Group Stage - 2': 'Fase de Grupos - J2',
     'Group Stage - 3': 'Fase de Grupos - J3', 'Round of 32': 'Dieciseisavos',
@@ -105,7 +128,7 @@ async function cargarPartidosAPI() {
         const cacheData = localStorage.getItem(CACHE_KEY)
         if ((ahora - ultimo) < CACHE_DURATION && cacheData) {
             const parsed = JSON.parse(cacheData)
-            if (parsed.length > 0 && parsed[0].equipo1?.logo) return parsed
+            if (parsed.length > 0 && parsed[0].equipo1?.abrev) return parsed
             localStorage.removeItem(CACHE_KEY)
             localStorage.removeItem(CACHE_TIME_KEY)
         }
@@ -161,16 +184,28 @@ function obtenerPartidosActuales(partidos) {
 // ============================================================================
 export function renderCountdown() {
     const section = document.createElement('section')
-    section.className = 'relative flex flex-col items-center justify-center gap-4 md:gap-6 overflow-hidden bg-cover bg-center bg-no-repeat'
-    section.style.backgroundImage = window.innerWidth >= 768
-        ? "url('/img/fondo-home-countdown.png')"
-        : "url('/img/fondo-home-countdown-phone.png')"
-    section.style.minHeight = '100vh'
+    section.className = 'relative w-full overflow-hidden'
+    // Fondo CSS premium (sin imagen pesada): degradado radial profundo
+    section.style.background = 'radial-gradient(120% 80% at 50% 0%, #16203a 0%, #0c1322 45%, #080d18 100%)'
+
+    const competiciones = ['Champions League', 'Copa Libertadores', 'Premier League', 'Eurocopa 2028', 'Copa América 2028', 'La Liga']
 
     section.innerHTML = /*html*/`
 
+    <!-- Capas de orbs (flotan con keyframes, parallax con scroll) -->
+    <div class="cd-orb-layer" data-speed="0.10"><span class="cd-orb cd-orb-1"></span></div>
+    <div class="cd-orb-layer" data-speed="0.18"><span class="cd-orb cd-orb-2"></span></div>
+    <div class="cd-orb-layer" data-speed="0.06"><span class="cd-orb cd-orb-3"></span></div>
+    <div class="cd-orb-layer" data-speed="0.14"><span class="cd-orb cd-orb-4"></span></div>
+
+    <!-- Rejilla muy sutil -->
+    <div class="absolute inset-0 opacity-[0.10] pointer-events-none z-[2] bg-[linear-gradient(to_right,#ffffff14_1px,transparent_1px),linear-gradient(to_bottom,#ffffff14_1px,transparent_1px)] bg-[size:56px_56px]"></div>
+
+    <!-- HERO: ocupa toda la pantalla y centra el countdown -->
+    <div class="cd-hero relative z-10 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-6 px-0 py-8">
+
     <!-- MÓVIL -->
-    <div class="md:hidden flex flex-col items-center gap-6 w-full px-6 pt-5 pb-28 z-10">
+    <div class="md:hidden flex flex-col items-center gap-6 w-full px-6 pt-5 pb-10 z-10">
         <h2 class="text-5xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">FALTAN PARA LA FINAL</h2>
 
         <div class="relative w-52 h-52 flex items-center justify-center">
@@ -246,26 +281,26 @@ export function renderCountdown() {
             <h2 class="text-xl xl:text-5xl 2xl:text-7xl font-black text-white text-center font-bebas tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">FALTAN PARA LA FINAL</h2>
             <div class="flex gap-8 items-center font-bebas">
                 <div class="relative group">
-                    <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+                    <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                         <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
                         <span id="days" class="text-xl xl:text-8xl 2xl:text-9xl font-bold text-white tabular-nums leading-none">00</span>
                         <span class="text-gray-300 text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Días</span>
                     </div>
                 </div>
                 <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
-                <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+                <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                     <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
                     <span id="hours" class="text-xl xl:text-8xl 2xl:text-9xl font-bold text-white tabular-nums leading-none">00</span>
                     <span class="text-gray-300 text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Horas</span>
                 </div>
                 <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
-                <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+                <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                     <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
                     <span id="minutes" class="text-xl xl:text-8xl 2xl:text-9xl font-bold text-white">00</span>
                     <span class="text-gray-300 text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Minutos</span>
                 </div>
                 <div class="text-5xl 2xl:text-8xl font-black text-white/40 self-center -mt-2">:</div>
-                <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] shadow-2xl hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
+                <div class="relative flex flex-col items-center justify-center bg-black/40 backdrop-blur-md border border-white/15 p-5 rounded-4xl min-w-[100px] hover:-translate-y-1 transition-transform duration-500 hover:border-white/30 group">
                     <div class="absolute -inset-1 bg-white rounded-4xl blur opacity-0 group-hover:opacity-10 transition duration-700"></div>
                     <span id="seconds" class="text-xl xl:text-8xl 2xl:text-9xl font-bold text-white">00</span>
                     <span class="text-gray-300 text-lg xl:text-xl 2xl:text-2xl uppercase tracking-widest font-bold">Segundos</span>
@@ -283,7 +318,39 @@ export function renderCountdown() {
             <h2 class="text-white text-xl xl:text-4xl 2xl:text-5xl font-bold uppercase tracking-widest font-bebas bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">Partidos de Hoy</h2>
             <div class="w-30 h-px bg-gradient-to-l from-transparent to-sky-500"></div>
         </div>
-        <div id="cards-container" class="flex justify-center items-center gap-6 w-full px-8 font-bebas tracking-wide mb-20"></div>
+        <div id="cards-container" class="flex justify-center items-center gap-6 w-full px-8 font-bebas tracking-wide"></div>
+    </div>
+
+    </div><!-- /cd-hero -->
+
+    <!-- ANUNCIO: próximas competiciones (entre el countdown y el footer) -->
+    <div class="relative z-10 w-full px-6 pb-24 pt-2">
+        <div class="cd-announce reveal-on-scroll relative overflow-hidden max-w-5xl mx-auto rounded-[2.5rem] border border-white/10 px-6 py-12 md:px-12 md:py-16 text-center">
+            <!-- Imagen de fondo con difuminado sutil -->
+            <img src="/img/proximamente.webp" alt="" aria-hidden="true" width="1200" height="600" class="absolute inset-0 w-full h-full object-cover opacity-80 blur-[3px] scale-105 pointer-events-none" />
+            <!-- Overlay para legibilidad del texto -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0c1322]/85 via-[#0c1322]/70 to-[#0c1322]/90 pointer-events-none"></div>
+
+            <!-- Contenido -->
+            <div class="relative z-10">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/15 text-amber-300 text-xs font-bebas tracking-[0.25em] uppercase mb-7">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                    Próximamente
+                </span>
+                <h2 class="text-4xl md:text-6xl font-black font-bebas tracking-wide uppercase bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/55 leading-[0.95] mb-6 drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
+                    Tu Hub favorito,<br class="hidden md:block"> en cada gran competición
+                </h2>
+                <p class="text-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10 drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
+                    El Mundial 2026 es solo el comienzo. Estamos construyendo la cobertura de los torneos más grandes del planeta para que vivas cada partido, en vivo, en un solo lugar.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-2.5 md:gap-3 mb-10">
+                    ${competiciones.map(c => `
+                        <span class="px-4 py-2 rounded-full border border-white/15 bg-white/[0.06] text-white/80 text-sm font-bebas tracking-wider hover:border-white/30 hover:bg-white/[0.12] hover:text-white transition-all duration-300 backdrop-blur-sm">${c}</span>
+                    `).join('')}
+                </div>
+                <p class="text-white/45 text-sm font-bebas tracking-[0.2em] uppercase">Vuelve pronto · Esto apenas comienza</p>
+            </div>
+        </div>
     </div>
 
     <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#0b1220] pointer-events-none z-20"></div>
@@ -334,9 +401,65 @@ export function renderCountdown() {
 
     updateCountdown()
     setInterval(updateCountdown, 1000)
-    renderMobileCards(section)
-    renderDesktopCards(section)
+
+    // Efectos premium: revelado al hacer scroll (Apple) + parallax de orbs
+    setupReveal(section)
+    setupParallax(section)
+
+    // Renderiza solo las tarjetas del viewport actual (evita fetch de clima en móvil)
+    let mobileDone = false, desktopDone = false
+    function renderCardsForViewport() {
+        if (window.innerWidth >= 768) {
+            if (!desktopDone) { desktopDone = true; renderDesktopCards(section) }
+        } else {
+            if (!mobileDone) { mobileDone = true; renderMobileCards(section) }
+        }
+    }
+    renderCardsForViewport()
+    window.addEventListener('resize', renderCardsForViewport)
+
     return section
+}
+
+// ============================================================================
+// EFECTOS — Revelado al scroll (IntersectionObserver) y parallax de orbs
+// ============================================================================
+function setupReveal(section) {
+    const els = section.querySelectorAll('.reveal-on-scroll')
+    if (!('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-visible'))
+        return
+    }
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            // Se repite cada vez que entra/sale del viewport (no solo la primera vez)
+            if (e.isIntersecting) {
+                e.target.classList.add('is-visible')
+            } else {
+                e.target.classList.remove('is-visible')
+            }
+        })
+    }, { threshold: 0.2 })
+    els.forEach(el => obs.observe(el))
+}
+
+function setupParallax(section) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const layers = [...section.querySelectorAll('.cd-orb-layer')]
+    if (!layers.length) return
+    let ticking = false
+    const update = () => {
+        const y = window.scrollY
+        layers.forEach(layer => {
+            const speed = parseFloat(layer.dataset.speed || '0.1')
+            layer.style.transform = `translate3d(0, ${(y * speed).toFixed(1)}px, 0)`
+        })
+        ticking = false
+    }
+    window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true }
+    }, { passive: true })
+    update()
 }
 
 // ============================================================================
@@ -369,13 +492,13 @@ async function renderMobileCards(section) {
                 <div class="flex flex-col bg-white/5 border border-white/10 rounded-2xl">
                     <div class="flex items-center justify-between px-10 pt-2 pb-1">
                         <div class="flex items-center gap-3 flex-1">
-                            <img src="https://flagcdn.com/w80/${p.equipo1.codigo}.png" class="w-10 h-10 rounded-full object-cover border border-white/10">
+                            <img src="https://flagcdn.com/w160/${p.equipo1.codigo}.png" width="40" height="40" loading="lazy" decoding="async" alt="${p.equipo1.abrev}" class="w-10 h-10 rounded-full object-cover ring-1 ring-white/15">
                             <span class="text-white font-bebas text-lg tracking-wider">${p.equipo1.abrev}</span>
                         </div>
                         <span class="text-white/40 font-bebas text-sm">VS</span>
                         <div class="flex items-center gap-3 flex-1 justify-end">
                             <span class="text-white font-bebas text-lg tracking-wider">${p.equipo2.abrev}</span>
-                            <img src="https://flagcdn.com/w80/${p.equipo2.codigo}.png" class="w-10 h-10 rounded-full object-cover border border-white/10">
+                            <img src="https://flagcdn.com/w160/${p.equipo2.codigo}.png" width="40" height="40" loading="lazy" decoding="async" alt="${p.equipo2.abrev}" class="w-10 h-10 rounded-full object-cover ring-1 ring-white/15">
                         </div>
                     </div>
                     <div class="flex items-center justify-center gap-3 pb-2">
@@ -413,12 +536,12 @@ function tarjetaMobile(p) {
             <div class="flex items-center justify-between px-2">${badge}</div>
             <div class="flex items-center justify-between px-3 gap-2">
                 <div class="flex flex-col items-center gap-1 w-20 shrink-0">
-                    <img src="${p.equipo1.logo}" class="w-10 h-10 rounded-full object-cover object-center border border-white/10 bg-white/10 p-0.5">
+                    <img src="${banderaURL(p.equipo1)}" width="40" height="40" loading="lazy" decoding="async" alt="${p.equipo1.abrev}" class="w-10 h-10 rounded-full object-cover ring-1 ring-white/15">
                     <span class="text-white font-bebas text-xs tracking-wider text-center leading-tight">${p.equipo1.abrev}</span>
                 </div>
                 <div class="flex-1 flex justify-center">${marcador}</div>
                 <div class="flex flex-col items-center gap-1 w-20 shrink-0">
-                    <img src="${p.equipo2.logo}" class="w-10 h-10 rounded-full object-cover object-center border border-white/10 bg-white/10 p-0.5">
+                    <img src="${banderaURL(p.equipo2)}" width="40" height="40" loading="lazy" decoding="async" alt="${p.equipo2.abrev}" class="w-10 h-10 rounded-full object-cover ring-1 ring-white/15">
                     <span class="text-white font-bebas text-xs tracking-wider text-center leading-tight">${p.equipo2.abrev}</span>
                 </div>
             </div>
@@ -441,14 +564,14 @@ async function renderDesktopCards(section) {
             container.innerHTML = PARTIDOS_FALLBACK.map(p => `
                 <div class="relative cursor-pointer group flex-shrink-0" style="width:300px;height:240px;perspective:1000px">
                     <div class="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)] [transform-origin:center] will-change-transform" style="transform-style:preserve-3d">
-                        <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl px-6 py-5 shadow-xl flex flex-col items-center justify-between" style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translate3d(0,0,1px)">
+                        <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl px-6 py-5 flex flex-col items-center justify-between" style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translate3d(0,0,1px)">
                             <div class="flex items-center gap-2">
                                 <span class="px-2.5 py-0.5 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-bebas rounded-full tracking-widest">${p.grupo}</span>
                                 <span class="px-2.5 py-0.5 bg-white/5 border border-white/15 text-white/50 text-xs font-bebas rounded-full tracking-widest">${p.jornada}</span>
                             </div>
                             <div class="flex items-center justify-center gap-5 w-full">
                                 <div class="flex flex-col items-center gap-2">
-                                    <img src="https://flagcdn.com/w80/${p.equipo1.codigo}.png" class="w-14 h-14 rounded-full object-cover border-2 border-white/10 shadow-lg">
+                                    <img src="https://flagcdn.com/w160/${p.equipo1.codigo}.png" width="56" height="56" loading="lazy" decoding="async" alt="${p.equipo1.abrev}" class="w-14 h-14 rounded-full object-cover ring-2 ring-white/10">
                                     <span class="text-white font-bebas text-base tracking-wider">${p.equipo1.abrev}</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-1">
@@ -456,13 +579,13 @@ async function renderDesktopCards(section) {
                                     <span class="text-white/30 font-bebas text-xs tracking-widest">HRS</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
-                                    <img src="https://flagcdn.com/w80/${p.equipo2.codigo}.png" class="w-14 h-14 rounded-full object-cover border-2 border-white/10 shadow-lg">
+                                    <img src="https://flagcdn.com/w160/${p.equipo2.codigo}.png" width="56" height="56" loading="lazy" decoding="async" alt="${p.equipo2.abrev}" class="w-14 h-14 rounded-full object-cover ring-2 ring-white/10">
                                     <span class="text-white font-bebas text-base tracking-wider">${p.equipo2.abrev}</span>
                                 </div>
                             </div>
                             <p class="text-white/25 text-xs font-bebas tracking-wider">Pasa el cursor para más info</p>
                         </div>
-                        <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl px-6 py-5 shadow-xl flex flex-col items-center justify-center gap-2" style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg) translate3d(0,0,1px)">
+                        <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl px-6 py-5 flex flex-col items-center justify-center gap-2" style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg) translate3d(0,0,1px)">
                             <p class="text-white/50 text-xs font-bebas tracking-widest uppercase">${p.sede.pais} · ${p.sede.ciudad}</p>
                             <p class="text-white font-bebas text-xl tracking-wide text-center">${p.sede.estadio}</p>
                             <p class="text-white/40 text-xs font-bebas">Capacidad: ${p.sede.capacidad}</p>
@@ -537,23 +660,23 @@ async function tarjetaDesktop(p) {
     return `
         <div class="relative cursor-pointer group flex-shrink-0" style="width:300px;height:240px;perspective:1000px">
             <div class="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)] [transform-origin:center] will-change-transform" style="transform-style:preserve-3d">
-                <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border ${border} rounded-3xl px-6 py-5 shadow-xl flex flex-col items-center justify-between"
+                <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border ${border} rounded-3xl px-6 py-5 flex flex-col items-center justify-between"
                     style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translate3d(0,0,1px)">
                     ${badges}
                     <div class="flex items-center justify-center gap-5 w-full">
                         <div class="flex flex-col items-center gap-2">
-                            <img src="${p.equipo1.logo}" class="w-14 h-14 rounded-full object-cover border-2 border-white/10 shadow-lg" style="backface-visibility:hidden">
+                            <img src="${banderaURL(p.equipo1)}" width="56" height="56" loading="lazy" decoding="async" alt="${p.equipo1.abrev}" class="w-14 h-14 rounded-full object-cover ring-2 ring-white/10" style="backface-visibility:hidden">
                             <span class="text-white font-bebas text-base tracking-wider">${p.equipo1.abrev}</span>
                         </div>
                         ${marcador}
                         <div class="flex flex-col items-center gap-2">
-                            <img src="${p.equipo2.logo}" class="w-14 h-14 rounded-full object-cover border-2 border-white/10 shadow-lg" style="backface-visibility:hidden">
+                            <img src="${banderaURL(p.equipo2)}" width="56" height="56" loading="lazy" decoding="async" alt="${p.equipo2.abrev}" class="w-14 h-14 rounded-full object-cover ring-2 ring-white/10" style="backface-visibility:hidden">
                             <span class="text-white font-bebas text-base tracking-wider">${p.equipo2.abrev}</span>
                         </div>
                     </div>
                     <p class="text-white/25 text-xs font-bebas tracking-wider">Pasa el cursor para más info</p>
                 </div>
-                <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border ${border} rounded-3xl px-6 py-5 shadow-xl flex flex-col items-center justify-center gap-2"
+                <div class="absolute inset-0 bg-white/5 backdrop-blur-xl border ${border} rounded-3xl px-6 py-5 flex flex-col items-center justify-center gap-2"
                     style="backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg) translate3d(0,0,1px)">
                     <p class="text-white/50 text-xs font-bebas tracking-widest uppercase text-center">${p.ciudad}</p>
                     <p class="text-white font-bebas text-lg tracking-wide text-center leading-tight">${p.estadio}</p>

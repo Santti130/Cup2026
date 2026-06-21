@@ -92,7 +92,7 @@ nav.md\:hidden {
 .partidos-lista .match-card:nth-child(5) { animation-delay: 0.18s; }
 .partidos-lista .match-card:nth-child(6) { animation-delay: 0.22s; }
 
-/* ---- Orbs de fondo (efecto premium, 100% CSS, sin peso) ---- */
+/* ---- Orbs de fondo del calendario ---- */
 .cal-orb {
     position: absolute;
     border-radius: 9999px;
@@ -133,10 +133,53 @@ nav.md\:hidden {
     50%      { transform: translate(40px, -50px); }
 }
 
+/* ========================================================================== */
+/* COUNTDOWN / HOME — Fondo premium con orbs vibrantes, parallax y revelado     */
+/* ========================================================================== */
+
+/* Capas de orbs: el wrapper hace el parallax (JS), el orb flota (keyframes) */
+.cd-orb-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+}
+.cd-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    will-change: transform;
+}
+/* Colores vibrantes que conectan con el resto del sitio */
+.cd-orb-1 { width: 460px; height: 460px; background: #8b5cf6; opacity: .42; top: -70px;  left: -120px;  animation: cdFloatA 22s ease-in-out infinite; }
+.cd-orb-2 { width: 400px; height: 400px; background: #10b981; opacity: .36; top: 30%;    right: -110px; animation: cdFloatB 27s ease-in-out infinite; }
+.cd-orb-3 { width: 380px; height: 380px; background: #3b82f6; opacity: .38; bottom: 6%;  left: 18%;     animation: cdFloatC 24s ease-in-out infinite; }
+.cd-orb-4 { width: 340px; height: 340px; background: #f59e0b; opacity: .32; top: 12%;    right: 14%;    animation: cdFloatD 25s ease-in-out infinite; }
+
+@keyframes cdFloatA { 0%, 100% { transform: translate(0, 0); }  50% { transform: translate(60px, 80px); } }
+@keyframes cdFloatB { 0%, 100% { transform: translate(0, 0); }  50% { transform: translate(-70px, 50px); } }
+@keyframes cdFloatC { 0%, 100% { transform: translate(0, 0); }  50% { transform: translate(50px, -60px); } }
+@keyframes cdFloatD { 0%, 100% { transform: translate(0, 0); }  50% { transform: translate(-50px, -70px); } }
+
+/* Revelado al hacer scroll (estilo Apple) — se repite cada vez que entra en pantalla */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
 /* ---- Respeta usuarios que prefieren menos movimiento ---- */
 @media (prefers-reduced-motion: reduce) {
-    .match-card, .info-panel, .chevron, .flag-circle, .cal-orb {
+    .match-card, .info-panel, .chevron, .flag-circle,
+    .cal-orb, .cd-orb, .cd-orb-layer, .reveal-on-scroll {
         animation: none !important;
         transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
     }
 }
