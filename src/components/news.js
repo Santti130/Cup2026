@@ -328,9 +328,15 @@ function renderNewsList() {
             </a>
         </article>`
 
+    const MESES_NUM = { enero:0, febrero:1, marzo:2, abril:3, mayo:4, junio:5, julio:6, agosto:7, septiembre:8, octubre:9, noviembre:10, diciembre:11 }
+    function parseFecha(str) {
+        const m = (str || '').trim().toLowerCase().match(/(\d{1,2})\s+([a-záéíóú]+)\s+(\d{4})/)
+        if (!m) return 0
+        return new Date(+m[3], MESES_NUM[m[2]] ?? 0, +m[1]).getTime()
+    }
     // --- Pinta la portada según la sección elegida ---
     const pintar = (sec) => {
-        const lista = sec === 'Todas' ? noticias : noticias.filter(n => seccionDe(n) === sec)
+        const lista = (sec === 'Todas' ? [...noticias] : noticias.filter(n => seccionDe(n) === sec)).sort((a, b) => parseFecha(b.fecha) - parseFecha(a.fecha))
 
         if (!lista.length) {
             root.innerHTML = `<p class="np-empty">Aún no hay noticias en “${sec}”.</p>`
