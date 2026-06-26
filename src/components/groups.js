@@ -1,14 +1,14 @@
 // ============================================================================
-// CUPHUB · SECCIÓN GRUPOS + KNOCKOUT + ESTADÍSTICAS — Mundial 2026
+// CUPHUB · SECCIÓN GRUPOS + KNOCKOUT + ESTADÍSTICAS + 11 IDEAL — Mundial 2026
 // ----------------------------------------------------------------------------
 // SECCIÓN 1: API (standings 5min · live 60s · stats jugadores 15min lazy)
 // SECCIÓN 2: COMPONENTE PRINCIPAL
 // SECCIÓN 3: TIRA EN VIVO
-// SECCIÓN 4: CONTROLES BRACKET
+// SECCIÓN 4: CONTROLES BRACKET + 11 IDEAL
 // SECCIÓN 5: TABLA DE GRUPO
 // SECCIÓN 6: MEJORES TERCEROS
 // SECCIÓN 7: ESTADÍSTICAS DE JUGADORES (goles/asist/amarillas/rojas/vallas)
-// SECCIÓN 8: 11 IDEAL (widget Sofascore)
+// SECCIÓN 8: 11 IDEAL (widget Sofascore por jornada)
 // SECCIÓN 9: BRACKET KNOCKOUT
 // ============================================================================
 
@@ -18,6 +18,19 @@ const STATS_CACHE_DURATION     = 15 * 60 * 1000   // 15 min
 const ESTADOS_VIVO = ['1H', 'HT', '2H', 'ET', 'BT', 'P', 'PEN', 'LIVE']
 const API_BASE = 'https://v3.football.api-sports.io'
 const PLAYER_FALLBACK = 'https://media.api-sports.io/football/players/0.png'
+
+// ---- 11 IDEAL (Sofascore) ----
+const SOFA_TOURNAMENT = 16      // FIFA World Cup en Sofascore
+const SOFA_SEASON     = 58210   // Temporada Mundial 2026
+// ⚠️ Completa el "round" real de cada jornada. Cómo: entra al 11 ideal de Sofascore,
+//    elige la jornada y copia el número que va después de /round/ en la URL del widget.
+const JORNADAS = [
+    { label: 'Jornada 1', round: 27696 },
+    { label: 'Jornada 2', round: 27696 }, // ⚠️ reemplaza por el round real de la Jornada 2
+]
+function urlWidget(round) {
+    return `https://widgets.sofascore.com/es-ES/embed/unique-tournament/${SOFA_TOURNAMENT}/season/${SOFA_SEASON}/round/${round}/teamOfTheWeek?showCompetitionLogo=true&widgetTheme=dark&widgetTitle=FIFA%20World%20Cup`
+}
 
 function apiKey() { return import.meta.env.VITE_API_FOOTBALL_KEY }
 
@@ -129,7 +142,6 @@ async function cargarTodasStats() {
     return { goleadores, asistencias, amarillas, rojas }
 }
 
-// Vallas invictas (clean sheets) calculadas desde fixtures finalizados — sin llamada extra
 function calcularVallasInvictas(fixtures) {
     const map = {}
     for (const p of (fixtures || [])) {
@@ -148,7 +160,7 @@ function calcularVallasInvictas(fixtures) {
 // ============================================================================
 export function renderSeccionGrupos() {
     const section = document.createElement('section')
-    section.className = 'relative w-full min-h-screen flex flex-col items-center pb-32 bg-[#080d18] overflow-x-hidden'
+    section.className = 'relative w-full min-h-screen flex flex-col items-center pb-32 bg-[#070b14] overflow-x-hidden'
 
     const barra = () => `
         <span class="flex gap-1.5 shrink-0 items-center">
@@ -157,16 +169,33 @@ export function renderSeccionGrupos() {
             <span class="w-2 h-4 bg-blue-600 rounded-full"></span>
         </span>`
 
+    const tabsJornadas = JORNADAS.map((j, i) =>
+        `<button class="oi-tab ${i === 0 ? 'is-active' : ''}" data-round="${j.round}">${j.label}</button>`
+    ).join('')
+
     section.innerHTML = /*html*/`
         <style>
-            /* Orbs de fondo */
-            .gp-orb { position:absolute; border-radius:9999px; filter:blur(95px); pointer-events:none; z-index:0; will-change:transform; }
-            .gp-orb-1 { width:440px; height:440px; background:#8b5cf6; opacity:.16; top:-90px; left:-130px; animation:gpA 24s ease-in-out infinite; }
-            .gp-orb-2 { width:380px; height:380px; background:#10b981; opacity:.13; top:34%; right:-120px; animation:gpB 28s ease-in-out infinite; }
-            .gp-orb-3 { width:360px; height:360px; background:#f59e0b; opacity:.11; bottom:6%; left:18%; animation:gpC 26s ease-in-out infinite; }
-            @keyframes gpA { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,80px)} }
-            @keyframes gpB { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-70px,50px)} }
-            @keyframes gpC { 0%,100%{transform:translate(0,0)} 50%{transform:translate(50px,-60px)} }
+            /* ---------- Fondo aurora premium (sin cuadrícula) ---------- */
+            .gp-bg { position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+                background:
+                    radial-gradient(1100px 700px at 15% 4%,  rgba(124,58,237,0.16), transparent 60%),
+                    radial-gradient(1000px 700px at 88% 30%, rgba(37,99,235,0.13), transparent 60%),
+                    radial-gradient(1000px 800px at 30% 70%, rgba(5,150,105,0.12), transparent 60%),
+                    radial-gradient(900px 700px at 85% 96%,  rgba(245,158,11,0.08), transparent 60%); }
+            .gp-blob { position:absolute; border-radius:9999px; filter:blur(110px); pointer-events:none; will-change:transform; }
+            .gp-b1 { width:500px; height:500px; background:#7c3aed; opacity:.30; top:-70px;  left:-130px; animation:gpD1 34s ease-in-out infinite; }
+            .gp-b2 { width:440px; height:440px; background:#2563eb; opacity:.24; top:14%;    right:-140px; animation:gpD2 40s ease-in-out infinite; }
+            .gp-b3 { width:460px; height:460px; background:#059669; opacity:.22; top:36%;    left:-120px; animation:gpD3 37s ease-in-out infinite; }
+            .gp-b4 { width:420px; height:420px; background:#7c3aed; opacity:.18; top:58%;    right:-120px; animation:gpD1 43s ease-in-out infinite; }
+            .gp-b5 { width:440px; height:440px; background:#2563eb; opacity:.18; top:78%;    left:6%;      animation:gpD2 39s ease-in-out infinite; }
+            .gp-b6 { width:400px; height:400px; background:#f59e0b; opacity:.12; top:93%;    right:4%;     animation:gpD3 36s ease-in-out infinite; }
+            @keyframes gpD1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,55px) scale(1.1)} }
+            @keyframes gpD2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-70px,45px) scale(1.08)} }
+            @keyframes gpD3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(45px,-60px) scale(1.1)} }
+
+            /* Grano sutil para profundidad premium */
+            .gp-noise { position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.035; mix-blend-mode:overlay;
+                background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
             /* Revelado al scroll */
             .gp-reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
@@ -197,6 +226,24 @@ export function renderSeccionGrupos() {
             @keyframes gpShim { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
             .gp-shim { background:linear-gradient(90deg,rgba(255,255,255,.03) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.03) 75%); background-size:200% 100%; animation:gpShim 1.5s infinite; }
 
+            /* ---------- 11 Ideal: pestañas + tarjeta + loader ---------- */
+            .oi-tab { font-family:'Bebas Neue',sans-serif; letter-spacing:.08em; font-size:1.05rem;
+                padding:.55rem 1.35rem; border-radius:9999px; cursor:pointer; white-space:nowrap;
+                color:rgba(255,255,255,.55); background:rgba(255,255,255,.04);
+                border:1px solid rgba(255,255,255,.10); transition:all .35s cubic-bezier(.16,1,.3,1); }
+            .oi-tab:hover { color:rgba(255,255,255,.85); background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.2); }
+            .oi-tab.is-active { color:#fff; background:linear-gradient(135deg,rgba(139,92,246,.9),rgba(124,58,237,.75));
+                border-color:rgba(167,139,250,.6); box-shadow:0 8px 30px -6px rgba(139,92,246,.6); transform:translateY(-1px); }
+            .oi-card { position:relative; border-radius:28px; padding:1px;
+                background:linear-gradient(160deg, rgba(167,139,250,.35), rgba(255,255,255,.06) 40%, rgba(59,130,246,.25));
+                box-shadow:0 30px 80px -30px rgba(0,0,0,.8); }
+            .oi-card-inner { border-radius:27px; background:rgba(9,12,22,.85); backdrop-filter:blur(12px); padding:1rem; }
+            @media (min-width:640px){ .oi-card-inner { padding:1.5rem; } }
+            .oi-loader { position:absolute; inset:1px; border-radius:27px; z-index:5; background:rgba(9,12,22,.92);
+                display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; transition:opacity .4s ease; }
+            .oi-spinner { width:42px; height:42px; border-radius:9999px; border:3px solid rgba(255,255,255,.12); border-top-color:#a78bfa; animation:oiSpin .8s linear infinite; }
+            @keyframes oiSpin { to { transform:rotate(360deg); } }
+
             /* Bracket */
             .b-col { display:flex; flex-direction:column; width:230px; margin-right:28px; }
             .b-col:last-child { margin-right:0; }
@@ -207,20 +254,26 @@ export function renderSeccionGrupos() {
             .b-pair::after { content:''; position:absolute; right:-14px; top:25%; height:50%; width:2px; background:rgba(139,92,246,0.35); }
             .b-pair::before { content:''; position:absolute; right:-28px; top:50%; width:14px; height:2px; background:rgba(139,92,246,0.35); }
             .b-final .b-match::after, .b-final .b-pair::after, .b-final .b-pair::before { display:none; }
-            #bracket-card:fullscreen { background:#080d18; padding:2rem; overflow:auto; }
+            #bracket-card:fullscreen { background:#070b14; padding:2rem; overflow:auto; }
 
             @media (prefers-reduced-motion: reduce) {
-                .gp-orb, .gp-reveal, .gp-gcard, .gp-tabcontent, .gp-podium, .gp-row {
+                .gp-blob, .gp-reveal, .gp-gcard, .gp-tabcontent, .gp-podium, .gp-row, .oi-spinner {
                     animation:none !important; transition:none !important; transform:none !important; opacity:1 !important;
                 }
+                .oi-tab { transition:none !important; }
             }
         </style>
 
-        <!-- Fondo: orbs + rejilla -->
-        <div class="gp-orb gp-orb-1"></div>
-        <div class="gp-orb gp-orb-2"></div>
-        <div class="gp-orb gp-orb-3"></div>
-        <div class="absolute inset-0 pointer-events-none z-[1] bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:38px_38px]"></div>
+        <!-- Fondo aurora -->
+        <div class="gp-bg">
+            <span class="gp-blob gp-b1"></span>
+            <span class="gp-blob gp-b2"></span>
+            <span class="gp-blob gp-b3"></span>
+            <span class="gp-blob gp-b4"></span>
+            <span class="gp-blob gp-b5"></span>
+            <span class="gp-blob gp-b6"></span>
+        </div>
+        <div class="gp-noise"></div>
 
         <!-- HEADER -->
         <div class="relative w-full max-w-[1400px] px-4 md:px-8 pt-12 md:pt-20 pb-10 z-10">
@@ -281,20 +334,35 @@ export function renderSeccionGrupos() {
             <div id="stats-body"></div>
         </div>
 
-        <!-- 11 IDEAL (Sofascore) -->
-        <div class="relative w-full max-w-[1400px] px-4 md:px-8 z-10 flex flex-col gap-5 mt-20 gp-reveal">
-            <div class="flex items-center gap-4 mb-1">
-                <span class="flex gap-1.5 shrink-0 items-center"><span class="w-2 h-6 bg-violet-500 rounded-full"></span></span>
-                <h2 class="text-3xl md:text-5xl font-black font-bebas tracking-wide text-white uppercase">11 Ideal de la Jornada</h2>
+        <!-- 11 IDEAL (Sofascore, por jornada) -->
+        <div class="relative w-full max-w-[1400px] px-4 md:px-8 z-10 flex flex-col items-center gap-5 mt-20 gp-reveal">
+            <div class="w-full max-w-3xl flex flex-col items-center">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-400/30 bg-violet-500/10 text-violet-300 text-xs font-bold tracking-[0.22em] uppercase mb-5">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 17.3 5.8 20.9l1.6-6.8L2.2 8.9l6.9-.6z"/></svg>
+                    Sofascore · Equipo de la Semana
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black font-bebas tracking-wide uppercase text-center bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 leading-[0.92] mb-4">11 Ideal de la Jornada</h2>
+                <p class="text-white/55 text-base md:text-lg text-center max-w-xl font-sans leading-relaxed mb-8">
+                    La formación de la semana con las mejores actuaciones del Mundial, según las valoraciones de cada partido. Elige una jornada.
+                </p>
+                <div class="flex gap-2.5 flex-wrap justify-center mb-8">${tabsJornadas}</div>
+                <div class="w-full oi-card">
+                    <div class="oi-card-inner">
+                        <div class="relative" style="min-height:620px;">
+                            <div id="oi-loader" class="oi-loader">
+                                <div class="oi-spinner"></div>
+                                <span class="text-white/40 font-bebas tracking-widest text-sm">Cargando 11 ideal…</span>
+                            </div>
+                            <iframe id="oi-frame" title="11 Ideal de la Jornada — FIFA World Cup" loading="lazy"
+                                width="100%" height="620" style="display:block; max-width:700px; margin:0 auto; border-radius:14px;"
+                                src="${urlWidget(JORNADAS[0].round)}" frameBorder="0" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/30 text-xs font-sans text-center mt-5">
+                    Datos y formación cortesía de <a href="https://www.sofascore.com/es/football/tournament/world/world-championship/16#id:58210" target="_blank" rel="noopener" class="text-violet-400/70 hover:text-violet-300 transition-colors">Sofascore</a>. Las valoraciones se actualizan al finalizar cada partido.
+                </p>
             </div>
-            <p class="text-white/45 text-sm md:text-base font-sans max-w-2xl -mt-2">El equipo de la semana según las valoraciones de cada partido. Las mejores actuaciones individuales del Mundial.</p>
-            <div class="bg-white/[0.025] border border-white/10 rounded-3xl p-3 sm:p-6 shadow-2xl flex justify-center overflow-hidden">
-                <iframe title="11 Ideal de la Jornada — FIFA World Cup" loading="lazy"
-                    width="100%" height="620" style="display:block; max-width:700px; border-radius:14px;"
-                    src="https://widgets.sofascore.com/es-ES/embed/unique-tournament/16/season/58210/round/27696/teamOfTheWeek?showCompetitionLogo=true&widgetTheme=dark&widgetTitle=FIFA%20World%20Cup"
-                    frameBorder="0" scrolling="no"></iframe>
-            </div>
-            <p class="text-white/25 text-xs font-sans text-center">Datos del 11 ideal cortesía de <a href="https://www.sofascore.com/es/football/tournament/world/world-championship/16#id:58210" target="_blank" rel="noopener" class="text-violet-400/70 hover:text-violet-300 transition-colors">Sofascore</a>.</p>
         </div>
 
         <!-- KNOCKOUT -->
@@ -409,7 +477,6 @@ export function renderSeccionGrupos() {
             equiposEnVivo = new Set(live.flatMap(p => [p.home, p.away]))
             renderLiveStrip(section, live)
             pintarTablas()
-            // refresca vallas invictas solo si las stats ya están montadas y el usuario está en esa pestaña
             const cont = section.querySelector('#stats-body')
             if (cont && cont._bound) {
                 cont._vallas = calcularVallasInvictas(ultimosFixtures)
@@ -418,7 +485,6 @@ export function renderSeccionGrupos() {
         })
     }
 
-    // Carga perezosa de stats al entrar la sección en viewport (ahorra llamadas API)
     const cargarStatsLazy = () => {
         if (statsCargadas || statsCargando) return
         statsCargando = true
@@ -436,6 +502,7 @@ export function renderSeccionGrupos() {
     setInterval(cargarLive, LIVE_CACHE_DURATION)
 
     setupBracketControls(section)
+    setup11Ideal(section)
     setupReveal(section)
     setupStatsObserver(section, cargarStatsLazy)
 
@@ -443,7 +510,7 @@ export function renderSeccionGrupos() {
 }
 
 // ============================================================================
-// REVELADO AL SCROLL
+// REVELADO AL SCROLL + OBSERVER STATS
 // ============================================================================
 function setupReveal(section) {
     const els = section.querySelectorAll('.gp-reveal')
@@ -462,6 +529,34 @@ function setupStatsObserver(section, cb) {
         entries.forEach(e => { if (e.isIntersecting) { cb(); obs.disconnect() } })
     }, { rootMargin: '200px' })
     obs.observe(target)
+}
+
+// ============================================================================
+// 11 IDEAL — pestañas por jornada
+// ============================================================================
+function setup11Ideal(section) {
+    const iframe = section.querySelector('#oi-frame')
+    const loader = section.querySelector('#oi-loader')
+    if (!iframe || !loader) return
+    const tabs = [...section.querySelectorAll('.oi-tab')]
+
+    const mostrarLoader = () => { loader.style.opacity = '1'; loader.style.pointerEvents = 'auto' }
+    const ocultarLoader = () => { loader.style.opacity = '0'; loader.style.pointerEvents = 'none' }
+
+    iframe.addEventListener('load', ocultarLoader)
+    let respaldo = setTimeout(ocultarLoader, 2500)
+
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.classList.contains('is-active')) return
+            tabs.forEach(b => b.classList.remove('is-active'))
+            btn.classList.add('is-active')
+            mostrarLoader()
+            clearTimeout(respaldo)
+            respaldo = setTimeout(ocultarLoader, 2500)
+            iframe.src = urlWidget(btn.dataset.round)
+        })
+    })
 }
 
 // ============================================================================
@@ -698,7 +793,6 @@ function filaStat(item, pos, color, campo, tipoEquipo, subCampo, subLabel) {
     </div>`
 }
 
-// Monta la sección (guarda estado en el contenedor y vincula UN listener por delegación)
 function montarEstadisticas(section, statsData, fixtures) {
     const cont = section.querySelector('#stats-body')
     if (!cont) return
