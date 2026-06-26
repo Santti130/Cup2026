@@ -26,7 +26,7 @@ const SOFA_SEASON     = 58210   // Temporada Mundial 2026
 //    elige la jornada y copia el número que va después de /round/ en la URL del widget.
 const JORNADAS = [
     { label: 'Jornada 1', round: 27696 },
-    { label: 'Jornada 2', round: 27696 }, // ⚠️ reemplaza por el round real de la Jornada 2
+    { label: 'Jornada 2', round: 27746 }, // ⚠️ reemplaza por el round real de la Jornada 2
 ]
 function urlWidget(round) {
     return `https://widgets.sofascore.com/es-ES/embed/unique-tournament/${SOFA_TOURNAMENT}/season/${SOFA_SEASON}/round/${round}/teamOfTheWeek?showCompetitionLogo=true&widgetTheme=dark&widgetTitle=FIFA%20World%20Cup`
